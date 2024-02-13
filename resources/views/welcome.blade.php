@@ -43,8 +43,7 @@
                 <img src="{{ asset('storage/background/uniback.jpg') }}" alt="Home Image">
                 <div class="absolute z-10 bottom-2 flex justify-center w-full gap-x-6">
                     <div class="p-8 m-4 w-14 h-14 flex items-center justify-center bg-blue-500">
-                        
-
+                        <a href="{{ route('article.show', ['id' => 1]) }}">Read an Article</a>
                      </div>
                      <div class="p-8 m-4 w-14 h-14 flex items-center justify-center bg-blue-500">
                         1
@@ -73,7 +72,7 @@
                 </div> --}}
             </div>
         </section>
-        @section('content')
+        {{-- @section('content')
         <div class="container">
             <h1>Articles</h1>
             <ul>
@@ -82,6 +81,6 @@
                 @endforeach
             </ul>
         </div>
-    @endsection
+    @endsection --}}
     </body>
 </html>

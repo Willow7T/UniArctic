@@ -9,8 +9,9 @@ class ArticleController extends Controller
     //Show articles using ID
     public function show($id)
     {
-        $articles = Article::findOrFail($id);
+        //$articles = Article::findOrFail($id);
+        $article = Article::find($id);
 
-        return view('articles.show', compact('articles'));
+        return view('article.show', ['article' => $article]);
     }
 }
