@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'a77871ff3c9d33f2cbeff5aa1845b18a5754fd8a',
+        'reference' => '2fd7dccd4e2953b06519de121f51d193e7131bc2',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -388,6 +388,15 @@
                 0 => '*',
             ),
         ),
+        'laminas/laminas-escaper' => array(
+            'pretty_version' => '2.13.0',
+            'version' => '2.13.0.0',
+            'reference' => 'af459883f4018d0f8a0c69c7a209daef3bf973ba',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laminas/laminas-escaper',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'laravel/fortify' => array(
             'pretty_version' => 'v1.20.0',
             'version' => '1.20.0.0',
@@ -418,7 +427,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'a77871ff3c9d33f2cbeff5aa1845b18a5754fd8a',
+            'reference' => '2fd7dccd4e2953b06519de121f51d193e7131bc2',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

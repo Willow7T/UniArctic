@@ -7,5 +7,43 @@
     display: none;
 }
 
+.Image-Resizer img
+{
+    margin: auto;
+    max-width: 60rem;
+    max-height: 40rem;
+    padding: 2%;
+    object-fit: cover;
+}
+/*make them responsive*/
+@media only screen and (max-width: 600px) {
+    .Image-Resizer img
+    {
+        max-width: 30rem;
+        max-height: 20rem;
+    }
+} 
 
+@media only screen and (min-width: 600px) {
+    .Image-Resizer img
+    {
+        max-width: 40rem;
+        max-height: 30rem;
 
+    } 
+}
+@media only screen and (min-width: 992px) {
+    .Image-Resizer img
+    {
+        max-width: 50rem;
+        max-height: 35rem;
+    } 
+}
+@media only screen and (min-width: 1200px) {
+
+    .Image-Resizer img
+    {
+        max-width: 60rem;
+        max-height: 40rem;
+    } 
+}

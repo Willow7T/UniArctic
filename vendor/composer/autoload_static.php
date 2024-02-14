@@ -139,6 +139,7 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
             'Laravel\\Prompts\\' => 16,
             'Laravel\\Jetstream\\' => 18,
             'Laravel\\Fortify\\' => 16,
+            'Laminas\\Escaper\\' => 16,
         ),
         'I' => 
         array (
@@ -477,6 +478,10 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         array (
             0 => __DIR__ . '/..' . '/laravel/fortify/src',
         ),
+        'Laminas\\Escaper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-escaper/src',
+        ),
         'Illuminate\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Macroable',
@@ -606,6 +611,8 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Article' => __DIR__ . '/../..' . '/app/Models/Article.php',
+        'App\\Models\\Faculty' => __DIR__ . '/../..' . '/app/Models/Faculty.php',
+        'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -2911,6 +2918,10 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
+        'Laminas\\Escaper\\Escaper' => __DIR__ . '/..' . '/laminas/laminas-escaper/src/Escaper.php',
+        'Laminas\\Escaper\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/laminas/laminas-escaper/src/Exception/ExceptionInterface.php',
+        'Laminas\\Escaper\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/laminas/laminas-escaper/src/Exception/InvalidArgumentException.php',
+        'Laminas\\Escaper\\Exception\\RuntimeException' => __DIR__ . '/..' . '/laminas/laminas-escaper/src/Exception/RuntimeException.php',
         'Laravel\\Fortify\\Actions\\AttemptToAuthenticate' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/AttemptToAuthenticate.php',
         'Laravel\\Fortify\\Actions\\CanonicalizeUsername' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/CanonicalizeUsername.php',
         'Laravel\\Fortify\\Actions\\CompletePasswordReset' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/CompletePasswordReset.php',

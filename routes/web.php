@@ -25,7 +25,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/home', function () {
         return view('home');
-    })->name('dashboard');
+    })->name('home');
     Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('article.show');
 });
 
