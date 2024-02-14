@@ -23,8 +23,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
+    Route::get('/home', function () {
+        return view('home');
     })->name('dashboard');
     Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('article.show');
 });

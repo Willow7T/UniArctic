@@ -13,6 +13,7 @@
 
   <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
 
         <!-- Styles -->
         @livewireStyles
@@ -27,7 +28,7 @@
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                        <a href="{{ url('/home') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
                     @else
                         <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
 
@@ -41,17 +42,23 @@
         <section class="mt-16 flex justify-center px-4 md:mt-12 xl:mt-0">
             <div class="relative w-full mt-8 max-w-screen-xl xl:p-8 xl:py-16">
                 <img src="{{ asset('storage/background/uniback.jpg') }}" alt="Home Image">
-                <div class="absolute z-10 bottom-2 flex justify-center w-full gap-x-6">
-                    <div class="p-8 m-4 w-14 h-14 flex items-center justify-center bg-blue-500">
+                <div class="absolute z-10 right-2 bottom-2 flex justify-center w-full gap-x-12">
+                    <div class="w-24 h-24 flex items-center justify-center bg-red-500 border-solid border-2 border-red-600">
                         <a href="{{ route('article.show', ['id' => 1]) }}">Read an Article</a>
                      </div>
-                     <div class="p-8 m-4 w-14 h-14 flex items-center justify-center bg-blue-500">
+                     <div class="w-24 h-24 flex items-center justify-center bg-red-500 border-solid border-2 border-red-600">
                         1
                      </div>
-                     <div class="p-8 m-4 w-14 h-14 flex items-center justify-center bg-blue-500">
+                     <div class="w-24 h-24 flex items-center justify-center bg-gray-900 border-solid border-2 border-red-600">
                         1
                      </div>
-                     <div class="p-8 m-4 w-14 h-14 flex items-center justify-center bg-blue-500">
+                     <div class="w-24 h-24 flex items-center justify-center bg-blue-500 border-solid border-2 border-red-600">
+                        1
+                     </div>
+                     <div class="w-24 h-24 flex items-center justify-center bg-blue-500 border-solid border-2 border-red-600">
+                        1
+                     </div>
+                     <div class="w-24 h-24 flex items-center justify-center bg-blue-500 border-solid border-2 border-red-600">
                         1
                      </div>
                 </div>

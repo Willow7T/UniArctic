@@ -18,6 +18,8 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+
+    const DEFAULT_ROLE_ID = 5;
     /**
      * The attributes that are mass assignable.
      *
@@ -27,8 +29,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'faculty_id',
     ];
-
+    
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -58,4 +62,33 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    public static function boot()
+    {
+        parent::boot();
+
+        // Set default role ID when creating a new user
+        static::creating(function ($user) {
+            if (!$user->role_id) {
+                $user->role_id = self::DEFAULT_ROLE_ID;
+            }
+        });
+    }
+
+
+    //user may have a role
+    public function role(){
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+    //user may belongs to a faculty
+    public function faculty(){
+        return $this->belongsTo(Faculty::class, 'faculty_id');
+    }
+
+    //user has many articles
+    public function articles(){
+        return $this->hasMany(Article::class, 'author_id');
+    }
+   
 }
