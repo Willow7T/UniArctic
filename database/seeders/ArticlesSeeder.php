@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeders;
+use Illuminate\Database\Seeder;
 use PhpOffice\PhpWord\IOFactory;
 use App\Models\Articles;
 use Illuminate\Support\Facades\Storage;

@@ -26,6 +26,6 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/articles/{id}', [ArticleController::class, 'show']);
+    Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('article.show');
 });
 
