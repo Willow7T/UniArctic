@@ -1,39 +1,4 @@
-<style>
-/* Customize the toggle button appearance */
-.toggle-btn {
-    width: 48px;
-    height: 24px;
-    border-radius: 9999px;
-    background-color: #E5E7EB; /* Default background color */
-    position: relative;
-    cursor: pointer;
-}
 
-.toggle-btn::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #FFFFFF;
-    transition: transform 0.3s ease;
-}
-
-/* Move the slider when the checkbox is checked */
-#anon:checked + .toggle-btn::before {
-    transform: translateX(24px); /* Move the slider to the right */
-}
-
-/* Change background color of the toggle button when checked */
-#anon:checked + .toggle-btn {
-    background-color: #10B981; /* Green background color */
-}
-
-
-</style>
 
 <x-app-layout>
     <x-slot name="header">
@@ -58,12 +23,36 @@
                                 <label for="intro" class="block text-lg font-medium text-gray-700">Intro</label>
                                 <input type="text" placeholder="Write the Intro for your article" class="block w-full py-2 px-3 border-0 outline-none focus:ring-0 placeholder-transparent" id="intro" name="intro" required>
                             </div>  
-                            <div class="border-b border-gray-300 relative mb-6">
-                                <label for="content" class="block text-lg font-medium text-gray-700 mb-4">Content (.docx file)</label>
-                                <input type="file" id="content" name="content"  required accept=".docx">
+                            {{-- add image upload with image preview .jpeg/.jpg/.png --}}
+                            <img class="max-w-xs max-h-64 pb-5" id="imagePreview" src="#" alt="Image Preview" style="display: none;">
+                            <div class="flex flex-row gap-x-5">
+                                <div class=" relative mb-6">
+                                    <label for="image" class="
+                                        px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                    Image (.jpeg/.jpg/.png file)
+                                    </label>                
+                                        <input type="file" id="image" name="image"  required accept=".jpeg,.jpg,.png" onchange="previewImage(event)">
+                                </div>
+    
+                                <div class=" relative mb-6">
+                                    <label for="content" class="
+                                    px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                    Content (.docx file)
+                                </label>                
+                                        <input type="file" id="content" name="content"  required accept=".docx" onchange="previewDocxFileName(event)">                    
+                                </div>
+                                <div class=" relative mb-6">
+                                    {{-- content name preview --}}
+                                    <label for="content" id="contentPreview" class="
+                                        font-semibold text-ls text-gray-900  tracking-widest">
+                                    .docx file
+                                </label>                
+                                </div>
                             </div>
+                            
+
                             <div class="border-b border-gray-300 relative mb-6">
-                                <label for="content" class="block text-lg font-medium text-gray-700 mb-2">Choose the Issue</label>
+                                <label for="magazine_id" class="block text-lg font-medium text-gray-700 mb-2">Choose the Issue</label>
                                 <select id="magazine_id" name="magazine_id" class="block w-full py-2 px-3 border-0 outline-none focus:ring-0">
                                     @foreach ($magazines as $magazine)
                                         <option value="{{ $magazine->id }}">{{ $magazine->issue_name }}  
@@ -74,7 +63,7 @@
                                 </select>
                             </div>
 
-                            <div class="border-b flex items-center justify-between border-gray-300 relative mb-6">
+                            <div class="flex items-center justify-between relative mb-6">
                                 <label for="anon" class="block font-medium text-lg text-gray-700">Submit as Anonymous</label>
                                 <div class="relative">
                                     <input type="checkbox" id="anon" name="anon" class="hidden">

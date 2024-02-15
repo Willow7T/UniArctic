@@ -67,7 +67,7 @@ class ArticleController extends Controller
         $article = new Article;
     ;
        
-        $path = null;
+        $contentpath = null;
         if ($request->hasFile('content')) {
             $file = $request->file('content');
             $filename = $file->hashName('articles');
@@ -75,14 +75,14 @@ class ArticleController extends Controller
 
 
             // Store the file
-            $path = $file->store('articles');
+            $contentpath = $file->store('articles');
         }
     
        
         $article = Article::create([
             'title' => $request->title,
             'intro' => $request->intro,
-            'content' => $path ?? null, // assuming $path contains the path to the content file
+            'content' => $contentpath ?? null, // assuming $contentpath contains the path to the content file
             'selected'=>false,
             'author_id' => $request->anon ? null : auth()->id(),
             'magazine_id' => $request->magazine_id,

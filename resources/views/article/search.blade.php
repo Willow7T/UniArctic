@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <form method="GET" action="{{ route('article.search') }}">
+                    <form  id="searchForm" method="GET" action="{{ route('article.search') }}">
                         <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Search by title">
                         
                            
@@ -25,7 +25,7 @@
                                     </button>
                                 @foreach ($monthList as $m)
                                     <label>
-                                        <input type="checkbox" name="months[]" value="{{ $m }}" {{ in_array($m, $months ?? []) ? 'checked' : '' }} onclick="event.stopPropagation()">
+                                        <input type="checkbox" name="months[]" value="{{ $m }}" {{ in_array($m, $months ?? []) ? 'checked' : '' }} onclick="event.stopPropagation()" onchange="submitForm()">
                                         {{ $m }}
                                     </label>
                                 @endforeach
@@ -34,7 +34,7 @@
                                     </button>
                                 @foreach ($yearList as $y)
                                     <x-dropdown-link>
-                                        <input type="checkbox" name="years[]" value="{{ $y }}" {{ in_array($y, $years ?? []) ? 'checked' : '' }} onclick="event.stopPropagation()">
+                                        <input type="checkbox" name="years[]" value="{{ $y }}" {{ in_array($y, $years ?? []) ? 'checked' : '' }} onclick="event.stopPropagation()" onchange="submitForm()">
                                         {{ $y }}
                                     </x-dropdown-link>
                                 @endforeach
@@ -42,7 +42,7 @@
                     </form>
 
                     @foreach ($articles as $article)
-                    <a href="{{ route('article.show', ['id' => $article->id, 'title' => Str::slug($article->title)]) }}">
+                    <a href="{{ route('article.show', ['id' => $article->id, 'title' => Str::slug($article->title)]) }}" class="p-3">
                         <div class="bg-red-500">
                               <h2>{{ $article->title }}</h2>
                                 <p>{{ $article->intro }}</p>

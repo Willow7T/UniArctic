@@ -15,6 +15,49 @@
     padding: 2%;
     object-fit: cover;
 }
+
+/* Customize the toggle button appearance */
+.toggle-btn {
+    width: 48px;
+    height: 24px;
+    border-radius: 9999px;
+    background-color: #E5E7EB; /* Default background color */
+    position: relative;
+    cursor: pointer;
+}
+
+.toggle-btn::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    transition: transform 0.3s ease;
+}
+
+/* Move the slider when the checkbox is checked */
+#anon:checked + .toggle-btn::before {
+    transform: translateX(24px); /* Move the slider to the right */
+}
+
+/* Change background color of the toggle button when checked */
+#anon:checked + .toggle-btn {
+    background-color: #10B981; /* Green background color */
+}
+#content{
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+ }
+ #image{
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+ }
 /*make them responsive*/
 @media only screen and (max-width: 600px) {
     .Image-Resizer img
