@@ -21,9 +21,12 @@ document.getElementById('darkswitch').addEventListener('change', function() {
     if (this.checked) {
       document.documentElement.classList.remove('white');
       document.documentElement.classList.add('dark');
+      sessionStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
       document.documentElement.classList.add('white');
+      sessionStorage.setItem('theme', 'white');
+
     }
   });
 
@@ -61,3 +64,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+window.onload = function() {
+    var savedTheme = sessionStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.className = savedTheme;
+      document.getElementById('darkswitch').checked = (savedTheme == 'dark');
+    }
+  };
