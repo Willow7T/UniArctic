@@ -92,7 +92,7 @@
         @if (Auth::user()->role_id == 4)
         <div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
             <x-button class="bg-blue-500 hover:bg-blue-700">
-                <a href="{{ route('article.create') }}">Create Article</a>
+                <a href="{{ route('article.create') }}">Write an Article</a>
             </x-button>
         </div>
         @endif

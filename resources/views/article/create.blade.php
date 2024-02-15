@@ -28,7 +28,10 @@
                             <label for="magazine">Magazine</label>
                             <select id="magazine_id" name="magazine_id">
                                 @foreach ($magazines as $magazine)
-                                    <option value="{{ $magazine->id }}">{{ $magazine->issue_name }}</option>
+                                    <option value="{{ $magazine->id }}">{{ $magazine->issue_name }}  
+                                        {{ DateTime::createFromFormat('!m', $magazine->month)->format('F') }} 
+                                        {{$magazine->year}}  
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -37,7 +40,7 @@
                         </div>
                         <div>
                             <x-button type="submit">
-                                Create
+                                Submit
                             </x-button>
                         </div>
                     </form>
