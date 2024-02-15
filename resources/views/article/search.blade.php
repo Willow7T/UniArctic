@@ -46,6 +46,11 @@
                         <div class="bg-red-500">
                               <h2>{{ $article->title }}</h2>
                                 <p>{{ $article->intro }}</p>
+                                @if($article->image)
+                                    <img class="max-w-xs max-h-64" src="{{asset('storage/' . $article->image)  }}" alt="">
+                                @else
+                                    <img class="max-w-xs max-h-64" src="{{ asset('background/blank.png') }}" alt="Blank image">
+                                @endif
                         </div>
                     </a>
                         

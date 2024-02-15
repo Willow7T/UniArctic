@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Settings;
 use PhpOffice\PhpWord\Shared\ZipArchive;
@@ -56,17 +58,27 @@ class ArticleController extends Controller
         return view('article.show', compact('article', 'content'));
     }
 
+   
     public function store(Request $request)
     {
         $request->validate([
             'title' => 'required|max:255',
             'intro' => 'required|max:255',
+            'image' => 'required|mimes:jpeg,png','jpg',
             'content' => 'required|mimes:docx',
             'magazine_id' => 'required|exists:magazines,id',
         ]);
         $article = new Article;
-    ;
-       
+    
+        $imagepath = null;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = $file->hashName('articles');
+    
+            // Store the file
+            $imagepath = $file->store('articles', 'public');
+        }
+
         $contentpath = null;
         if ($request->hasFile('content')) {
             $file = $request->file('content');
@@ -81,7 +93,8 @@ class ArticleController extends Controller
        
         $article = Article::create([
             'title' => $request->title,
-            'intro' => $request->intro,
+            'intro' => $request->intro, 
+            'image' => $imagepath ?? null, // assuming $imagepath contains the path to the image file
             'content' => $contentpath ?? null, // assuming $contentpath contains the path to the content file
             'selected'=>false,
             'author_id' => $request->anon ? null : auth()->id(),

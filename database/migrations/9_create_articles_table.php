@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('intro');
+            $table->string('image')->nullable();
             $table->string('content');
             $table->boolean('selected')->default(false);
 

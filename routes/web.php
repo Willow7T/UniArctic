@@ -40,6 +40,7 @@ Route::middleware([
     Route::get('/article/{id}/{title}', [
         ArticleController::class, 'show'
     ])->name('article.show');
+    
 
 
 });

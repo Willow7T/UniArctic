@@ -10,7 +10,7 @@ class Article extends Model
 
 
 
-    protected $fillable = ['title', 'intro', 'content', 'selected','author_id', 'magazine_id']; // Example fillable attributes
+    protected $fillable = ['title', 'intro', 'image', 'content', 'selected','author_id', 'magazine_id']; // Example fillable attributes
 
     // Example relationship: an article belongs to an author
     public function author()
