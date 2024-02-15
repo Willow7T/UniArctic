@@ -44,8 +44,8 @@
                 <img src="{{ asset('storage/background/uniback.jpg') }}" alt="Home Image">
                 <div class="absolute z-10 right-2 bottom-2 flex justify-center w-full gap-x-12">
                     <div class="w-24 h-24 flex items-center justify-center bg-red-500 border-solid border-2 border-red-600">
-                        <a href="{{ route('article.show', ['id' => 1]) }}">Read an Article</a>
-                     </div>
+                     
+                    </div>
                      <div class="w-24 h-24 flex items-center justify-center bg-red-500 border-solid border-2 border-red-600">
                         1
                      </div>
