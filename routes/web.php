@@ -26,6 +26,20 @@ Route::middleware([
     Route::get('/home', function () {
         return view('home');
     })->name('home');
-    Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('article.show');
+    
+
+    Route::get('/articles/create', [
+        ArticleController::class, 'create'
+    ])->name('article.create');
+
+    Route::post('/articles/create', [
+        ArticleController::class, 'store'
+    ])->name('article.store');
+
+    Route::get('/articles/{id}', [
+        ArticleController::class, 'show'
+    ])->name('article.show');
+
+
 });
 

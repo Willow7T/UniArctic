@@ -21,7 +21,7 @@
                           <img class="w-10 h-10 rounded-full object-cover" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->name }}" />
                         </div>
                         <div class="flex flex-col">
-                            <p>{{ $article->author->name }}</p>
+                            <p>{{ $article->author->name ?? 'Anonymous'}}</p>
                             <p>2012 December</p>
                         </div>
                    </div>

@@ -9,14 +9,17 @@ class Article extends Model
 {   use HasFactory;
 
 
-    protected $table = 'articles';
-    protected $primaryKey = 'id';
-    protected $fillable = ['title', 'intro', 'content', 'author_id']; // Example fillable attributes
+
+    protected $fillable = ['title', 'intro', 'content', 'selected','author_id', 'magazine_id']; // Example fillable attributes
 
     // Example relationship: an article belongs to an author
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
+    }
+    public function magazine()
+    {
+        return $this->belongsTo(Magazine::class, 'magazine_id');
     }
     
 }
