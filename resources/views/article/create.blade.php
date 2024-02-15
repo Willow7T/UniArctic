@@ -36,7 +36,9 @@
                             <input type="checkbox" id="anon" name="anon">
                         </div>
                         <div>
-                            <button type="submit">Create</button>
+                            <x-button type="submit">
+                                Create
+                            </x-button>
                         </div>
                     </form>
                 </div>
