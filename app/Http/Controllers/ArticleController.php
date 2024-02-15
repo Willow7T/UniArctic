@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Article; 
 use App\Models\Magazine;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -91,4 +92,44 @@ class ArticleController extends Controller
     
         return redirect()->route('home')->with('success', 'Article created successfully.');
     }
+
+    //search articles
+    public function search(Request $request)
+{
+    $search = $request->input('search');
+    $months = $request->input('months');
+    $years = $request->input('years');
+
+    $query = Article::query();
+
+    if (!empty($search)) {
+        $query->where('title', 'like', '%' . $search . '%');
+    }
+
+    if (!empty($months) || !empty($years)) {
+        $query->join('magazines', 'articles.magazine_id', '=', 'magazines.id');
+
+        if (!empty($months)) {
+            $query->whereIn('magazines.month', $months);
+        }
+
+        if (!empty($years)) {
+            $query->whereIn('magazines.year', $years);
+        }
+    }
+
+    $articles = $query->select('articles.*')->paginate(10);
+
+    $monthList = DB::table('magazines')->distinct()->orderBy('month', 'asc')->pluck('month')->all();
+    $yearList = DB::table('magazines')->distinct()->orderBy('year', 'asc')->pluck('year')->all();
+
+    return view('article.search', [
+        'articles' => $articles,
+        'search' => $search,
+        'months' => $months,
+        'years' => $years,
+        'monthList' => $monthList,
+        'yearList' => $yearList,
+    ]);
+}
 }
