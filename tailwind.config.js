@@ -13,7 +13,6 @@ export default {
         "./resources/**/*.js",
         "./resources/**/*.vue"
     ],
-
     theme: {
         extend: {
             fontFamily: {
@@ -21,6 +20,10 @@ export default {
             },
         },
     },
-
-    plugins: [forms, typography],
+    darkMode: 'class',
+    plugins: [forms, typography,
+        require('@tailwindcss/forms'),],
+    
 };
+
+

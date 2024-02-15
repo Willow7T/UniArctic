@@ -16,6 +16,10 @@
     object-fit: cover;
 }
 
+
+
+
+/* Anon Button */
 /* Customize the toggle button appearance */
 .toggle-btn {
     width: 48px;
@@ -39,6 +43,8 @@
     transition: transform 0.3s ease;
 }
 
+
+
 /* Move the slider when the checkbox is checked */
 #anon:checked + .toggle-btn::before {
     transform: translateX(24px); /* Move the slider to the right */
@@ -48,6 +54,21 @@
 #anon:checked + .toggle-btn {
     background-color: #10B981; /* Green background color */
 }
+
+input:checked ~ .dot {
+    transform: translateX(100%);
+  }
+  input:checked ~ .dot #sunIcon {
+    display: none;
+  }
+  input:checked ~ .dot #moonIcon {
+    display: block;
+  }
+  input:checked ~ .block {
+    background-color: #0e0c31;
+  }
+
+
 #content{
     opacity: 0;
     position: absolute;
@@ -58,6 +79,12 @@
     position: absolute;
     z-index: -1;
  }
+
+
+
+
+
+
 /*make them responsive*/
 @media only screen and (max-width: 600px) {
     .Image-Resizer img
