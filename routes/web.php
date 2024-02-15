@@ -31,12 +31,13 @@ Route::middleware([
     Route::get('/articles/create', [
         ArticleController::class, 'create'
     ])->name('article.create');
-
+    Route::get('/articles/search', [
+        ArticleController::class, 'search'
+        ])->name('article.search');
     Route::post('/articles/create', [
         ArticleController::class, 'store'
     ])->name('article.store');
-
-    Route::get('/articles/{id}', [
+    Route::get('/article/{id}/{title}', [
         ArticleController::class, 'show'
     ])->name('article.show');
 
