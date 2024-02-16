@@ -82,16 +82,16 @@
      </div>
     
      <div class="py-8">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-gray-200">
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-y-4">
+            <div class="bg-gray-100">
                 @foreach ($articles as $article)
-                <a href="{{ route('article.show', ['id' => $article->id, 'title' => Str::slug($article->title)]) }}" class="block">
-                    <div class="bg-grey-500 m-4 p-4 rounded">
+                <a href="{{ route('article.show', ['id' => $article->id, 'title' => Str::slug($article->title)]) }}" class="block max-h-[15%]">
+                    <div class="bg-gray-200 m-4 p-4 rounded">
                         <div class="mb-4">
                             @if($article->image)
-                            <img class="max-w-full mb-4" src="{{ asset('storage/' . $article->image) }}" alt="">
+                            <img class="w-[45rem] xl:h-80 md:h-64 lg:h-64 sm:h-64 mx-auto rounded" src="{{ asset('storage/' . $article->image) }}" alt="Article Image">
                             @else
-                            <img class="max-w-full mb-4" src="{{ asset('background/blank.png') }}" alt="Blank image">
+                            <img class="xl:h-96 md:h-64 lg:h-64 sm:h-20 mx-auto rounded" src="{{ asset('background/blank.png') }}" alt="Blank image">
                             @endif
                             <div class="text-2xl"> 
                                 <h2>{{ $article->title }}</h2>
@@ -99,7 +99,7 @@
                             
                         </div>
                         <div class="text-base">
-                            {{ $article->intro }}
+                            {{  \Illuminate\Support\Str::words($article->intro, 30)  }}
                         </div>
                         
                     </div>
@@ -110,9 +110,11 @@
     </div>
     
     
-    
 
     
 
     {{ $articles->links('pagination-links') }}
 </div>
+
+
+

@@ -21,19 +21,17 @@
                             </div>                           
                             <div class="border-b border-gray-300 relative mb-6">
                                 <label for="intro" class="block text-lg font-medium text-gray-700 dark:text-slate-100">Intro</label>
-                                <input type="text" placeholder="Write the Intro for your article" class="block w-full py-2 px-3 border-0 outline-none focus:ring-0 placeholder-transparent dark:bg-slate-900 dark:text-slate-100" id="intro" name="intro" required>
-                            </div>  
+                                <textarea placeholder="Write the Intro for your article" class="block w-full py-2 px-3 border-0 outline-none focus:ring-0 placeholder-transparent dark:bg-slate-900 dark:text-slate-100 resize-none" id="intro" name="intro" required></textarea>
+                            </div>
                             {{-- add image upload with image preview .jpeg/.jpg/.png --}}
                             <img class="max-w-xs max-h-64 pb-5" id="imagePreview" src="#" alt="Image Preview" style="display: none;">
                             <div class="flex flex-row gap-x-5">
-                                <div class=" relative mb-6">
-                                    <label for="image" class=" 
-                                    dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2 bg-[#007bff] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#0056b3] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                    Image (.jpeg/.jpg/.png file)
+                                <div class="relative mb-6">
+                                    <label for="image" class="dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2 bg-[#007bff] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#0056b3] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                        Image (.jpeg/.jpg/.png file)
                                     </label>                
-                                        <input type="file" id="image" name="image"  required accept=".jpeg,.jpg,.png" onchange="previewImage(event)">
+                                    <input type="file" id="image" name="image" required accept=".jpeg,.jpg,.png" onchange="previewImage(event)">
                                 </div>
-
                                 <div class=" relative mb-6">
                                     <label for="content" class="
                                     dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2 bg-[#007bff] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#0056b3] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
@@ -111,5 +109,21 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-
+function previewImage(event) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        var img = new Image();
+        img.onload = function() {
+            if (img.width <= img.height) {
+                alert("Please upload a landscape image.");
+            } else {
+                var output = document.getElementById('imagePreview');
+                output.src = img.src;
+                output.style.display = 'block';
+            }
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
 </script>

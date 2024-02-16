@@ -63,7 +63,7 @@ class ArticleController extends Controller
     {
         $request->validate([
             'title' => 'required|max:255',
-            'intro' => 'required|max:255',
+            'intro' => 'required',
             'image' => 'required|mimes:jpeg,png','jpg',
             'content' => 'required|mimes:docx',
             'magazine_id' => 'required|exists:magazines,id',
