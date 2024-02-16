@@ -81,25 +81,36 @@
         </form>
      </div>
     
-    <div class="py-8">
+     <div class="py-8">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-gray-200 flex flex-col shadow-xl sm:rounded-lg">
+            <div class="bg-gray-200">
                 @foreach ($articles as $article)
-                <a href="{{ route('article.show', ['id' => $article->id, 'title' => Str::slug($article->title)]) }}" class="">
-                    <div class="bg-cyan-500 m-4 p-4 rounded">
-                          <h2>{{ $article->title }}</h2>
-                            <p>{{ $article->intro }}</p>
+                <a href="{{ route('article.show', ['id' => $article->id, 'title' => Str::slug($article->title)]) }}" class="block">
+                    <div class="bg-grey-500 m-4 p-4 rounded">
+                        <div class="mb-4">
                             @if($article->image)
-                                <img class="max-w-xs max-h-64" src="{{asset('storage/' . $article->image)  }}" alt="">
+                            <img class="max-w-full mb-4" src="{{ asset('storage/' . $article->image) }}" alt="">
                             @else
-                                <img class="max-w-xs max-h-64" src="{{ asset('background/blank.png') }}" alt="Blank image">
+                            <img class="max-w-full mb-4" src="{{ asset('background/blank.png') }}" alt="Blank image">
                             @endif
+                            <div class="text-2xl"> 
+                                <h2>{{ $article->title }}</h2>
+                            </div>
+                            
+                        </div>
+                        <div class="text-base">
+                            {{ $article->intro }}
+                        </div>
+                        
                     </div>
                 </a>
                 @endforeach
             </div>
         </div>
     </div>
+    
+    
+    
 
     
 
