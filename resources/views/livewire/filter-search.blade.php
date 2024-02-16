@@ -1,8 +1,8 @@
 <div>
     {{-- <div class="fixed"> --}}
     
-    <div class="2xl:fixed z-50">
-        <form id="searchForm" wire:submit.prevent="$refresh" >
+    <div class="2xl:fixed z-50 block md:flex sm:flex">
+        <form id="searchForm" wire:submit.prevent="$refresh"class="z-10" >
             <div class="flex flex-row gap-x-4 p-2">
                 <input class="border-gray-100 border-2 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-200 
                 focus:outline-none focus:border-blue-800 focus:ring-blue-800 dark:focus:border-purple-600 dark:focus:ring-purple-600
@@ -103,5 +103,5 @@
 
     
 
-    {{ $articles->links() }}
+    {{ $articles->links('pagination-links') }}
 </div>

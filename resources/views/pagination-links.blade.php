@@ -1,7 +1,7 @@
 <div>
 
     @if ($paginator->hasPages())
-    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="xl:absolute left-2 bottom-3 p-4 flex items-center gap-x-2">
+    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="xl:stick bottom-3 p-4 flex items-center gap-x-2">
         <div>
             @if ($paginator->onFirstPage())
                 <span class="

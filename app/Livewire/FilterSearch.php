@@ -67,7 +67,7 @@ public function toggleYear()
             }
         }
 
-        $articles = $query->select('articles.*')->paginate(2);
+        $articles = $query->select('articles.*')->paginate(10);
 
         $monthList = DB::table('magazines')->distinct()->orderBy('month', 'asc')->pluck('month')->all();
         $yearList = DB::table('magazines')->distinct()->orderBy('year', 'asc')->pluck('year')->all();
