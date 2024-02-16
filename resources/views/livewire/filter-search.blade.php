@@ -66,20 +66,27 @@
             </div>
         </div>
     </form>
-    
-    @foreach ($articles as $article)
-    <a href="{{ route('article.show', ['id' => $article->id, 'title' => Str::slug($article->title)]) }}" class="p-3">
-        <div class="bg-red-500">
-              <h2>{{ $article->title }}</h2>
-                <p>{{ $article->intro }}</p>
-                @if($article->image)
-                    <img class="max-w-xs max-h-64" src="{{asset('storage/' . $article->image)  }}" alt="">
-                @else
-                    <img class="max-w-xs max-h-64" src="{{ asset('background/blank.png') }}" alt="Blank image">
-                @endif
+    <div class="py-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white  shadow-xl sm:rounded-lg">
+                @foreach ($articles as $article)
+                <a href="{{ route('article.show', ['id' => $article->id, 'title' => Str::slug($article->title)]) }}" class="p-3">
+                    <div class="bg-red-500">
+                          <h2>{{ $article->title }}</h2>
+                            <p>{{ $article->intro }}</p>
+                            @if($article->image)
+                                <img class="max-w-xs max-h-64" src="{{asset('storage/' . $article->image)  }}" alt="">
+                            @else
+                                <img class="max-w-xs max-h-64" src="{{ asset('background/blank.png') }}" alt="Blank image">
+                            @endif
+                    </div>
+                </a>
+                @endforeach
+            </div>
         </div>
-    </a>
-    @endforeach
+    </div>
+
+    
 
     {{ $articles->links() }}
 </div>
