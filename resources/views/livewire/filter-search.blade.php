@@ -1,4 +1,8 @@
 <div>
+    {{-- <div class="fixed"> --}}
+        {{ $articles->links() }}
+    
+    
     <form id="searchForm" wire:submit.prevent="$refresh" >
         <input type="text" wire:model="search" placeholder="Search by title">
             <x-button type="submit">
@@ -71,7 +75,7 @@
             <div class="bg-white  shadow-xl sm:rounded-lg">
                 @foreach ($articles as $article)
                 <a href="{{ route('article.show', ['id' => $article->id, 'title' => Str::slug($article->title)]) }}" class="p-3">
-                    <div class="bg-red-500">
+                    <div class="bg-cyan-500">
                           <h2>{{ $article->title }}</h2>
                             <p>{{ $article->intro }}</p>
                             @if($article->image)

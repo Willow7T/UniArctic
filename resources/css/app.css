@@ -52,7 +52,7 @@
 
 /* Change background color of the toggle button when checked */
 #anon:checked + .toggle-btn {
-    background-color: #10B981; /* Green background color */
+    background-color: #0056b3; /* Green background color */
 }
 
 input:checked ~ .dot {

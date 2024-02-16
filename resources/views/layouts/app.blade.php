@@ -19,12 +19,12 @@
     </head>
     <body class="font-sans antialiased ">
         <x-banner />
-        <div class="min-h-screen bg-gray-100 dark:bg-slate-900 ">
+        <div class="min-h-screen bg-gray-100 dark:bg-slate-800 ">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow ">
+                <header class="bg-white shadow dark:bg-slate-800">
                     <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -32,7 +32,7 @@
             @endif
 
             <!-- Page Content -->
-            <main>
+            <main >
                 {{ $slot }}
             </main>
            
