@@ -1,4 +1,4 @@
 @if ($pagination->hasPages())
-    <li wire:click=  class="pagination
+    <li wire:click="previousPage()"  class="pagination
     
 @endif
