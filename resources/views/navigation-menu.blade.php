@@ -10,7 +10,7 @@
                         </a>
                     </div>
                     <!-- Navigation Links -->
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex justify-between">
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex justify-between ">
                         <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                             {{ __('Home') }}
                         </x-nav-link>
