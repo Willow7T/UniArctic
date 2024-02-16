@@ -110,7 +110,7 @@ class ArticleController extends Controller
     public function search(Request $request)
 {
     $search = $request->input('search');
-    $months = $request->input('months');
+    $months = $months ?? $request->input('months');
     $years = $request->input('years');
 
     $query = Article::query();

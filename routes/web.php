@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +35,8 @@ Route::middleware([
     Route::get('/articles/search', [
         ArticleController::class, 'search'
         ])->name('article.search');
+
+
     Route::post('/articles/create', [
         ArticleController::class, 'store'
     ])->name('article.store');

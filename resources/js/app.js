@@ -1,8 +1,6 @@
 import './bootstrap';
 
-window.submitForm = function() {
-    document.getElementById('searchForm').submit();
-}
+
 window.previewImage = function(event) {
     var reader = new FileReader();
     reader.onload = function() {
@@ -16,6 +14,16 @@ window.previewDocxFileName = function(event) {
     var fileName = event.target.files[0].name;
     document.getElementById('contentPreview').innerText = fileName;
 }
+window.onload = function() {
+  var savedTheme = sessionStorage.getItem('theme');
+  if (savedTheme) {
+    document.documentElement.className = savedTheme;
+    document.getElementById('darkswitch').checked = (savedTheme == 'dark');
+  }
+
+ 
+};
+
 
 document.getElementById('darkswitch').addEventListener('change', function() {
     if (this.checked) {
@@ -30,7 +38,10 @@ document.getElementById('darkswitch').addEventListener('change', function() {
     }
   });
 
-document.addEventListener('DOMContentLoaded', function() {
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
     var buttonMonth = document.querySelector('button[aria-controls="filter-section-mobile-0"]');
     var buttonYear = document.querySelector('button[aria-controls="filter-section-mobile-1"]');
 
@@ -64,10 +75,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-window.onload = function() {
-    var savedTheme = sessionStorage.getItem('theme');
-    if (savedTheme) {
-      document.documentElement.className = savedTheme;
-      document.getElementById('darkswitch').checked = (savedTheme == 'dark');
-    }
-  };
