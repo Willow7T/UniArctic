@@ -30,14 +30,11 @@
                    <div class="m-8 p-2 text-pretty Image-Resizer">
                         <div>{!! $content !!}</div>
                    </div>
-                   
-
-                   
-                    
-                    <!-- You can display any other article information here -->
                 </div>
+                @livewire('comment-component', ['article' => $article])
             </div>
         </div>
     </div>
+    
 </x-app-layout>
 

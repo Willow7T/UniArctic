@@ -74,6 +74,12 @@ class User extends Authenticatable
                 $user->role_id = self::DEFAULT_ROLE_ID;
             }
         });
+        static::deleting(function ($user) {
+            $user->articles()->update(['author_id' => null]);
+        });
+        static::deleting(function ($user) {
+            $user->comments()->update(['user_id' => null]);
+        });
     }
 
 
@@ -89,6 +95,10 @@ class User extends Authenticatable
     //user has many articles
     public function articles(){
         return $this->hasMany(Article::class, 'author_id');
+    }
+    public function comments()
+    {
+    return $this->hasMany(Comment::class);
     }
    
 }
