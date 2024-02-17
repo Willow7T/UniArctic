@@ -5,23 +5,34 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Comment;
 use App\Models\Article;
+use Livewire\WithPagination;
+
 
 class CommentComponent extends Component
 {
+    use WithPagination;
+
     public $article;
     public $newComment;
     public $newReply = [];
+    public $perPage = 1;
+
     
     public function mount($article)
     {
         $this->article = $article;
         
     }
+    public function loadMore()
+    {
+    $this->perPage = $this->perPage + 2;
+    }
 
     public function render()
     {
+
         return view('livewire.comment-component', [
-            'comments' => $this->article->comments()->whereNull('parent_id')->get(),
+            'comments' => $this->article->comments()->whereNull('parent_id')->paginate(10),
         ]);
     }
 
