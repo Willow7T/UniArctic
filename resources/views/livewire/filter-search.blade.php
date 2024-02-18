@@ -101,12 +101,45 @@
                             </button> 
                     </h3>
                     <!-- Filter section, show/hide based on section state. -->
-                    <div class="pt-10" id="filter-section-mobile-2" style="display: {{ $isFacultyExpanded ? 'block' : 'none' }}">
+                    <div class="pt-10 w-[8.6rem]" id="filter-section-mobile-2" style="display: {{ $isFacultyExpanded ? 'block' : 'none' }}">
                         <div class="space-y-6 rounded bg-gray-200 dark:bg-slate-700 p-2">
                             @foreach ($facultyList as $f)
                             <div class="flex items-center">
                                 <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="faculties" value="{{ $f }}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 ">
                                 <label for="filter-mobile-color-{{ $loop->index }}" class="ml-3 min-w-0 flex-1 text-gray-500 dark:text-gray-100">{{ $f }}</label>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <!-- Tags -->
+                <div class="w-max-24 w-32 h-5 px-4 py-6  ">
+                    <h3 class="-mx-2 -my-3 flow-root">
+                            <!-- Expand/collapse section button -->
+                            <button wire:click="toggleTag" type="button" class="
+                            flex w-full items-center justify-between bg-white dark:bg-slate-800 px-2  text-gray-400 
+                            hover:text-gray-500 
+                            "aria-controls="filter-section-mobile-3">
+                                <span class="font-medium text-gray-900 dark:text-gray-100">Genres</span>
+                                <span class="ml-6 flex items-center">
+                                    <!-- Expand icon, show/hide based on section open state. -->
+                                    <svg class="h-5 w-5 expand-icon" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                    </svg>
+                                    <!-- Collapse icon, show/hide based on section open state. -->
+                                    <svg class="h-5 w-5 collapse-icon" style="display: none;" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            </button> 
+                    </h3>
+                    <!-- Filter section, show/hide based on section state. -->
+                    <div class="pt-10 w-[8.6rem]" id="filter-section-mobile-3" style="display: {{ $isTagExpanded ? 'block' : 'none' }}">
+                        <div class="space-y-6 rounded bg-gray-200 dark:bg-slate-700 p-2">
+                            @foreach ($tagList as $t)
+                            <div class="flex items-center">
+                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="tags" value="{{ $t }}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 ">
+                                <label for="filter-mobile-color-{{ $loop->index }}" class="ml-3 min-w-0 flex-1 text-gray-500 dark:text-gray-100">{{ $t }}</label>
                             </div>
                             @endforeach
                         </div>

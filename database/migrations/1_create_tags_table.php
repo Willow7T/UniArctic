@@ -17,10 +17,10 @@ return new class extends Migration
             $table->timestamps();
         });
         $tags = [
-            '', '', '',
-             '', '', '',
-              '', '', '',
-               ''];
+            'Comedy', 'Mystery', 'Thriler',
+             'Science Fiction', 'Historical Fiction', 'Horror',
+              'Literature', 'Fantasy', 'Science',
+               'Fashion'];
 
         foreach ($tags as $tag) {
             DB::table('tags')->insert([
