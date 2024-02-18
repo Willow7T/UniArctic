@@ -16,6 +16,19 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
+        $faculties = [
+            'No Faculty', 'Faculty 2', 'Faculty 3',
+             'Faculty 4', 'Faculty 5', 'Faculty 6',
+              'Faculty 7', 'Faculty 8', 'Faculty 9',
+               'Faculty 10'];
+
+        foreach ($faculties as $faculty) {
+            DB::table('faculties')->insert([
+                'name' => $faculty,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 
     /**

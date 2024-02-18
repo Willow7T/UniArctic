@@ -46,8 +46,9 @@ window.onload = function() {
   document.addEventListener('DOMContentLoaded', function() {
     var buttonMonth = document.querySelector('button[aria-controls="filter-section-mobile-0"]');
     var buttonYear = document.querySelector('button[aria-controls="filter-section-mobile-1"]');
+    var buttonFaculty = document.querySelector('button[aria-controls="filter-section-mobile-2"]');
 
-    if (!buttonMonth || !buttonYear) {
+    if (!buttonMonth || !buttonYear || !buttonFaculty) {
         return;
     }
     // For "Month" section
@@ -75,5 +76,20 @@ window.onload = function() {
         expandIconYear.style.display = isExpanded ? 'block' : 'none';
         collapseIconYear.style.display = isExpanded ? 'none' : 'block';
     });
+
+
+    // For "Facutly" section
+    var buttonFaculty = document.querySelector('button[aria-controls="filter-section-mobile-2"]');
+    var filterSectionFaculty = document.getElementById('filter-section-mobile-2');
+    var expandIconFaculty = buttonFaculty.querySelector('.expand-icon');
+    var collapseIconFaculty = buttonFaculty.querySelector('.collapse-icon');
+
+    buttonFaculty.addEventListener('click', function() {
+        var isExpanded = filterSectionFaculty.style.display === 'block';
+        filterSectionFaculty.style.display = isExpanded ? 'none' : 'block';
+        expandIconFaculty.style.display = isExpanded ? 'block' : 'none';
+        collapseIconFaculty.style.display = isExpanded ? 'none' : 'block';
+    });
+
 });
 

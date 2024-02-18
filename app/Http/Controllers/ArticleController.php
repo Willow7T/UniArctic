@@ -66,6 +66,7 @@ class ArticleController extends Controller
             'intro' => 'required',
             'image' => 'required|mimes:jpeg,png','jpg',
             'content' => 'required|mimes:docx',
+            'faculty_id' => 'required|exists:faculties,id',
             'magazine_id' => 'required|exists:magazines,id',
         ]);
         $article = new Article;
@@ -98,6 +99,7 @@ class ArticleController extends Controller
             'content' => $contentpath ?? null, // assuming $contentpath contains the path to the content file
             'selected'=>false,
             'author_id' => $request->anon ? null : auth()->id(),
+            'faculty_id' => auth()->user()->faculty_id, // get faculty_id from the authenticated user
             'magazine_id' => $request->magazine_id,
         ]);
       

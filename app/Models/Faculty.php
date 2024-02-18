@@ -15,4 +15,8 @@ class Faculty extends Model
     {
         return $this->hasMany(User::class, 'faculty_id');
     }
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'faculty_id');
+    }
 }
