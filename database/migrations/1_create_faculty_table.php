@@ -17,9 +17,9 @@ return new class extends Migration
             $table->timestamps();
         });
         $faculties = [
-            'Faculty Not Assigned', 'Medicine', 'Mathematics',
-             'Engineering', 'Science', 'Arts',
-              'Business', 'Law', 'Social Sciences',
+            'Faculty Not Assigned', 'Medicine', 'Biology',
+             'Engineering', 'Science', 'Arts & Literature',
+              'Business', 'Law', 'Social Science',
                'Agriculture'];
 
         foreach ($faculties as $faculty) {

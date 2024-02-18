@@ -39,7 +39,7 @@
                         <div class="space-y-6 rounded bg-gray-200 dark:bg-slate-700 p-2">
                             @foreach ($monthList as $m)
                             <div class="flex items-center">
-                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="months" value="{{ $m }}"  class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="months" value="{{ $m }}"  class="h-4 w-4 rounded border-gray-300 text-[#007bff] focus:ring-[#007bff] dark:text-[#5a32a3] dark:focus:ring-[#6f42c1]">
                                 <label for="filter-mobile-color-{{ $loop->index }}" class="ml-3 min-w-0 flex-1 text-gray-500 dark:text-gray-100">{{ $m }}</label>
                             </div>
                              @endforeach
@@ -72,7 +72,7 @@
                         <div class="space-y-6 rounded bg-gray-200 dark:bg-slate-700 p-2">
                             @foreach ($yearList as $y)
                             <div class="flex items-center">
-                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="years" value="{{ $y }}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 ">
+                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="years" value="{{ $y }}" class="h-4 w-4 rounded border-gray-300 text-[#007bff] focus:ring-[#007bff] dark:text-[#5a32a3] dark:focus:ring-[#6f42c1]">
                                 <label for="filter-mobile-color-{{ $loop->index }}" class="ml-3 min-w-0 flex-1 text-gray-500 dark:text-gray-100">{{ $y }}</label>
                             </div>
                             @endforeach
@@ -105,7 +105,7 @@
                         <div class="space-y-6 rounded bg-gray-200 dark:bg-slate-700 p-2">
                             @foreach ($facultyList as $f)
                             <div class="flex items-center">
-                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="faculties" value="{{ $f }}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 ">
+                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="faculties" value="{{ $f }}" class="h-4 w-4 rounded border-gray-300 text-[#007bff] focus:ring-[#007bff] dark:text-[#5a32a3] dark:focus:ring-[#6f42c1]">
                                 <label for="filter-mobile-color-{{ $loop->index }}" class="ml-3 min-w-0 flex-1 text-gray-500 dark:text-gray-100">{{ $f }}</label>
                             </div>
                             @endforeach
@@ -138,7 +138,7 @@
                         <div class="space-y-6 rounded bg-gray-200 dark:bg-slate-700 p-2">
                             @foreach ($tagList as $t)
                             <div class="flex items-center">
-                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="tags" value="{{ $t }}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 ">
+                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="tags" value="{{ $t }}" class="h-4 w-4 rounded border-gray-300 text-[#007bff] focus:ring-[#007bff] dark:text-[#5a32a3] dark:focus:ring-[#6f42c1]">
                                 <label for="filter-mobile-color-{{ $loop->index }}" class="ml-3 min-w-0 flex-1 text-gray-500 dark:text-gray-100">{{ $t }}</label>
                             </div>
                             @endforeach

@@ -24,15 +24,15 @@
                             </div>
                             <div class="border-b border-gray-300 relative mb-6">
                                 <label for="tags" class="block text-lg font-medium text-gray-700 mb-2 dark:text-slate-100">Choose Tags</label>
-                                <div class="flex flex-row flex-wrap gap-3">
-                                @foreach ($tags as $tag)
-                                    <div class="form-check p-2 bg-red-200 flex flex-col justify-center object-center">
-                                        <label class="form-check-label" for="tag{{ $tag->id }}">
+                                <div class="grid grid-rows-2 grid-flow-col gap-4 pb-3">
+                                    @foreach ($tags as $tag)
+                                    <div class="form-check p-2 flex flex-col justify-center object-center">
+                                        <label class="form-check-label dark:text-gray-100" for="tag{{ $tag->id }}">
                                             {{ $tag->name }}
                                         </label>
-                                        <input class="form-check-input tag-checkbox" type="checkbox" value="{{ $tag->id }}" id="tag{{ $tag->id }}" name="tags[]">                                       
+                                        <input class="form-check-input tag-checkbox rounded border-gray-300 text-[#007bff] focus:ring-[#007bff] dark:text-[#5a32a3] dark:focus:ring-[#6f42c1]" type="checkbox" value="{{ $tag->id }}" id="tag{{ $tag->id }}" name="tags[]">                                       
                                     </div>
-                                @endforeach
+                                    @endforeach
                                 </div>
                             </div>
                             {{-- add image upload with image preview .jpeg/.jpg/.png --}}

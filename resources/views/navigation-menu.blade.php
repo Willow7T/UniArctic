@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 dark:border-gray-100 dark:bg-slate-900 ">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-200 dark:border-gray-900 dark:bg-slate-900 ">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex w-7xl justify-between h-16">
@@ -15,7 +15,15 @@
                             {{ __('Home') }}
                         </x-nav-link>
                     </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex justify-between ">
+                        <x-nav-link href="{{ route('article.search') }}" :active="request()->routeIs('article.search')">
+                            {{ __('Article Search') }}
+                        </x-nav-link>
+                    </div>
 
+
+
+                    
             </div>
             <div class="order-last flex flex-row">
                 <div class="flex items-center justify-between relative mb-6">

@@ -71,7 +71,7 @@ class FilterSearch extends Component
         $query = Article::query();
 
         if (!empty($this->search)) {
-            $query->where('title', 'like', '%' . $this->search . '%');
+            $query->whereRaw('LOWER(title) LIKE ?', [strtolower('%' . $this->search . '%')]);
         }
 
         if (!empty($this->months) || !empty($this->years)) {
