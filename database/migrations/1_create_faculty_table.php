@@ -17,10 +17,10 @@ return new class extends Migration
             $table->timestamps();
         });
         $faculties = [
-            'No Faculty', 'Faculty 2', 'Faculty 3',
-             'Faculty 4', 'Faculty 5', 'Faculty 6',
-              'Faculty 7', 'Faculty 8', 'Faculty 9',
-               'Faculty 10'];
+            'Faculty Not Assigned', 'Medicine', 'Mathematics',
+             'Engineering', 'Science', 'Arts',
+              'Business', 'Law', 'Social Sciences',
+               'Agriculture'];
 
         foreach ($faculties as $faculty) {
             DB::table('faculties')->insert([

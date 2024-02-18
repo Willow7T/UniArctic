@@ -10,7 +10,7 @@ class Article extends Model
 
 
 
-    protected $fillable = ['title', 'intro', 'image', 'content', 'selected','author_id','faculty_id', 'magazine_id']; // Example fillable attributes
+    protected $fillable = ['title', 'intro', 'image', 'content', 'selected', 'published', 'anonymous', 'author_id','faculty_id', 'magazine_id']; // Example fillable attributes
 
     // Example relationship: an article belongs to an author
     public function author()
@@ -28,6 +28,10 @@ class Article extends Model
     public function faculty()
     {
         return $this->belongsTo(Faculty::class, 'faculty_id');
+    }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
     
 }

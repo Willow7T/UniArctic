@@ -18,16 +18,19 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('content');
             $table->boolean('selected')->default(false);
+            $table->boolean('published')->default(false);
+            $table->boolean('anonymous')->default(false);
 
             $table->unsignedBigInteger('author_id')->nullable();
             $table->unsignedBigInteger('faculty_id')->default(1); 
             $table->unsignedBigInteger('magazine_id');
+         
 
             $table->timestamps();
 
             $table->foreign('author_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('magazine_id')->references('id')->on('magazines')->onDelete('cascade');        
-            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('default');
+            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('set null');
    
         });
     }
