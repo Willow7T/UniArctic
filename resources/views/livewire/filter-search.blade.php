@@ -81,7 +81,7 @@
         </form>
      </div>
     
-     <div class="py-8">
+    <div class="py-8">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-y-4">
             <div class="bg-gray-100">
                 @foreach ($articles as $article)
@@ -96,18 +96,17 @@
                             <div class="text-2xl"> 
                                 <h2>{{ $article->title }}</h2>
                             </div>
-                            
                         </div>
                         <div class="text-base">
-                            {{  \Illuminate\Support\Str::words($article->intro, 30)  }}
+                            {{ \Illuminate\Support\Str::words($article->intro, 30) }}
                         </div>
-                        
                     </div>
                 </a>
                 @endforeach
             </div>
         </div>
     </div>
+    
     
     
 
