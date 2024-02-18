@@ -1,6 +1,6 @@
 <div class="bg-red-100 ">
     <form class="bg-red-300 justify-center flex gap-x-8" wire:submit.prevent="addComment">
-        <textarea class="w-96 resize-none" type="text" wire:model.defer="newComment"></textarea>
+        <textarea class="w-96 resize-none" wire:model.defer="newComment"></textarea>
         <x-button class=" font-bold text-lg" type="submit">Post</x-button>
     </form>
 
@@ -25,7 +25,7 @@
                 
                 @if(isset($newReply[$comment->id]))
                     <form wire:submit.prevent="addReply({{ $comment->id }})">
-                        <textarea type="text" class="mt-2 border rounded p-1 w-full resize-none" wire:model="newReply.{{ $comment->id }}"></textarea>
+                        <textarea class="mt-2 border rounded p-1 w-full resize-none" wire:model="newReply.{{ $comment->id }}"></textarea>
                         <x-button class="bg-blue-500 text-white px-2 py-1 rounded mt-2" type="submit">Post Reply</x-button>
                     </form>
                 @endif

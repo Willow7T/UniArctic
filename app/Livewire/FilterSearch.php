@@ -16,10 +16,12 @@ class FilterSearch extends Component
     public $search;
     public $months = [];
     public $years = [];
+    public $faculties = [];
     public $isMonthExpanded = false;
     public $isYearExpanded = false;
+    public $isFacultyExpanded = false;
 
-    protected $queryString = ['search', 'months', 'years'];
+    protected $queryString = ['search', 'months', 'years', 'faculties'];
 
 
     public function updated($field)
@@ -37,15 +39,22 @@ class FilterSearch extends Component
     {
         $this->resetPage();
     }
+    public function updatedFaculties()
+    {
+        $this->resetPage();
+    }
     public function toggleMonth()
-{
-    $this->isMonthExpanded = !$this->isMonthExpanded;
-}
-
-public function toggleYear()
-{
-    $this->isYearExpanded = !$this->isYearExpanded;
-}
+    {
+        $this->isMonthExpanded = !$this->isMonthExpanded;
+    }
+    public function toggleYear()
+    {
+        $this->isYearExpanded = !$this->isYearExpanded;
+    }
+    public function toggleFaculty()
+    {
+        $this->isFacultyExpanded = !$this->isFacultyExpanded;
+    }
 
     public function render()
     {
@@ -66,16 +75,22 @@ public function toggleYear()
                 $query->whereIn('magazines.year', $this->years);
             }
         }
+        if (!empty($this->faculties)) {
+            $query->join('faculties', 'articles.faculty_id', '=', 'faculties.id')
+                  ->whereIn('faculties.name', $this->faculties);
+        }
 
         $articles = $query->select('articles.*')->paginate(10);
 
         $monthList = DB::table('magazines')->distinct()->orderBy('month', 'asc')->pluck('month')->all();
         $yearList = DB::table('magazines')->distinct()->orderBy('year', 'asc')->pluck('year')->all();
+        $facultyList = DB::table('faculties')->distinct()->orderBy('name', 'asc')->pluck('name')->all();
 
         return view('livewire.filter-search', [
             'articles' => $articles,
             'monthList' => $monthList,
             'yearList' => $yearList,
+            'facultyList' => $facultyList,
         ]);
     }
 }

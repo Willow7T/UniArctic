@@ -51,10 +51,14 @@ class CommentComponent extends Component
 
     public function showReplyForm($commentId)
     {
+        $this->newReply = [];
+
         $this->newReply[$commentId] = '';
+        
     }
+   
     public function addReply($parentId)
-{
+    {
     $this->validate(['newReply.' . $parentId => 'required']);
 
     Comment::create([
@@ -66,6 +70,6 @@ class CommentComponent extends Component
 
     unset($this->newReply[$parentId]);
 
-}
+    }
   
 }

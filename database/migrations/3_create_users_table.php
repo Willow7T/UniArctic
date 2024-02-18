@@ -19,17 +19,17 @@ return new class extends Migration
             $table->string('password');
 
             $table->unsignedBigInteger('role_id')->default(5); // Default role is 5 (guest)
-            $table->foreign('role_id')->references('id')->on('roles')->onDelete('set default');
-            $table->unsignedBigInteger('faculty_id')->nullable(); // Nullable because user may not belong to any faculty
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('restrict');
+            $table->unsignedBigInteger('faculty_id')->default(1); // Nullable because user may not belong to any faculty
+            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('set null');
+
 
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('set null');
-        });
+    
     }
 
     /**
