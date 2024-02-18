@@ -28,18 +28,18 @@ Route::middleware([
         return view('home');
     })->name('home');
     
-
+    //Article Create Page under the Kernel Cheching Route with Role Middleware
     Route::get('/articles/create', [
         ArticleController::class, 'create'
-    ])->name('article.create');
+    ])->name('article.create')->middleware('role');
+    Route::post('/articles/create', [
+        ArticleController::class, 'store'
+    ])->name('article.store')->middleware('role');
+    
     Route::get('/articles/search', [
         ArticleController::class, 'search'
         ])->name('article.search');
-
-
-    Route::post('/articles/create', [
-        ArticleController::class, 'store'
-    ])->name('article.store');
+   
     Route::get('/article/{id}/{title}', [
         ArticleController::class, 'show'
     ])->name('article.show');

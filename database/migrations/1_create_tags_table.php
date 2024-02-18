@@ -16,6 +16,19 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
+        $tags = [
+            '', '', '',
+             '', '', '',
+              '', '', '',
+               ''];
+
+        foreach ($tags as $tag) {
+            DB::table('tags')->insert([
+                'name' => $tag,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 
     /**

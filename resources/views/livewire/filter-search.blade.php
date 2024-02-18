@@ -12,9 +12,10 @@
                     Search
                 </x-button>
             </div>                 
-            <div class="flex flex-row gap-x-6 pl-2">    
+            <div class="grid grid-cols-2 gap-x-6 pl-2">    
+                <!-- Months -->
                 <div class="w-max-24 w-32 h-5 px-4 py-6  ">
-                    <h3 class="-mx-2 -my-3 flow-root">
+                    <h3 class=" -mx-2 -my-3 flow-root">
                         <!-- Expand/collapse section button -->
                             <button wire:click="toggleMonth" type="button" class="
                             flex w-full items-center justify-between bg-white px-2 dark:bg-slate-800 text-gray-400 
@@ -44,7 +45,8 @@
                              @endforeach
                         </div>
                     </div>
-                </div>    
+                </div>   
+                <!-- Years -->
                 <div class="w-max-24 w-32 h-5 px-4 py-6  ">
                     <h3 class="-mx-2 -my-3 flow-root">
                             <!-- Expand/collapse section button -->
@@ -77,6 +79,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Faculty -->                
                 <div class="w-max-24 w-32 h-5 px-4 py-6  ">
                     <h3 class="-mx-2 -my-3 flow-root">
                             <!-- Expand/collapse section button -->
@@ -109,7 +112,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </form>
      </div>

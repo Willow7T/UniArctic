@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Article; 
 use App\Models\Magazine;
+use App\Models\Faculty;
+use App\Models\Tag;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -22,15 +24,17 @@ class ArticleController extends Controller
         $currentMonth = date('n');
         $currentYear = date('Y');
         
-    $magazines = Magazine::where('published', false)
-    ->where('year', '=', $currentYear)
-    ->where('month', '>=', $currentMonth)
+        $magazines = Magazine::where('published', false)
+        ->where('year', '=', $currentYear)
+        ->where('month', '>=', $currentMonth)
         ->orderBy('year', 'asc')
         ->orderBy('month', 'asc')
         ->take(3)
         ->get();
-         return view('article.create', ['magazines' => $magazines]);
-     }
+        $tags = Tag::all(); // Fetch all tags from the database
+
+        return view('article.create', ['magazines' => $magazines, 'tags' => $tags]);
+    }
 
     //Show articles using ID
     public function show($id)
@@ -54,7 +58,7 @@ class ArticleController extends Controller
 
         // Delete temp file
         unlink($tempFile);
-
+        
         return view('article.show', compact('article', 'content'));
     }
 
@@ -64,13 +68,16 @@ class ArticleController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'intro' => 'required',
-            'image' => 'required|mimes:jpeg,png','jpg',
+            'image' => 'required|mimes:jpeg,png,jpg',
             'content' => 'required|mimes:docx',
-            'faculty_id' => 'required|exists:faculties,id',
+            //anonymous checkbox
+            'anon' => 'nullable',
+
             'magazine_id' => 'required|exists:magazines,id',
+            'tags' => 'required|array', // validate that tags is an array
+            'tags.*' => 'exists:tags,id', // validate that each tag ID exists in the tags table
         ]);
-        $article = new Article;
-    
+
         $imagepath = null;
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -90,21 +97,23 @@ class ArticleController extends Controller
             // Store the file
             $contentpath = $file->store('articles');
         }
-    
-       
+        
         $article = Article::create([
             'title' => $request->title,
             'intro' => $request->intro, 
             'image' => $imagepath ?? null, // assuming $imagepath contains the path to the image file
             'content' => $contentpath ?? null, // assuming $contentpath contains the path to the content file
             'selected'=>false,
-            'author_id' => $request->anon ? null : auth()->id(),
+            'published'=>false,
+            'anonymous' =>  $request->anon == 'on' ? true : false, 
+            'author_id' => auth()->id(),
             'faculty_id' => auth()->user()->faculty_id, // get faculty_id from the authenticated user
             'magazine_id' => $request->magazine_id,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-      
         
-    
+        $article->tags()->sync($request->tags);
         return redirect()->route('home')->with('success', 'Article created successfully.');
     }
 

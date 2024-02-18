@@ -11,8 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow:sm sm:rounded-lg dark:bg-slake-900"> 
                 <div class="p-6 bg-white border-b border-gray-200 dark:bg-slate-900 dark:border-slate-900" >
-                    {{-- <img src="{{ asset('storage/background/images.jpg') }}" alt="Home Image"> --}}
-                    <form method="POST" action="{{ route('article.store') }}" enctype="multipart/form-data">
+                    <form id="create-article" method="POST" action="{{ route('article.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="mx-auto">
                             <div class="border-b border-gray-300 relative mb-6 ">
@@ -22,6 +21,19 @@
                             <div class="border-b border-gray-300 relative mb-6">
                                 <label for="intro" class="block text-lg font-medium text-gray-700 dark:text-slate-100">Intro</label>
                                 <textarea placeholder="Write the Intro for your article" class="block w-full py-2 px-3 border-0 outline-none focus:ring-0 placeholder-transparent dark:bg-slate-900 dark:text-slate-100 resize-none" id="intro" name="intro" required></textarea>
+                            </div>
+                            <div class="border-b border-gray-300 relative mb-6">
+                                <label for="tags" class="block text-lg font-medium text-gray-700 mb-2 dark:text-slate-100">Choose Tags</label>
+                                <div class="flex flex-row flex-wrap gap-3">
+                                @foreach ($tags as $tag)
+                                    <div class="form-check p-2 bg-red-200 flex flex-col justify-center object-center">
+                                        <label class="form-check-label" for="tag{{ $tag->id }}">
+                                            {{ $tag->name }}
+                                        </label>
+                                        <input class="form-check-input tag-checkbox" type="checkbox" value="{{ $tag->id }}" id="tag{{ $tag->id }}" name="tags[]">                                       
+                                    </div>
+                                @endforeach
+                                </div>
                             </div>
                             {{-- add image upload with image preview .jpeg/.jpg/.png --}}
                             <img class="max-w-xs max-h-64 pb-5" id="imagePreview" src="#" alt="Image Preview" style="display: none;">
@@ -47,7 +59,8 @@
                                 </label>                
                                 </div>
                             </div>
-                            
+
+                           
 
                             <div class="border-b border-gray-300 relative mb-6">
                                 <label for="magazine_id" class="block text-lg font-medium text-gray-700 mb-2 dark:text-slate-100">Choose the Issue</label>
@@ -126,4 +139,12 @@ function previewImage(event) {
     };
     reader.readAsDataURL(event.target.files[0]);
 }
+document.getElementById('create-article').addEventListener('submit', function(e) {
+    var checkboxes = document.querySelectorAll('.tag-checkbox');
+    var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
+    if (!checkedOne) {
+        alert('You must check at least one tag.');
+        e.preventDefault();
+    }
+});
 </script>
