@@ -3,11 +3,9 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Article;
 use Livewire\WithPagination;
-
 
 class FilterSearch extends Component
 {
@@ -25,26 +23,7 @@ class FilterSearch extends Component
 
     protected $queryString = ['search', 'months', 'years', 'faculties', 'tags'];
 
-
     public function updated($field)
-    {
-        
-        $this->resetPage();
-    }
-
-    public function updatedMonths()
-    {
-        $this->resetPage();
-    }
-    public function updatedYears()
-    {
-        $this->resetPage();
-    }
-    public function updatedFaculties()
-    {
-        $this->resetPage();
-    }
-    public function updatedTags()
     {
         $this->resetPage();
     }
@@ -52,19 +31,52 @@ class FilterSearch extends Component
     public function toggleMonth()
     {
         $this->isMonthExpanded = !$this->isMonthExpanded;
+
+        // If month is expanded, collapse others
+        if ($this->isMonthExpanded) {
+            $this->isYearExpanded = false;
+            $this->isFacultyExpanded = false;
+            $this->isTagExpanded = false;
+        }
     }
+
     public function toggleYear()
     {
         $this->isYearExpanded = !$this->isYearExpanded;
+
+        // If year is expanded, collapse others
+        if ($this->isYearExpanded) {
+            $this->isMonthExpanded = false;
+            $this->isFacultyExpanded = false;
+            $this->isTagExpanded = false;
+        }
     }
+
     public function toggleFaculty()
     {
         $this->isFacultyExpanded = !$this->isFacultyExpanded;
+
+        // If faculty is expanded, collapse others
+        if ($this->isFacultyExpanded) {
+            $this->isMonthExpanded = false;
+            $this->isYearExpanded = false;
+            $this->isTagExpanded = false;
+        }
     }
+
     public function toggleTag()
     {
         $this->isTagExpanded = !$this->isTagExpanded;
+
+        // If tag is expanded, collapse others
+        if ($this->isTagExpanded) {
+            $this->isMonthExpanded = false;
+            $this->isYearExpanded = false;
+            $this->isFacultyExpanded = false;
+        }
     }
+
+    
 
     public function render()
     {
@@ -111,4 +123,3 @@ class FilterSearch extends Component
         ]);
     }
 }
-
