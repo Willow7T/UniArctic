@@ -1,6 +1,6 @@
+
 <div>
     {{-- <div class="fixed"> --}}
-    
     <div class="2xl:fixed z-50 block md:flex sm:flex">
         <form id="searchForm" wire:submit.prevent="$refresh"class="z-10" >
             <div class="flex flex-row gap-x-4 p-2">
@@ -14,7 +14,7 @@
             </div>                 
             <div class="grid grid-cols-2 gap-x-6 pl-2">    
                 <!-- Months -->
-                <div class="w-max-24 w-32 h-5 px-4 py-6  ">
+                <div class="w-max-24 w-32 h-5 px-4 py-6 z-30 ">
                     <h3 class=" -mx-2 -my-3 flow-root">
                         <!-- Expand/collapse section button -->
                             <button wire:click="toggleMonth" type="button" class="
@@ -23,23 +23,25 @@
                             "aria-controls="filter-section-mobile-0">
                                 <span class="font-medium text-gray-900  dark:text-gray-100">Month</span>
                                 <span class="ml-6 flex items-center">
-                                    <!-- Expand icon, show/hide based on section open state. -->
-                                    <svg class="h-5 w-5 expand-icon" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                    </svg>
-                                    <!-- Collapse icon, show/hide based on section open state. -->
-                                    <svg class="h-5 w-5 collapse-icon" style="display: none;" viewBox="0 0 20 20" fill="currentColor">
+                                    @if($isMonthExpanded)
+                                    <svg class="h-5 w-5 collapse-icon" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
-                                    </svg>
+                                    </svg>                                     
+                                    @else
+                                        <!-- Collapse icon -->
+                                        <svg class="h-5 w-5 expand-icon" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                        </svg>
+                                    @endif
                                 </span>
                             </button>
                     </h3>
                     <!-- Filter section, show/hide based on section state. -->
-                    <div class="pt-8 " id="filter-section-mobile-0" style="display: {{ $isMonthExpanded ? 'block' : 'none' }}">
+                    <div class="pt-8 z-30" id="filter-section-mobile-0" style="display: {{ $isMonthExpanded ? 'block' : 'none' }}" >
                         <div class="space-y-6 rounded bg-gray-200 dark:bg-slate-700 p-2">
                             @foreach ($monthList as $m)
                             <div class="flex items-center">
-                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="months" value="{{ $m }}"  class="h-4 w-4 rounded border-gray-300 text-[#007bff] focus:ring-[#007bff] dark:text-[#5a32a3] dark:focus:ring-[#6f42c1]">
+                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="months" value="{{ $m }}"  class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                 <label for="filter-mobile-color-{{ $loop->index }}" class="ml-3 min-w-0 flex-1 text-gray-500 dark:text-gray-100">{{ $m }}</label>
                             </div>
                              @endforeach
@@ -47,7 +49,7 @@
                     </div>
                 </div>   
                 <!-- Years -->
-                <div class="w-max-24 w-32 h-5 px-4 py-6  ">
+                <div class="w-max-24 w-32 h-5 px-4 py-6 z-30">
                     <h3 class="-mx-2 -my-3 flow-root">
                             <!-- Expand/collapse section button -->
                             <button wire:click="toggleYear" type="button" class="
@@ -57,13 +59,16 @@
                                 <span class="font-medium text-gray-900 dark:text-gray-100">Year</span>
                                 <span class="ml-6 flex items-center">
                                     <!-- Expand icon, show/hide based on section open state. -->
-                                    <svg class="h-5 w-5 expand-icon" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                    </svg>
-                                    <!-- Collapse icon, show/hide based on section open state. -->
-                                    <svg class="h-5 w-5 collapse-icon" style="display: none;" viewBox="0 0 20 20" fill="currentColor">
+                                    @if($isYearExpanded)
+                                    <svg class="h-5 w-5 collapse-icon" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
-                                    </svg>
+                                    </svg>                                     
+                                    @else
+                                        <!-- Collapse icon -->
+                                        <svg class="h-5 w-5 expand-icon" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                        </svg>
+                                    @endif
                                 </span>
                             </button> 
                     </h3>
@@ -72,7 +77,7 @@
                         <div class="space-y-6 rounded bg-gray-200 dark:bg-slate-700 p-2">
                             @foreach ($yearList as $y)
                             <div class="flex items-center">
-                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="years" value="{{ $y }}" class="h-4 w-4 rounded border-gray-300 text-[#007bff] focus:ring-[#007bff] dark:text-[#5a32a3] dark:focus:ring-[#6f42c1]">
+                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="years" value="{{ $y }}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 ">
                                 <label for="filter-mobile-color-{{ $loop->index }}" class="ml-3 min-w-0 flex-1 text-gray-500 dark:text-gray-100">{{ $y }}</label>
                             </div>
                             @endforeach
@@ -80,7 +85,7 @@
                     </div>
                 </div>
                 <!-- Faculty -->                
-                <div class="w-max-24 w-32 h-5 px-4 py-6  ">
+                <div class="w-max-24 w-32 h-5 px-4 py-6 z-10 ">
                     <h3 class="-mx-2 -my-3 flow-root">
                             <!-- Expand/collapse section button -->
                             <button wire:click="toggleFaculty" type="button" class="
@@ -89,14 +94,16 @@
                             "aria-controls="filter-section-mobile-2">
                                 <span class="font-medium text-gray-900 dark:text-gray-100">Faculty</span>
                                 <span class="ml-6 flex items-center">
-                                    <!-- Expand icon, show/hide based on section open state. -->
-                                    <svg class="h-5 w-5 expand-icon" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                    </svg>
-                                    <!-- Collapse icon, show/hide based on section open state. -->
-                                    <svg class="h-5 w-5 collapse-icon" style="display: none;" viewBox="0 0 20 20" fill="currentColor">
+                                    @if($isFacultyExpanded)
+                                    <svg class="h-5 w-5 collapse-icon" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
-                                    </svg>
+                                    </svg>                                     
+                                    @else
+                                        <!-- Collapse icon -->
+                                        <svg class="h-5 w-5 expand-icon" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                        </svg>
+                                    @endif
                                 </span>
                             </button> 
                     </h3>
@@ -105,7 +112,7 @@
                         <div class="space-y-6 rounded bg-gray-200 dark:bg-slate-700 p-2">
                             @foreach ($facultyList as $f)
                             <div class="flex items-center">
-                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="faculties" value="{{ $f }}" class="h-4 w-4 rounded border-gray-300 text-[#007bff] focus:ring-[#007bff] dark:text-[#5a32a3] dark:focus:ring-[#6f42c1]">
+                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="faculties" value="{{ $f }}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 ">
                                 <label for="filter-mobile-color-{{ $loop->index }}" class="ml-3 min-w-0 flex-1 text-gray-500 dark:text-gray-100">{{ $f }}</label>
                             </div>
                             @endforeach
@@ -113,7 +120,7 @@
                     </div>
                 </div>
                 <!-- Tags -->
-                <div class="w-max-24 w-32 h-5 px-4 py-6  ">
+                <div class="w-max-24 w-32 h-5 px-4 py-6 z-10 ">
                     <h3 class="-mx-2 -my-3 flow-root">
                             <!-- Expand/collapse section button -->
                             <button wire:click="toggleTag" type="button" class="
@@ -122,14 +129,16 @@
                             "aria-controls="filter-section-mobile-3">
                                 <span class="font-medium text-gray-900 dark:text-gray-100">Genres</span>
                                 <span class="ml-6 flex items-center">
-                                    <!-- Expand icon, show/hide based on section open state. -->
-                                    <svg class="h-5 w-5 expand-icon" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                    </svg>
-                                    <!-- Collapse icon, show/hide based on section open state. -->
-                                    <svg class="h-5 w-5 collapse-icon" style="display: none;" viewBox="0 0 20 20" fill="currentColor">
+                                    @if($isTagExpanded)
+                                    <svg class="h-5 w-5 collapse-icon" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
-                                    </svg>
+                                    </svg>                                     
+                                    @else
+                                        <!-- Collapse icon -->
+                                        <svg class="h-5 w-5 expand-icon" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                        </svg>
+                                    @endif
                                 </span>
                             </button> 
                     </h3>
@@ -138,7 +147,7 @@
                         <div class="space-y-6 rounded bg-gray-200 dark:bg-slate-700 p-2">
                             @foreach ($tagList as $t)
                             <div class="flex items-center">
-                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="tags" value="{{ $t }}" class="h-4 w-4 rounded border-gray-300 text-[#007bff] focus:ring-[#007bff] dark:text-[#5a32a3] dark:focus:ring-[#6f42c1]">
+                                <input id="filter-mobile-color-{{ $loop->index }}" type="checkbox" wire:model.live="tags" value="{{ $t }}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 ">
                                 <label for="filter-mobile-color-{{ $loop->index }}" class="ml-3 min-w-0 flex-1 text-gray-500 dark:text-gray-100">{{ $t }}</label>
                             </div>
                             @endforeach
@@ -174,14 +183,5 @@
             </div>
         </div>
     </div>
-    
-    
-    
-
-    
-
     {{ $articles->links('pagination-links') }}
 </div>
-
-
-
