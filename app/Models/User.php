@@ -80,9 +80,7 @@ class User extends Authenticatable implements MustVerifyEmail
         static::deleting(function ($user) {
             $user->comments()->update(['user_id' => null]);
         });
-        static::deleting(function ($faculty) {
-            User::where('faculty_id', $faculty->id)->update(['faculty_id' => 1]);
-        });
+       
     }
 
 

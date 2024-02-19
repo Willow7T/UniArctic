@@ -30,7 +30,7 @@ return new class extends Migration
 
             $table->foreign('author_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('magazine_id')->references('id')->on('magazines')->onDelete('cascade');        
-            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('set null');
+            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('restrict');
    
         });
     }

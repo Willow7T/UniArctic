@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
 use Laravel\Fortify\Features;
@@ -49,6 +51,16 @@ class EmailVerificationTest extends TestCase
         Event::assertDispatched(Verified::class);
 
         $this->assertTrue($user->fresh()->hasVerifiedEmail());
+        
+
+
+        // // Select faculty_id after verification
+        // $faculty_id = $user->fresh()->faculty_id;//<--Write more after this line
+        // //select id from user table where role_id = 3 and facultu_id = $faculty_id
+        // $selected_email = User::where('role_id', 3)->where('faculty_id', $faculty_id)->value('email');
+        // //now send email to this selected_email 
+        // Mail::to($selected_email)->send(new MailToCoordinator($user->fresh()->name));
+
         $response->assertRedirect(RouteServiceProvider::HOME.'?verified=1');
     }
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->timestamps();
         });
         $faculties = [
-            'Faculty Not Assigned', 'Medicine', 'Biology',
+            'Information Technology', 'Medicine', 'Biology',
              'Engineering', 'Science', 'Arts & Literature',
               'Business', 'Law', 'Social Science',
                'Agriculture'];

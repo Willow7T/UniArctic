@@ -18,12 +18,18 @@
                 <div class="article">
                    <div class="flex flex-row w-48 h-14 gap-x-2 pt-4">
                         <div class="flex text-sm border-8 border-transparent rounded-full  focus:outline-none focus:border-gray-300 transition">
-                            @if($article->author)
-                                <img class="w-10 h-10 rounded-full object-cover" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->name }}" />
+                            <!-- check if author is anonymous -->
+                            @if ($article->anonymous == true)
+                                <img class="w-10 h-10 rounded-full object-cover " src="{{ asset('storage/background/blank.png') }}" alt="Anonymous" />
+                            @else
+                                @if($article->author)
+                                    <img class="w-10 h-10 rounded-full object-cover" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->name }}" />
+                                @endif
                             @endif
+                            
                         </div>
                         <div class="flex flex-col">
-                            <p>{{ $article->author->name ?? 'Anonymous'}}</p>
+                            <p>{{ $article->anonymous ? "Anonymous" : $article->author->name  }}</p>
                             <p>2012 December</p>
                         </div>
                    </div>
