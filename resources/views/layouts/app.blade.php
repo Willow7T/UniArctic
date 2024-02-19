@@ -13,11 +13,11 @@
 
         
         <!-- Scripts -->
-        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-        <script src="{{ secure_asset('build/assets/app-DgbtYFve.js') }}"></script>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        {{-- <script src="{{ secure_asset('build/assets/app-DgbtYFve.js') }}"></script> --}}
 
         <!-- Styles -->
-        <link href="{{ secure_asset('build/assets/app-BE0mZvCE.css') }}" rel="stylesheet">
+        {{-- <link href="{{ secure_asset('build/assets/app-BE0mZvCE.css') }}" rel="stylesheet"> --}}
         @livewireStyles
         @livewireStyles
     </head>
