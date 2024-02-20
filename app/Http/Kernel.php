@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         
         //Added by Willow7T
-        'role' => \App\Http\Middleware\CheckRole::class,
+        'stuRole' => \App\Http\Middleware\CheckStudent::class,
+        'adminRole' => \App\Http\Middleware\CheckAdmin::class,
     ];
 }

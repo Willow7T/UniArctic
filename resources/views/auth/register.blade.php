@@ -20,8 +20,8 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="faculty" value="{{ __('Faculty') }}" />
-                <select id="faculty" class="block mt-1 w-full rounded border-gray-300" name="faculty" required>
+                <x-label for="faculty_id" value="{{ __('Faculty') }}" />
+                <select id="faculty_id" class="block mt-1 w-full rounded border-gray-300" name="faculty_id">
                     <option value="">Select Faculty</option>
                     @foreach ($faculties as $faculty)
                         <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
@@ -65,6 +65,7 @@
                     {{ __('Register') }}
                 </x-button>
             </div>
-        </form>
+       
+        </form>    
     </x-authentication-card>
 </x-guest-layout>

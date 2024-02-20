@@ -58,8 +58,19 @@ class ArticleController extends Controller
 
         // Delete temp file
         unlink($tempFile);
+
+        $userId = auth()->id();
+
+        $view = $article->views()->where('user_id', $userId)->first();
+
         
-        return view('article.show', compact('article', 'content'));
+        if (!$view) {
+            $article->views()->create(['user_id' => $userId]);
+        }
+
+        $viewcount = $article->views()->count();
+        
+        return view('article.show', compact('article', 'content', 'viewcount'));
     }
 
    

@@ -31,10 +31,10 @@ Route::middleware([
     //Article Create Page under the Kernel Cheching Route with Role Middleware
     Route::get('/articles/create', [
         ArticleController::class, 'create'
-    ])->name('article.create')->middleware('role');
+    ])->name('article.create')->middleware('stuRole');
     Route::post('/articles/create', [
         ArticleController::class, 'store'
-    ])->name('article.store')->middleware('role');
+    ])->name('article.store')->middleware('stuRole');
     
     Route::get('/articles/search', [
         ArticleController::class, 'search'
@@ -44,6 +44,11 @@ Route::middleware([
         ArticleController::class, 'show'
     ])->name('article.show');
     
+    //admin Panel
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admindashboard')->middleware('adminRole');
+
 
 
 });

@@ -1,0 +1,2 @@
+removed Email Verifications
+add again

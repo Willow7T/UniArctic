@@ -33,5 +33,10 @@ class Article extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+    public function views()
+    {
+        return $this->hasMany(ArticleView::class);
+    }
+    
     
 }
