@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class AdminStatPanel extends Component
 {    public $articles;
     public $authors;
+    public $deleted_authors;
     public function mount()
     {
         $this->articles = Article::select('articles.*', 
@@ -23,6 +24,12 @@ class AdminStatPanel extends Component
             ->groupBy('users.name')
             ->orderBy('articles_count', 'desc')
             ->get();
+        $this->deleted_authors = Article::select('articles')->select(
+            DB::raw('COUNT(articles.id) as counters'))
+            ->whereNull('author_id')
+            ->get();
+
+        
     }
 
     public function render()

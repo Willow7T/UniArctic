@@ -46,6 +46,8 @@
                         <td class="border border-slate-600 text-right">{{ $author->articles_count }}</td>
                    </tr>
                    @endforeach
+                        <td class="border border-slate-600 text-left">Deleted Author"s"</td>
+                        <td class="border border-slate-600 text-right">{{ $deleted_authors[0]->counters}}</td>
                 </tbody>
           </table>
         </div>
