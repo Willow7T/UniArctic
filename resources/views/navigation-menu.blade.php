@@ -123,7 +123,7 @@
         </div>
         @endif
     @endif
-    @if(Route::currentRouteName() != 'admin.panel')
+    @if(Route::currentRouteName() != 'admindashboard')
     @if (Auth::user()->role_id == 1)
     <div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
         <x-button class="bg-blue-500 hover:bg-blue-700">
