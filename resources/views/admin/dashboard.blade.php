@@ -19,7 +19,7 @@
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
                     <h2 class="text-center text-lg font-bold">Users</h2>
-
+                    @livewire('admin-userpanel')
                 </div>
             </div>
         </div>

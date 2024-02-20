@@ -16,14 +16,12 @@ class AdminStatPanel extends Component
             ->join('article_views', 'articles.id', '=', 'article_views.article_id')
             ->groupBy('articles.id')
             ->orderBy('views_count', 'desc')
-            ->limit(10)
             ->get();
         $this->authors = Article::select('articles')->select('users.name',
             DB::raw('COUNT(articles.id) as articles_count'))
             ->join('users', 'articles.author_id', '=', 'users.id')
             ->groupBy('users.name')
             ->orderBy('articles_count', 'desc')
-            ->limit(10)
             ->get();
     }
 

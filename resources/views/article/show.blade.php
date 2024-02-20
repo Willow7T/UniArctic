@@ -19,7 +19,9 @@
                    <div class="flex flex-row w-48 h-14 gap-x-2 pt-4 ">
                         <div class="flex text-sm border-8 border-transparent rounded-full  focus:outline-none focus:border-gray-300 transition">
                             <!-- check if author is anonymous -->
-                            @if ($article->anonymous == true)
+                            @if ($article->author == null)
+                                <img class="w-10 h-10 rounded-full object-cover " src="{{ asset('storage/background/blank.png') }}" alt="Anonymous" />
+                            @elseif ($article->anonymous == true)
                                 <img class="w-10 h-10 rounded-full object-cover " src="{{ asset('storage/background/blank.png') }}" alt="Anonymous" />
                             @else
                                 @if($article->author)
@@ -29,7 +31,13 @@
                             
                         </div>
                         <div class="flex flex-col">
-                            <p>{{ $article->anonymous ? "Anonymous" : $article->author->name  }}</p>
+                            @if ($article->author == null)
+                                <p>Anonymous</p>
+                            @elseif ($article->anonymous == true)
+                                <p>Anonymous</p>
+                            @else
+                                <p>{{$article->author->name}}</p>
+                            @endif
                             <p>2012 December</p>
                         </div>
                         
