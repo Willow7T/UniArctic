@@ -13,22 +13,31 @@
                    <th class="border border-slate-600">Email</th>
                    <th>Change Role</th>
                    <th class="border border-slate-600">Role</th>
+                   <th class="border border-slate-600">Change Faculty</th>
+                   <th class="border border-slate-600">Faculty</th>
                  </tr>
             </thead>
             <tbody>
                @foreach($users as $user)
                <tr>
-                   <td class="border-l border-b border-slate-600 text-left border-r border-r-slate-300 ">{{ $user->name }}</td>
-                   <td class="border-y border-slate-600 text-center border-x border-x-slate-50 text-pretty">{{$user->email}}</td>
-                   <td class="border-y border-slate-600 text-center border-x border-x-slate-50">
-                       <select wire:change="updateUserRole({{ $user->id }}, $event.target.value)" class="border border-slate-600 w-10/12 ">
+                   <td class="border border-slate-600 text-left ">{{ $user->name }}</td>
+                   <td class="border border-slate-600 text-center text-pretty">{{$user->email}}</td>
+                   <td class="border border-slate-600 text-center">
+                       <select wire:change="updateUserRole({{ $user->id }}, $event.target.value)" class="border border-slate-600 w-full ">
                            @foreach($roles as $role)
                                <option value="{{ $role->id }}" {{ $user->role_id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
                            @endforeach
-                       </select>                                       
-                       
-                   </td>
+                       </select>                                         
+                   </td> 
                    <td class="border border-slate-600 text-right ">{{ $user->role->name }} </td>
+                   <td>
+                    <select wire:change="updateUserFaculty({{ $user->id }}, $event.target.value)" class="border border-slate-600 w-full ">
+                        @foreach($faculties as $faculty)
+                            <option value="{{ $faculty->id }}" {{ $user->faculty_id == $faculty->id ? 'selected' : '' }}>{{ $faculty->name}}</option>
+                        @endforeach
+                    </select> 
+                   </td>
+                   <td class="border border-slate-600 text-right ">{{ $user->faculty->name }} </td>
                </tr>
            @endforeach
            </tbody>

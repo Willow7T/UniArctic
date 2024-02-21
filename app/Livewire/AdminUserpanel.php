@@ -12,6 +12,7 @@ class AdminUserpanel extends Component
 {
     public $users;
     public $roles;
+    public $faculties;
     public $email_admin;
     public $email_del;
 
@@ -19,6 +20,9 @@ class AdminUserpanel extends Component
     {
         
         $this->users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'desc')->get();
+        //fetch all faculties
+        $this->faculties = DB::table('faculties')->get();
+
         $this->roles = Role::whereNotIn('id', [1])->get();
 
         // Fetch all users except admin
@@ -34,6 +38,17 @@ class AdminUserpanel extends Component
     {
         $user = User::find($userId);
         $user->role_id = $roleId;
+        $user->save();
+
+        // Fetch all users except admin
+        $this->users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'desc')->get();
+
+    }
+
+    public function updateUserFaculty($userId, $facutlyId)
+    {
+        $user = User::find($userId);
+        $user->faculty_id = $facutlyId;
         $user->save();
 
         // Fetch all users except admin
