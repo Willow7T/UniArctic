@@ -45,10 +45,10 @@ class AdminUserpanel extends Component
 
     }
 
-    public function updateUserFaculty($userId, $facutlyId)
+    public function updateUserFaculty($userId, $facultyId)
     {
         $user = User::find($userId);
-        $user->faculty_id = $facutlyId;
+       $user->faculty_id = $facultyId === "" ? null : $facultyId;
         $user->save();
 
         // Fetch all users except admin

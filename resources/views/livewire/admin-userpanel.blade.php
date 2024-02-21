@@ -32,10 +32,11 @@
                    <td class="border border-slate-600 text-right ">{{ $user->role->name }} </td>
                    <td>
                     <select wire:change="updateUserFaculty({{ $user->id }}, $event.target.value)" class="border border-slate-600 w-full ">
+                        <option value="">No Faculty</option>
                         @foreach($faculties as $faculty)
                             <option value="{{ $faculty->id }}" {{ $user->faculty_id == $faculty->id ? 'selected' : '' }}>{{ $faculty->name}}</option>
                         @endforeach
-                    </select> 
+                    </select>
                    </td>
                    <td class="border border-slate-600 text-right ">{{ optional($user->faculty)->name ?? 'No Faculty' }}</td>
                     </tr>
