@@ -9,15 +9,14 @@
         <table class=" border-collapse border border-slate-500 w-fit ">
             <thead>
                  <tr class="h-10">
-                   <th class="border border-slate-600">Name</th>
-                   <th class="border border-slate-600">Email</th>
-                   <th>Change Role</th>
-                   <th class="border border-slate-600">Role</th>
-                   <th class="border border-slate-600">Change Faculty</th>
-                   <th class="border border-slate-600">Faculty</th>
-                   <th class="border border-slate-600">Account Creation Date</th>
-                    <th class="border border-slate-600">Articles Upload</th>
-
+                    <th class="border border-slate-600">Name</th>
+                    <th class="border border-slate-600">Email</th>
+                    <th class="border border-slate-600">Change Role</th>
+                    <th class="border border-slate-600">Role</th>
+                    <th class="border border-slate-600">Change Faculty</th>
+                    <th class="border border-slate-600">Faculty</th>
+                    <th class="border border-slate-600">Account Creation Date</th>
+                    <th class="borderborder-slate-600">Articles Upload</th>
                  </tr>
             </thead>
             <tbody>
