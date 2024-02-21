@@ -37,8 +37,8 @@
                         @endforeach
                     </select> 
                    </td>
-                   <td class="border border-slate-600 text-right ">{{ $user->faculty->name }} </td>
-               </tr>
+                   <td class="border border-slate-600 text-right ">{{ optional($user->faculty)->name ?? 'No Faculty' }}</td>
+                    </tr>
            @endforeach
            </tbody>
        </table>
@@ -55,7 +55,8 @@
                             <input wire:model="email_admin" type="email" class="border border-blue-600 rounded-l " placeholder="Email">
                             <x-button type="submit" class="border border-blue-600 p-1
                              text-white rounded-r rounded-none">
-                                Add Admin</x-button>
+                                Add Admin
+                            </x-button>
                         </div>
                     </div>
                 </form>
