@@ -44,13 +44,13 @@
                     </span>
                 </div>
 
-                <x-secondary-button class="mt-2 me-2 bg-[#007bfe] hover:bg-[#0057b3f1] text-slate-100 dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2" type="button" 
+                <x-secondary-button class="mt-2 me-2 bg-blue-600 hover:bg-blue-900 text-slate-100 dark:text-slate-100 dark:bg-purple-900 dark:hover:bg-purple-600 px-4 py-2" type="button" 
                  x-on:click.prevent="$refs.photo.click()">
                     {{ __('Select A New Photo') }}
                 </x-secondary-button>
 
                 @if ($this->user->profile_photo_path)
-                    <x-secondary-button type="button" class="mt-2 bg-[#007bfe] hover:bg-[#0057b3f1] text-slate-100 dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2" wire:click="deleteProfilePhoto">
+                    <x-secondary-button type="button" class="mt-2 bg-blue-600 hover:bg-blue-900 text-slate-100 dark:text-slate-100 dark:bg-purple-900 dark:hover:bg-purple-600 px-4 py-2" wire:click="deleteProfilePhoto">
                         {{ __('Remove Photo') }}
                     </x-secondary-button>
                 @endif

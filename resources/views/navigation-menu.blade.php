@@ -64,13 +64,13 @@
                                 @endif
                             </x-slot>
     
-                            <x-slot name="content">
+                            <x-slot name="content" class="dark:bg-slate:800">
                                 <!-- Account Management -->
-                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                <div class="block px-4 py-2 text-xs text-gray-400 dark:text-slate-300 dark:bg-slate-800">
                                     {{ __('Manage Account') }}
                                 </div>
-    
-                                <x-dropdown-link href="{{ route('profile.show') }}">
+                                
+                                <x-dropdown-link class="dark:-slate-200" href="{{ route('profile.show') }}">
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
     
@@ -80,7 +80,7 @@
                                     </x-dropdown-link>
                                 @endif
     
-                                <div class="border-t border-gray-200"></div>
+                                <div class="border-t border-gray-200 dark:border-slate-50"></div>
     
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}" x-data>
