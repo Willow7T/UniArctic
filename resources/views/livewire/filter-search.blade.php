@@ -6,8 +6,8 @@
             <div class="flex flex-row gap-x-4 p-2">
                 <input class="border-gray-100 border-2 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-200 
                 focus:outline-none focus:border-blue-800 focus:ring-blue-800 dark:focus:border-purple-600 dark:focus:ring-purple-600
-                 hover:border-blue-600 rounded-md sm:text-sm dark:hover:border-purple-600
-                " type="text" wire:model="search" placeholder="Search by title">
+                 hover:border-blue-600 rounded-md sm:text-sm dark:hover:border-purple-600"
+                type="text" wire:model="search" placeholder="Search by title">
                 <x-button type="submit">
                     Search
                 </x-button>
