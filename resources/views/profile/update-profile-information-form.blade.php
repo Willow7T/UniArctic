@@ -1,10 +1,16 @@
 <x-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Profile Information') }}
+        <div class="dark:text-slate-100">
+            {{ __('Profile Information') }}
+        </div>
+        
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        <div class="dark:text-slate-300">
+            {{ __('Update your account\'s profile information and email address.') }}
+        </div>
+        
     </x-slot>
 
     <x-slot name="form">
@@ -12,7 +18,7 @@
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
                 <!-- Profile Photo File Input -->
-                <input type="file" id="photo" class="hidden"
+                <input type="file" id="photo" class="hidden "
                             wire:model.live="photo"
                             x-ref="photo"
                             x-on:change="
@@ -24,7 +30,7 @@
                                     reader.readAsDataURL($refs.photo.files[0]);
                             " />
 
-                <x-label for="photo" value="{{ __('Photo') }}" />
+                <x-label for="photo" value="{{ __('Photo') }}" class="dark:text-slate-300"/>
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
@@ -33,17 +39,18 @@
 
                 <!-- New Profile Photo Preview -->
                 <div class="mt-2" x-show="photoPreview" style="display: none;">
-                    <span class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
+                    <span class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center "
                           x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
                     </span>
                 </div>
 
-                <x-secondary-button class="mt-2 me-2" type="button" x-on:click.prevent="$refs.photo.click()">
+                <x-secondary-button class="mt-2 me-2 bg-[#007bfe] hover:bg-[#0057b3f1] text-slate-100 dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2" type="button" 
+                 x-on:click.prevent="$refs.photo.click()">
                     {{ __('Select A New Photo') }}
                 </x-secondary-button>
 
                 @if ($this->user->profile_photo_path)
-                    <x-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
+                    <x-secondary-button type="button" class="mt-2 bg-[#007bfe] hover:bg-[#0057b3f1] text-slate-100 dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2" wire:click="deleteProfilePhoto">
                         {{ __('Remove Photo') }}
                     </x-secondary-button>
                 @endif
@@ -54,15 +61,19 @@
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="name" value="{{ __('Name') }}" />
-            <x-input id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required autocomplete="name" />
+            <x-label for="name" value="{{ __('Name') }}" class="dark:text-slate-300"/>
+            <x-input id="name" type="text" class="mt-1 block w-full border-gray-100 border-2 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-200 
+            focus:outline-none focus:border-blue-800 focus:ring-blue-800 dark:focus:border-purple-600 dark:focus:ring-purple-600
+             hover:border-blue-600 rounded-md sm:text-sm dark:hover:border-purple-600" wire:model="state.name" required autocomplete="name" />
             <x-input-error for="name" class="mt-2" />
         </div>
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="email" value="{{ __('Email') }}" />
-            <x-input id="email" type="email" class="mt-1 block w-full" wire:model="state.email" required autocomplete="username" />
+            <x-label for="email" value="{{ __('Email') }}" class="dark:text-slate-300"/>
+            <x-input id="email" type="email" class="mt-1 block w-full border-gray-100 border-2 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-200 
+            focus:outline-none focus:border-blue-800 focus:ring-blue-800 dark:focus:border-purple-600 dark:focus:ring-purple-600
+             hover:border-blue-600 rounded-md sm:text-sm dark:hover:border-purple-600" wire:model="state.email" required autocomplete="username" />
             <x-input-error for="email" class="mt-2" />
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
