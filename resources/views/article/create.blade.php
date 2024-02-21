@@ -83,9 +83,15 @@
                             </div>
                                 
                             <div>
-                                <x-button type="submit">
-                                    Submit
-                                </x-button>
+                                @auth
+                                @if(auth()->user()->faculty_id)
+                                    <x-button type="submit">
+                                        Submit
+                                    </x-button>
+                                @else
+                                    <p>You must have a faculty_id to submit.</p>
+                                @endif
+                                @endauth
                             </div>
                         </div>
                     </form>

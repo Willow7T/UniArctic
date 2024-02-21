@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Article;
 use Illuminate\Support\Facades\DB;
 use App\Livewire\AdminUserpanel;
 
@@ -12,6 +13,7 @@ class AdminUserpanel extends Component
 {
     public $users;
     public $roles;
+    //public $articles_count;
     public $faculties;
     public $email_admin;
     public $email_del;
@@ -19,9 +21,14 @@ class AdminUserpanel extends Component
     public function mount()
     {
         
-        $this->users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'desc')->get();
+        $this->users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'asc')->get();
         //fetch all faculties
         $this->faculties = DB::table('faculties')->get();
+        //pull each user article count 
+        $this->users->each(function ($user) {
+            $user->articles_count = Article::where('author_id', $user->id)->count();
+        });
+
 
         $this->roles = Role::whereNotIn('id', [1])->get();
 
@@ -41,7 +48,7 @@ class AdminUserpanel extends Component
         $user->save();
 
         // Fetch all users except admin
-        $this->users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'desc')->get();
+        $this->mount();
 
     }
 
@@ -52,7 +59,7 @@ class AdminUserpanel extends Component
         $user->save();
 
         // Fetch all users except admin
-        $this->users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'desc')->get();
+        $this->mount();
 
     }
 
@@ -72,7 +79,7 @@ class AdminUserpanel extends Component
 
 
         // Fetch all users except admin
-        $this->users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'desc')->get();
+        $this->mount();
     }
 
 
@@ -102,6 +109,6 @@ class AdminUserpanel extends Component
 
 
         // Fetch all users except admin
-        $this->users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'desc')->get();
+        $this->mount();
     }
 }

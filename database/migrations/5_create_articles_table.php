@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('anonymous')->default(false);
 
             $table->unsignedBigInteger('author_id')->nullable();
-            $table->unsignedBigInteger('faculty_id')->default(1); 
+            $table->unsignedBigInteger('faculty_id')->nullable(); 
             $table->unsignedBigInteger('magazine_id');
          
 

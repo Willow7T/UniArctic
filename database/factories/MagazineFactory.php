@@ -23,7 +23,7 @@ class MagazineFactory extends Factory
             'issue_name' => $this->faker->word,
             'year' => 2024,
             'month' => $this->faker->numberBetween(1, 12),
-            'published' => true,
+            'published' => false,
         ];
     }
 }
