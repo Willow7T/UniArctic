@@ -61,7 +61,7 @@
                     <div class="flex flex-col">
                         <div class="flex flex-row">
                             <input wire:model="email_del" type="email" class="border border-red-600 rounded-l " placeholder="Email">
-                            <x-button type="submit" class="border border-red-600 p-1
+                            <x-button type="submit" class="border border-red-600 p-1 bg-red-600 dark:bg-red-800 dark:hover:bg-red-600
                              text-white rounded-r rounded-none">
                                 Delete User</x-button>
                         </div>

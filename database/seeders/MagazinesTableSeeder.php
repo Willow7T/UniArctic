@@ -15,7 +15,7 @@ class MagazinesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('magazines')->truncate();
+        //DB::table('magazines')->truncate();
 
         $months = range(1, 12);
         shuffle($months);

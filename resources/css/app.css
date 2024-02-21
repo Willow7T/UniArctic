@@ -1,3 +1,6 @@
+.backgroud-image {
+    /* CSS properties */
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -145,5 +148,9 @@ input[type="checkbox"]:checked {
     } 
 }
 
+.svg-background {
+    background: url ('public/storage/background/Backer.svg');
+    background-size: cover; /* This will make sure the SVG covers the whole area of the element */
+}
 
 

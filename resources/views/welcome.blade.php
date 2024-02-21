@@ -26,8 +26,9 @@
         </style>
     </head>
     <body class="antialiased newer">
+       
         {{-- <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 selection:bg-red-500 selection:text-white" style="background-image: url('{{ asset('storage/background/uniback.jpg') }}')"> --}}
-        <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+        <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-gray-200 dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             <section>
                 <label for="darkswitch" class="flex items-center cursor-pointer sm:fixed sm:top-10 sm:right-0 p-4">
                     <div class="relative">
@@ -58,7 +59,9 @@
             </section>
             <section class="mt-16 flex justify-center px-4 md:mt-12 xl:mt-0">
                 <div class="relative w-full mt-8 max-w-screen-xl xl:p-8 xl:py-16">
-                    <img src="{{ asset('storage/background/uniback.jpg') }}" alt="Home Image">
+                    <div class="z-50">
+                        <img src="{{ asset('storage/background/uniback.jpg') }}" alt="Home Image">
+                    </div>
                     <div class="absolute z-10 right-2 bottom-2 flex justify-center w-full gap-x-12">
                         <a href="{{ route('article.search') }}" class="w-24 h-24 flex items-center justify-center bg-red-500 border-solid border-2 border-red-600">
                             1
