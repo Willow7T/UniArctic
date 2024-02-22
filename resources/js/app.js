@@ -1,4 +1,6 @@
 import './bootstrap';
+import 'flowbite';
+
 
 function applyTheme(theme) {
   if (theme === 'dark') {

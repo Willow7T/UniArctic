@@ -31,9 +31,9 @@
                     <label for="darkswitch" class="flex items-center cursor-pointer  pt-6">
                         <div class="relative">
                           <input id="darkswitch" type="checkbox" class="sr-only" />
-                          <div class="block bg-yellow-500 w-14 h-8  rounded-full"></div>
+                          <div class="block bg-yellow-300 w-14 h-8  rounded-full"></div>
                           <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition flex items-center justify-center">
-                            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5 text-yellow-500">
+                            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5 text-yellow-300">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v1m0 18v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
                             </svg>
                             <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 hidden">

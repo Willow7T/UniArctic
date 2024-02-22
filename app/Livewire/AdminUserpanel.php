@@ -35,6 +35,12 @@ class AdminUserpanel extends Component
         // Fetch all users except admin
     }
 
+    public function buttonClicked($userId)
+    {
+        $this->dispatch('userIdUpdated', $userId);
+        $this->mount();
+    }
+
     public function render()
     {
         

@@ -11,7 +11,8 @@ export default {
         './resources/views/**/*.blade.php',
         './resources/views/*.blade.php',
         "./resources/**/*.js",
-        "./resources/**/*.vue"
+        "./resources/**/*.vue",
+        "./node_modules/flowbite/**/*.js",
     ],
     theme: {
         extend: {
@@ -25,7 +26,7 @@ export default {
     disabled: 'class',
     darkMode: 'class',
     plugins: [forms, typography,
-        require('@tailwindcss/forms'),],
+        require('flowbite/plugin'),],
     
 };
 

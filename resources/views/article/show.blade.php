@@ -23,7 +23,7 @@
                             @endif
                             
                         </div>
-                        <div class="flex flex-col">
+                        <div class="flex flex-col w-full">
                             @if ($article->author == null)
                                 <p>Anonymous</p>
                             @elseif ($article->anonymous == true)
