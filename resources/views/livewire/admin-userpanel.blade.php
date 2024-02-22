@@ -65,7 +65,7 @@
 
 
         <!-- Add Admin Role -->
-        <div class="flex flex-row justify-between">
+        <div class="flex flex-row justify-between flex-wrap">
             <div class="h-[15rem] m-4 w-fill">
                 <h1 class="pl-2 font-bold">
                     Give Users Admin Role

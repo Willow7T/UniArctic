@@ -10,19 +10,19 @@ use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 
 class AdminCharts extends Component
 {   
-//     SELECT month, COUNT(a.id) AS article_count
-// FROM magazines m
-// LEFT JOIN articles a ON m.id = a.magazine_id where year = 2024
-// GROUP BY month ORDER BY month ASC;
 
 
     public function render()
     {
         $currentYearData = Magazine::query()
-                ->where('year', date('Y'))
+                ->GetYear(date('Y'))
                 ->GroupByMonth();
+                //dd($currentYearData);
         $lastYearData = Magazine::query()
-                ->where('year', date('Y')-1)
+                ->GetYear(date('Y')-1)
+                ->GroupByMonth(); 
+        $twoYearagoData = Magazine::query()
+                ->GetYear(date('Y')-2)
                 ->GroupByMonth(); 
         $labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         $Chart = app()->chartjs
@@ -32,26 +32,33 @@ class AdminCharts extends Component
                 ->labels($labels)
                 ->datasets([
                     [
-                        "label" => "Last Year Articles",
+                        "label" =>  date('Y')-2 . " Articles",
                         'backgroundColor' => 'lightgray',
+                        'data' => $twoYearagoData
+                    ],
+                    [
+                        "label" =>  date('Y')-1 . " Articles",
+                        'backgroundColor' => 'lightblue',
                         'data' => $lastYearData
                     ],
                     [
-                        "label" => "Current Year Articles",
+                        "label" =>  date('Y') . " Articles",
                         'backgroundColor' => 'lightgreen',
                         'data' => $currentYearData
                     ]
                 ])
                 ->options([]);
 
-
+        $YearList = Magazine::select('year')->distinct()->orderBy('year', 'desc')->get();
 
            
 
         return view('livewire.admin-charts', [
             'currentYearData' => $currentYearData,
             'lastYearData' => $lastYearData,
-            'Chart'=> $Chart
+            'twoYearagoData' => $twoYearagoData,
+            'Chart'=> $Chart,
+            'YearList' => $YearList
         ]);
     }
 }

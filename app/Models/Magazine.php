@@ -22,6 +22,10 @@ class Magazine extends Model
         ->values()
         ->toArray();
     }
+    public function scopeGetYear($query, $year)
+    {
+        return $query->where('year', $year);
+    }
 
     public function articles()
     {
