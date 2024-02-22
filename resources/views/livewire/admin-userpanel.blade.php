@@ -54,7 +54,7 @@
                         <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
                             <x-button wire:click="buttonClicked({{$user->id}})" data-modal-target="default-modal"
                                 data-modal-toggle="default-modal" class="" type="button">
-                                Toggle modal
+                                Check
                             </x-button>
                         </td>
                     </tr>
@@ -161,7 +161,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                             </svg>
-                            <span class="sr-only">Close modal</span>
+                            <span class="sr-only">Close</span>
                         </button>
                     </div>
                     <!-- Modal body -->

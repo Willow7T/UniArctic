@@ -29,8 +29,6 @@ class AdminUserpanel extends Component
     public function render()
     {
         
-       
-        // ->get();
         $query = User::query();
 
         if (!empty($this->search)) {
@@ -38,10 +36,9 @@ class AdminUserpanel extends Component
         }
         //fetch all faculties
       
-        //pull each user article count 
-        $users = $query->with('role')->whereNotIn('role_id', [1])->orderby('id', 'asc')->paginate(6);
+        $users = $query->with('role')
+            ->whereNotIn('role_id', [1])->orderby('id', 'asc')->paginate(6);
 
-        //$users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'asc');
         $users->each(function ($user) {
             $user->articles_count = Article::where('author_id', $user->id)->count();
         });
