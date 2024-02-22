@@ -1,43 +1,43 @@
 <div >
     <div class="p-2">
         <div>
-            <h1 class="pl-2 font-bold ">
+            <h1 class="pl-2 font-bold text-center p-4">
                 Edit users Role
             </h1>
         </div>
-        <div class="h-[34rem] overflow-x-auto m-4 ml-8">
-            <table class=" border-collapse border border-slate-500 w-fit ">
+        <div class="h-[34rem] overflow-scroll">
+            <table class="border-collapse border border-slate-500 w-fit m-auto">
                 <thead>
                     <tr class="h-10">
-                        <th class="border border-slate-600">Name</th>
-                        <th class="border border-slate-600">Email</th>
-                        <th class="border border-slate-600">Change_Role</th>
-                        <th class="border border-slate-600">Role</th>
-                        <th class="border border-slate-600">Change_Faculty</th>
-                        <th class="border border-slate-600">Faculty</th>
-                        <th class="border border-slate-600">Account Creation Date</th>
-                        <th class="border border-slate-600">Articles Upload</th>
-                        <th class="border border-slate-600">Check_Articles</th>
+                        <th class="border border-slate-600 backdrop-blur-sm">Name</th>
+                        <th class="border border-slate-600 backdrop-blur-sm">Email</th>
+                        <th class="border border-slate-600 backdrop-blur-sm">Change Role</th>
+                        <th class="border border-slate-600 backdrop-blur-sm">Role</th>
+                        <th class="border border-slate-600 backdrop-blur-sm">Change Faculty</th>
+                        <th class="border border-slate-600 backdrop-blur-sm">Faculty</th>
+                        <th class="border border-slate-600 backdrop-blur-sm">Account Creation Date</th>
+                        <th class="border border-slate-600 backdrop-blur-sm">Articles Upload</th>
+                        <th class="border border-slate-600 backdrop-blur-sm">Check Articles</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($users as $user)
                     <tr>
-                        <td class="border border-slate-600 text-left ">{{ $user->name }}</td>
-                        <td class="border border-slate-600 text-center text-pretty">{{$user->email}}</td>
-                        <td class="border border-slate-600 text-center">
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->name }}</td>
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{$user->email}}</td>
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
                             <select wire:change="updateUserRole({{ $user->id }}, $event.target.value)"
-                                class="border border-slate-600 w-full ">
+                                class="backdrop-blur-sm block w-auto py-2 px-3 border-0 outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-100">
                                 @foreach($roles as $role)
                                 <option value="{{ $role->id }}" {{ $user->role_id == $role->id ? 'selected' : '' }}>{{
                                     $role->name }}</option>
                                 @endforeach
                             </select>
                         </td>
-                        <td class="border border-slate-600 text-right ">{{ $user->role->name }} </td>
-                        <td>
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->role->name }} </td>
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
                             <select wire:change="updateUserFaculty({{ $user->id }}, $event.target.value)"
-                                class="border border-slate-600 w-full ">
+                                class="backdrop-blur-sm block w-auto py-2 px-3 border-0 outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-100">
                                 <option value="">No Faculty</option>
                                 @foreach($faculties as $faculty)
                                 <option value="{{ $faculty->id }}" {{ $user->faculty_id == $faculty->id ? 'selected' :
@@ -45,13 +45,13 @@
                                 @endforeach
                             </select>
                         </td>
-                        <td class="border border-slate-600 text-center  ">{{ optional($user->faculty)->name ?? 'No
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ optional($user->faculty)->name ?? 'No
                             Faculty' }}</td>
-                        <td class="border border-slate-600 text-center ">{{ $user->created_at ?? 'Data Deleted or
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->created_at ?? 'Data Deleted or
                             Nothing to Show' }}</td>
-                        <td class="border border-slate-600 text-right ">{{ $user->articles_count ?? 'No Article Upload'
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->articles_count ?? 'No Article Upload'
                             }}</td>
-                        <td>
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
                             <x-button wire:click="buttonClicked({{$user->id}})" data-modal-target="default-modal"
                                 data-modal-toggle="default-modal" class="" type="button">
                                 Toggle modal
