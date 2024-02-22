@@ -145,6 +145,8 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         array (
             'Illuminate\\Support\\' => 19,
             'Illuminate\\' => 11,
+            'IcehouseVentures\\LaravelChartjs\\Tests\\' => 38,
+            'IcehouseVentures\\LaravelChartjs\\' => 32,
         ),
         'G' => 
         array (
@@ -492,6 +494,14 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'IcehouseVentures\\LaravelChartjs\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/icehouse-ventures/laravel-chartjs/tests',
+        ),
+        'IcehouseVentures\\LaravelChartjs\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/icehouse-ventures/laravel-chartjs/src',
+        ),
         'GuzzleHttp\\UriTemplate\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/uri-template/src',
@@ -599,9 +609,13 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\ArticleController' => __DIR__ . '/../..' . '/app/Http/Controllers/ArticleController.php',
+        'App\\Http\\Controllers\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\MagazineController' => __DIR__ . '/../..' . '/app/Http/Controllers/MagazineController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
+        'App\\Http\\Middleware\\CheckAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckAdmin.php',
+        'App\\Http\\Middleware\\CheckStudent' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckStudent.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
@@ -610,9 +624,20 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Livewire\\AdminCharts' => __DIR__ . '/../..' . '/app/Livewire/AdminCharts.php',
+        'App\\Livewire\\AdminStatPanel' => __DIR__ . '/../..' . '/app/Livewire/AdminStatPanel.php',
+        'App\\Livewire\\AdminStudentArticles' => __DIR__ . '/../..' . '/app/Livewire/AdminStudentArticles.php',
+        'App\\Livewire\\AdminUserpanel' => __DIR__ . '/../..' . '/app/Livewire/AdminUserpanel.php',
+        'App\\Livewire\\CommentComponent' => __DIR__ . '/../..' . '/app/Livewire/CommentComponent.php',
+        'App\\Livewire\\FilterSearch' => __DIR__ . '/../..' . '/app/Livewire/FilterSearch.php',
+        'App\\Mail\\MailToCoordinator' => __DIR__ . '/../..' . '/app/Mail/MailToCoordinator.php',
         'App\\Models\\Article' => __DIR__ . '/../..' . '/app/Models/Article.php',
+        'App\\Models\\ArticleView' => __DIR__ . '/../..' . '/app/Models/ArticleView.php',
+        'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
         'App\\Models\\Faculty' => __DIR__ . '/../..' . '/app/Models/Faculty.php',
+        'App\\Models\\Magazine' => __DIR__ . '/../..' . '/app/Models/Magazine.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
+        'App\\Models\\Tag' => __DIR__ . '/../..' . '/app/Models/Tag.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -804,9 +829,11 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'DASPRiD\\Enum\\Exception\\UnserializeNotSupportedException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/UnserializeNotSupportedException.php',
         'DASPRiD\\Enum\\NullValue' => __DIR__ . '/..' . '/dasprid/enum/src/NullValue.php',
         'Database\\Factories\\ArticlesFactory' => __DIR__ . '/../..' . '/database/factories/ArticlesFactory.php',
+        'Database\\Factories\\MagazineFactory' => __DIR__ . '/../..' . '/database/factories/MagazineFactory.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\ArticlesSeeder' => __DIR__ . '/../..' . '/database/seeders/ArticlesSeeder.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\MagazinesTableSeeder' => __DIR__ . '/../..' . '/database/seeders/MagazinesTableSeeder.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
         'DateException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
         'DateInvalidOperationException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',
@@ -1689,6 +1716,10 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'IcehouseVentures\\LaravelChartjs\\Builder' => __DIR__ . '/..' . '/icehouse-ventures/laravel-chartjs/src/Builder.php',
+        'IcehouseVentures\\LaravelChartjs\\Providers\\ChartjsServiceProvider' => __DIR__ . '/..' . '/icehouse-ventures/laravel-chartjs/src/Providers/ChartjsServiceProvider.php',
+        'IcehouseVentures\\LaravelChartjs\\Support\\Config' => __DIR__ . '/..' . '/icehouse-ventures/laravel-chartjs/src/Support/Config.php',
+        'IcehouseVentures\\LaravelChartjs\\Tests\\TestCase' => __DIR__ . '/..' . '/icehouse-ventures/laravel-chartjs/tests/TestCase.php',
         'Illuminate\\Auth\\Access\\AuthorizationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
         'Illuminate\\Auth\\Access\\Events\\GateEvaluated' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Events/GateEvaluated.php',
         'Illuminate\\Auth\\Access\\Gate' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',

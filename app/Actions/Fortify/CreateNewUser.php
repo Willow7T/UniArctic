@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use App\Models\Faculty;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailToCoordinator;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -30,7 +32,14 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
             'faculty_id' => ['required', 'integer'],
         ])->validate();
-       return User::create([
+
+
+        $selected_emails = User::where('role_id', 3)
+                                ->where('faculty_id', $input['faculty_id'])
+                                ->value('email');
+
+       // Mail::to($selected_emails)->send(new MailToCoordinator( $input['name']));
+        return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),

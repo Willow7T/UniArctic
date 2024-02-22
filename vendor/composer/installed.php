@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '2fd7dccd4e2953b06519de121f51d193e7131bc2',
+        'reference' => '5bc66b4a2ad6f5135d558d3f753fc38505b55c5d',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -183,6 +183,15 @@
             'install_path' => __DIR__ . '/../hamcrest/hamcrest-php',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'icehouse-ventures/laravel-chartjs' => array(
+            'pretty_version' => 'v1.0.6',
+            'version' => '1.0.6.0',
+            'reference' => '95fa1f1b671bd3860b3a852dd01aab8b33c1f293',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../icehouse-ventures/laravel-chartjs',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'illuminate/auth' => array(
             'dev_requirement' => false,
@@ -427,7 +436,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '2fd7dccd4e2953b06519de121f51d193e7131bc2',
+            'reference' => '5bc66b4a2ad6f5135d558d3f753fc38505b55c5d',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

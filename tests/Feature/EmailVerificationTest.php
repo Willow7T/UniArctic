@@ -54,12 +54,7 @@ class EmailVerificationTest extends TestCase
         
 
 
-        // // Select faculty_id after verification
-        // $faculty_id = $user->fresh()->faculty_id;//<--Write more after this line
-        // //select id from user table where role_id = 3 and facultu_id = $faculty_id
-        // $selected_email = User::where('role_id', 3)->where('faculty_id', $faculty_id)->value('email');
-        // //now send email to this selected_email 
-        // Mail::to($selected_email)->send(new MailToCoordinator($user->fresh()->name));
+       
 
         $response->assertRedirect(RouteServiceProvider::HOME.'?verified=1');
     }

@@ -16,9 +16,11 @@ class MailToCoordinator extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public $user_name;
+    public function __construct($user_name)
     {
         //
+        $this->user_name = $user_name;
     }
 
     /**
@@ -27,6 +29,7 @@ class MailToCoordinator extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
+            from: new Address('@noreplyUniArctic70-1.com', 'noreply'),
             subject: 'New Guest in the Faculty',
         );
     }
@@ -37,7 +40,7 @@ class MailToCoordinator extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mail.MailToCoordinator',
         );
     }
 
