@@ -61,14 +61,38 @@
                     @endforeach
                 </tbody>
             </table>
-            <div>
-                {{ $users->links('pagination-links') }}   
+            <div class="pt-2 pr-16">
+                {{ $users->links(data: ['scrollTo' => false]) }} 
+                {{-- {{ $users->links('pagination-links') }}    --}}
+
             </div>
         </div>
 
 
-        <!-- Add Admin Role -->
+      
         <div class="flex flex-row justify-between flex-wrap">
+              <!-- Add Search Form -->
+              <div class="h-[15rem] m-4 w-fill">
+                <h1 class="pl-2 font-bold">
+                    Search with Name
+                </h1>
+                <div class="mt-2">
+                    <form wire:submit.prevent="$refresh">
+                        @csrf
+                        <div class="flex flex-col">
+                            <div class="flex flex-row">
+                                <input wire:model="search" type="text" class="border border-blue-600 rounded-l "
+                                    placeholder="Name">
+                                <x-button type="submit" class="border border-blue-600 p-1
+                             text-white rounded-r rounded-none">
+                                    Search
+                                </x-button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+              <!-- Add Admin Role -->
             <div class="h-[15rem] m-4 w-fill">
                 <h1 class="pl-2 font-bold">
                     Give Users Admin Role

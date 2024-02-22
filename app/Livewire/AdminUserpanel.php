@@ -8,14 +8,16 @@ use App\Models\Role;
 use App\Models\Article;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
+use Livewire\WithoutUrlPagination;
 use App\Livewire\AdminUserpanel;
 
 class AdminUserpanel extends Component
 {
-    use WithPagination;
+    use WithPagination, WithoutUrlPagination;
   
     public $email_admin;
     public $email_del;
+    public $search;
 
     
 
@@ -27,16 +29,25 @@ class AdminUserpanel extends Component
     public function render()
     {
         
-        $users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'asc')->paginate(10);
+       
         // ->get();
+        $query = User::query();
 
+        if (!empty($this->search)) {
+            $query->whereRaw('LOWER(name) LIKE ?', [strtolower('%' . $this->search . '%')]);
+        }
         //fetch all faculties
-        $faculties = DB::table('faculties')->get();
+      
         //pull each user article count 
+        $users = $query->with('role')->whereNotIn('role_id', [1])->orderby('id', 'asc')->paginate(6);
 
+        //$users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'asc');
         $users->each(function ($user) {
             $user->articles_count = Article::where('author_id', $user->id)->count();
         });
+      
+
+        $faculties = DB::table('faculties')->get();
         $roles = Role::whereNotIn('id', [1])->get();
 
         return view('livewire.admin-userpanel',
@@ -47,6 +58,7 @@ class AdminUserpanel extends Component
             ]);
     }
 
+   
     public function updateUserRole($userId, $roleId)
     {
         $user = User::find($userId);
