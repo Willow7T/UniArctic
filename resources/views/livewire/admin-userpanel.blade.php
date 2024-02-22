@@ -1,4 +1,4 @@
-<div>
+<div >
     <div class="p-2">
         <div>
             <h1 class="pl-2 font-bold ">
@@ -61,6 +61,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $users->links('pagination-links') }}   
         </div>
 
 
@@ -149,3 +150,4 @@
             </div>
         </div>
     </div>
+</div>

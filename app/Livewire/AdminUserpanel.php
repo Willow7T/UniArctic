@@ -7,44 +7,44 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Article;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 use App\Livewire\AdminUserpanel;
 
 class AdminUserpanel extends Component
 {
-    public $users;
-    public $roles;
-    //public $articles_count;
-    public $faculties;
+    use WithPagination;
+  
     public $email_admin;
     public $email_del;
 
-    public function mount()
-    {
-        
-        $this->users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'asc')->get();
-        //fetch all faculties
-        $this->faculties = DB::table('faculties')->get();
-        //pull each user article count 
-        $this->users->each(function ($user) {
-            $user->articles_count = Article::where('author_id', $user->id)->count();
-        });
-
-
-        $this->roles = Role::whereNotIn('id', [1])->get();
-
-        // Fetch all users except admin
-    }
+    
 
     public function buttonClicked($userId)
     {
         $this->dispatch('userIdUpdated', $userId);
-        $this->mount();
     }
 
     public function render()
     {
         
-        return view('livewire.admin-userpanel');
+        $users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'asc')->paginate(10);
+        // ->get();
+
+        //fetch all faculties
+        $faculties = DB::table('faculties')->get();
+        //pull each user article count 
+
+        $users->each(function ($user) {
+            $user->articles_count = Article::where('author_id', $user->id)->count();
+        });
+        $roles = Role::whereNotIn('id', [1])->get();
+
+        return view('livewire.admin-userpanel',
+            [
+                'users' => $users,
+                'faculties' => $faculties,
+                'roles' => $roles
+            ]);
     }
 
     public function updateUserRole($userId, $roleId)
@@ -53,8 +53,6 @@ class AdminUserpanel extends Component
         $user->role_id = $roleId;
         $user->save();
 
-        // Fetch all users except admin
-        $this->mount();
 
     }
 
@@ -64,8 +62,6 @@ class AdminUserpanel extends Component
        $user->faculty_id = $facultyId === "" ? null : $facultyId;
         $user->save();
 
-        // Fetch all users except admin
-        $this->mount();
 
     }
 
@@ -84,8 +80,6 @@ class AdminUserpanel extends Component
         }
 
 
-        // Fetch all users except admin
-        $this->mount();
     }
 
 
@@ -114,7 +108,5 @@ class AdminUserpanel extends Component
         }
 
 
-        // Fetch all users except admin
-        $this->mount();
     }
 }
