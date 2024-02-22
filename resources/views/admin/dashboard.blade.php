@@ -4,9 +4,9 @@
             {{ __('Admin Dashboard') }}
         </h2>
     </x-slot>
-    <div class=" py-8 grid lg:grid-cols-5 sm:grid-cols-1 gap-y-4 dark:text-gray-100">
+    <div class=" py-8 lg:grid lg:grid-cols-5 gap-y-4 dark:text-gray-100 sm:flex sm:flex-col sm:flex-warp">
         <!--stat table-->
-        <div class=" sm:col-span-1 lg:col-span-2 ">
+        <div class="  lg:col-span-2">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
                     <h2 class="text-center text-lg font-bold p-4">Stats</h2>
@@ -15,16 +15,16 @@
             </div>
         </div>
         <!--user table-->
-        <div class="sm:col-span-1 lg:col-span-3 ">
+        <div class=" lg:col-span-3">
             <div class="mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg lg:pb-24">
+                <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg xl:pb-40">
                     <h2 class="text-center text-lg font-bold p-4">Charts</h2>
                     @livewire('admin-charts')
                 </div>
   
             </div>
         </div>
-        <div class="sm:col-span-1 lg:col-span-5">
+        <div class=" lg:col-span-5">
             <div class="mx-auto sm:px-6 lg:px-8 ">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
                     <h2 class="text-center text-lg font-bold p-4">Users</h2>

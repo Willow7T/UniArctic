@@ -5,19 +5,19 @@
                 Edit users Role
             </h1>
         </div>
-        <div class="h-[34rem] overflow-scroll m-4 ml-8">
+        <div class="h-[34rem] overflow-x-auto m-4 ml-8">
             <table class=" border-collapse border border-slate-500 w-fit ">
                 <thead>
                     <tr class="h-10">
                         <th class="border border-slate-600">Name</th>
                         <th class="border border-slate-600">Email</th>
-                        <th class="border border-slate-600">Change Role</th>
+                        <th class="border border-slate-600">Change_Role</th>
                         <th class="border border-slate-600">Role</th>
-                        <th class="border border-slate-600">Change Faculty</th>
+                        <th class="border border-slate-600">Change_Faculty</th>
                         <th class="border border-slate-600">Faculty</th>
                         <th class="border border-slate-600">Account Creation Date</th>
                         <th class="border border-slate-600">Articles Upload</th>
-                        <th class="border border-slate-600">Check Articles</th>
+                        <th class="border border-slate-600">Check_Articles</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,7 +65,7 @@
 
 
         <!-- Add Admin Role -->
-        <div class="flex flex-row justify-between">
+        <div class="flex flex-row justify-between flex-wrap">
             <div class="h-[15rem] m-4 w-fill">
                 <h1 class="pl-2 font-bold">
                     Give Users Admin Role

@@ -21,6 +21,9 @@ class AdminCharts extends Component
         $lastYearData = Magazine::query()
                 ->GetYear(date('Y')-1)
                 ->GroupByMonth(); 
+        $twoYearagoData = Magazine::query()
+                ->GetYear(date('Y')-2)
+                ->GroupByMonth(); 
         $labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         $Chart = app()->chartjs
                 ->name('barChartTest')
@@ -29,12 +32,17 @@ class AdminCharts extends Component
                 ->labels($labels)
                 ->datasets([
                     [
-                        "label" =>  "Last Year Articles",
+                        "label" =>  date('Y')-2 . " Articles",
                         'backgroundColor' => 'lightgray',
+                        'data' => $twoYearagoData
+                    ],
+                    [
+                        "label" =>  date('Y')-1 . " Articles",
+                        'backgroundColor' => 'lightblue',
                         'data' => $lastYearData
                     ],
                     [
-                        "label" => "Current Year Articles",
+                        "label" =>  date('Y') . " Articles",
                         'backgroundColor' => 'lightgreen',
                         'data' => $currentYearData
                     ]
@@ -48,6 +56,7 @@ class AdminCharts extends Component
         return view('livewire.admin-charts', [
             'currentYearData' => $currentYearData,
             'lastYearData' => $lastYearData,
+            'twoYearagoData' => $twoYearagoData,
             'Chart'=> $Chart,
             'YearList' => $YearList
         ]);
