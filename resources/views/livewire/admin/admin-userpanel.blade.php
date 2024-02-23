@@ -1,4 +1,4 @@
-<div >
+<div>
     <div class="p-2">
         <div>
             <h1 class="pl-2 font-bold text-center p-4">
@@ -16,6 +16,7 @@
                         <th class="border border-slate-600 backdrop-blur-sm">Change Faculty</th>
                         <th class="border border-slate-600 backdrop-blur-sm">Faculty</th>
                         <th class="border border-slate-600 backdrop-blur-sm">Account Creation Date</th>
+                        <th class="border border-slate-600 backdrop-blur-sm">Sessions</th>
                         <th class="border border-slate-600 backdrop-blur-sm">Articles Upload</th>
                         <th class="border border-slate-600 backdrop-blur-sm">Check Articles</th>
                     </tr>
@@ -34,7 +35,8 @@
                                 @endforeach
                             </select>
                         </td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->role->name }} </td>
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->role->name }}
+                        </td>
                         <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
                             <select wire:change="updateUserFaculty({{ $user->id }}, $event.target.value)"
                                 class="backdrop-blur-sm block w-auto py-2 px-3 border-0 outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-100">
@@ -45,11 +47,27 @@
                                 @endforeach
                             </select>
                         </td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ optional($user->faculty)->name ?? 'No
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{
+                            optional($user->faculty)->name ?? 'No
                             Faculty' }}</td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->created_at ?? 'Data Deleted or
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->created_at ??
+                            'Data Deleted or
                             Nothing to Show' }}</td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->articles_count ?? 'No Article Upload'
+                        {{-- $session->agent->browser() --}}
+                        @if($user->sessions()->isNotEmpty())
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
+                        @foreach ($user->sessions() as $session)
+                        @php
+                        $browser = Browser::parse($session->user_agent);
+                        $browserName = explode(' ', $browser->browserName())[0];
+                        @endphp
+                        {{ $browserName ?? 'No Browser Information Available' }}, 
+                        @endforeach
+                        @else</td>
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">No sessions available</td>
+                        @endif
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->articles_count ??
+                            'No Article Upload'
                             }}</td>
                         <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
                             <x-button wire:click="buttonClicked({{$user->id}})" data-modal-target="default-modal"
@@ -62,16 +80,16 @@
                 </tbody>
             </table>
             <div class="pt-2 pr-16">
-                {{ $users->links(data: ['scrollTo' => false]) }} 
-                {{-- {{ $users->links('pagination-links') }}    --}}
+                {{ $users->links(data: ['scrollTo' => false]) }}
+                {{-- {{ $users->links('pagination-links') }} --}}
 
             </div>
         </div>
 
 
-      
+
         <div class="flex flex-row justify-between flex-wrap">
-              <!-- Add Search Form -->
+            <!-- Add Search Form -->
             <div class="h-[15rem] m-4 w-fill">
                 <h1 class="pl-2 font-bold">
                     Search with Name
@@ -81,8 +99,8 @@
                         @csrf
                         <div class="flex flex-col">
                             <div class="flex flex-row">
-                                <input wire:model="search" type="text" class="border border-blue-600 rounded-l dark:bg-slate-800"
-                                    placeholder="Name">
+                                <input wire:model="search" type="text"
+                                    class="border border-blue-600 rounded-l dark:bg-slate-800" placeholder="Name">
                                 <x-button type="submit" class="border border-blue-600 p-1
                              text-white rounded-r rounded-none ">
                                     Search
@@ -92,18 +110,19 @@
                     </form>
                 </div>
             </div>
-              <!-- Add Admin Role -->
+            <!-- Add Admin Role -->
             <div class="h-[15rem] m-4 w-fill">
                 <h1 class="pl-2 font-bold">
                     Give Users Admin Role
                 </h1>
                 <div class="mt-2">
-                    <form wire:submit="addAdminRole" wire:confirm.prompt="Are you sure?\n\nType AdMiN and Press 'OK' to confirm to confirm|AdMiN">
+                    <form wire:submit="addAdminRole"
+                        wire:confirm.prompt="Are you sure?\n\nType AdMiN and Press 'OK' to confirm to confirm|AdMiN">
                         @csrf
                         <div class="flex flex-col">
                             <div class="flex flex-row">
-                                <input wire:model="email_admin" type="email" class="border border-blue-600 rounded-l dark:bg-slate-800"
-                                    placeholder="Email">
+                                <input wire:model="email_admin" type="email"
+                                    class="border border-blue-600 rounded-l dark:bg-slate-800" placeholder="Email">
                                 <x-button type="submit" class="border border-blue-600 p-1
                              text-white rounded-r rounded-none">
                                     Add Admin
@@ -129,12 +148,13 @@
                     Delete a user
                 </h1>
                 <div class="mt-2">
-                    <form wire:submit="deleteUser" wire:confirm.prompt="Are you sure?\n\nType DeLeTe and Press 'OK' to confirm|DeLeTe">
+                    <form wire:submit="deleteUser"
+                        wire:confirm.prompt="Are you sure?\n\nType DeLeTe and Press 'OK' to confirm|DeLeTe">
                         @csrf
                         <div class="flex flex-col">
                             <div class="flex flex-row">
-                                <input wire:model="email_del" type="email" class="border border-red-600 rounded-l dark:bg-slate-800"
-                                    placeholder="Email">
+                                <input wire:model="email_del" type="email"
+                                    class="border border-red-600 rounded-l dark:bg-slate-800" placeholder="Email">
                                 <button type="submit" class="
                                 inline-flex items-center px-4 py-2 
                                 border border-transparent rounded-r font-semibold text-xs text-white uppercase tracking-widest 

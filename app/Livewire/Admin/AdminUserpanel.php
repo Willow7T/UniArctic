@@ -36,7 +36,7 @@ class AdminUserpanel extends Component
         }
         //fetch all faculties
       
-        $users = $query->with('role')
+        $users = $query->with('role') 
             ->whereNotIn('role_id', [1])->orderby('id', 'asc')->paginate(6);
 
         $users->each(function ($user) {
