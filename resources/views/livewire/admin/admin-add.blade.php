@@ -10,9 +10,9 @@
                     <div class="mt-2">
                         <div class="flex flex-col">
                             <div class="flex flex-row">
-                                <input wire:model="name" type="name" class="border border-blue-600 rounded-l "
-                                    placeholder="Faculty Name">
-                                <x-button wire:click="addFaculty" class="border border-blue-600 p-1
+                                <input wire:model="name" type="name" class="border border-blue-600 rounded-l dark:bg-slate-800"
+                                    placeholder="   Faculty Name">
+                                <x-button wire:click="addFaculty" class="border border-blue-600 
                                  text-white rounded-r rounded-none">
                                  Add New Faculty
                                 </x-button>
@@ -21,23 +21,25 @@
                     </div>
                 </div>
                 {{-- Update Faculty --}}
-                <div>
-                    <h1 class="pl-2 font-bold ml-10 p-4 text-left">
+                <div class="h-[15rem] m-4 w-fill">
+                    <h1 class="pl-2 font-bold mb-2">
                         Update a Faculty
                     </h1>
-                    <div class="flex flex-row">
-                        <div class="flex flex-col">
-                            <select class="border border-slate-500 w-60 ml-10" wire:model="updateName">
-                                @foreach($faculties as $faculty)
-                                    <option value="{{ $faculty->name }}">{{ $faculty->name }}</option>
-                                @endforeach
-                            </select>
-                            <input type="text" class="border border-slate-500 w-60 ml-10" wire:model="newName" placeholder="New Faculty Name">    
+                    <div>
+                        <div class="flex flex-row">
+                            <div class="flex flex-col">
+                                <select class="dark:bg-slate-800 border border-slate-500 w-60" wire:model="updateName">
+                                    @foreach($faculties as $faculty)
+                                        <option value="{{ $faculty->name }}">{{ $faculty->name }}</option>
+                                    @endforeach
+                                </select>
+                                <input type="text" class="dark:bg-slate-800 border border-slate-500 w-60" wire:model="newName" placeholder="New Faculty Name">    
+                            </div>
+                            <x-button wire:click="updateFaculty" class="border border-blue-600 p-1
+                                             text-white rounded-r rounded-none">
+                                             Update
+                            </x-button>
                         </div>
-                        <x-button wire:click="updateFaculty" class="border border-blue-600 p-1
-                                         text-white rounded-r rounded-none">
-                                         Update
-                        </x-button>
                     </div>
                 </div>
             </div>
