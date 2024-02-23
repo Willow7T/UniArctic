@@ -19,7 +19,7 @@
             </div>
         </div>
         {{-- User Panel --}}
-        <div class="lg:col-span-3">
+        <div class="lg:col-span-6">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg xl:pb-40">
                     <h2 class="text-center text-lg font-bold p-4">Users</h2>

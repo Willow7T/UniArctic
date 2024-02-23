@@ -6,7 +6,7 @@
     </x-slot>
     <section class="fixed bg-white/20 right-0 top-28 backdrop-blur-sm">
         {{-- side nav goes here --}}
-        dsadasdsadasdsad
+        
     </section>
     {{-- Charts Panel --}}
     <div class=" py-8 lg:grid lg:grid-cols-6 gap-y-4 dark:text-gray-100 sm:flex sm:flex-col sm:flex-warp">
