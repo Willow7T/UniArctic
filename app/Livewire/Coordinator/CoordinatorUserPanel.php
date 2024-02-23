@@ -50,4 +50,13 @@ class CoordinatorUserPanel extends Component
 
 
     }
+    public function updateUserRole($userId, $roleId)
+    {
+        $user = User::find($userId);//find user with id
+        $user->role_id = $roleId;//overwrite role_id with new value
+        $user->save();//save changes
+
+
+    }
+
 }
