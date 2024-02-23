@@ -72,7 +72,7 @@
       
         <div class="flex flex-row justify-between flex-wrap">
               <!-- Add Search Form -->
-              <div class="h-[15rem] m-4 w-fill">
+            <div class="h-[15rem] m-4 w-fill">
                 <h1 class="pl-2 font-bold">
                     Search with Name
                 </h1>
@@ -186,7 +186,7 @@
                     </div>
                     <!-- Modal body -->
                     <div class="p-4 md:p-5 space-y-4 w-full">
-                        @livewire('admin.admin-student-articles')
+                        @livewire('student-articles')
                     </div>
                     <!-- Modal footer -->
                     <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">

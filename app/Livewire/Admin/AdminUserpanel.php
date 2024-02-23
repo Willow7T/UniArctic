@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Article;
+use App\Models\Faculty;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
@@ -43,7 +44,7 @@ class AdminUserpanel extends Component
         });
       
 
-        $faculties = DB::table('faculties')->get();
+        $faculties = Faculty::all();
         $roles = Role::whereNotIn('id', [1])->get();
 
         return view('livewire.admin.admin-userpanel',//return view with data

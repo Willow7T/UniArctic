@@ -71,5 +71,6 @@ class Kernel extends HttpKernel
         'adminRole' => \App\Http\Middleware\CheckAdmin::class,
         'coorRole' => \App\Http\Middleware\CheckCoordinator::class,
         'manRole' => \App\Http\Middleware\CheckManager::class,
+        'articlePublished' => \App\Http\Middleware\CheckIfArticleIsPublished::class,
     ];
 }
