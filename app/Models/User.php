@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable //implements MustVerifyEmail
 {
@@ -100,6 +101,12 @@ class User extends Authenticatable //implements MustVerifyEmail
     public function comments()
     {
     return $this->hasMany(Comment::class);
+    }
+    public function sessions()
+    {
+        return DB::table('sessions')
+            ->where('user_id', $this->id)
+            ->get();
     }
    
 }

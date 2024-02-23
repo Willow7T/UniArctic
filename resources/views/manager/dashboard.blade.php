@@ -4,7 +4,7 @@
             {{ __('Manager Dashboard') }}
         </h2>
     </x-slot>
-    <section class="fixed bg-gray-200/50 p-4 right-0 top-28 backdrop-blur-sm z-50 dark:text-slate-100 dark:bg-slate-900/50">
+    <section class="fixed bg-gray-200/50 p-4 right-0 top-28 backdrop-blur-sm z-30 dark:text-slate-100 dark:bg-slate-900/50">
         {{-- side nav goes here --}}
         <div class="" onmouseover="showNav()" onmouseout="hideNav()">
             <h1>Page Navigation</h1>   
@@ -28,7 +28,7 @@
             </div>
         </div>
         {{-- User Panel --}}
-        <div class="lg:col-span-3" id="section2">
+        <div class="lg:col-span-6" id="section2">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg xl:pb-40">
                     <h2 class="text-center text-lg font-bold p-4">Users</h2>
