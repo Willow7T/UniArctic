@@ -81,10 +81,10 @@
                         @csrf
                         <div class="flex flex-col">
                             <div class="flex flex-row">
-                                <input wire:model="search" type="text" class="border border-blue-600 rounded-l "
+                                <input wire:model="search" type="text" class="border border-blue-600 rounded-l dark:bg-slate-800"
                                     placeholder="Name">
                                 <x-button type="submit" class="border border-blue-600 p-1
-                             text-white rounded-r rounded-none">
+                             text-white rounded-r rounded-none ">
                                     Search
                                 </x-button>
                             </div>
@@ -102,7 +102,7 @@
                         @csrf
                         <div class="flex flex-col">
                             <div class="flex flex-row">
-                                <input wire:model="email_admin" type="email" class="border border-blue-600 rounded-l "
+                                <input wire:model="email_admin" type="email" class="border border-blue-600 rounded-l dark:bg-slate-800"
                                     placeholder="Email">
                                 <x-button type="submit" class="border border-blue-600 p-1
                              text-white rounded-r rounded-none">
@@ -133,7 +133,7 @@
                         @csrf
                         <div class="flex flex-col">
                             <div class="flex flex-row">
-                                <input wire:model="email_del" type="email" class="border border-red-600 rounded-l "
+                                <input wire:model="email_del" type="email" class="border border-red-600 rounded-l dark:bg-slate-800"
                                     placeholder="Email">
                                 <button type="submit" class="
                                 inline-flex items-center px-4 py-2 
