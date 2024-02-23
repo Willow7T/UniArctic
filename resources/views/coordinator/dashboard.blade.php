@@ -4,7 +4,7 @@
             {{ __('Coordinator Dashboard') }} {{ Auth::user()->faculty->name }}
         </h2>
     </x-slot>
-    <section class="fixed bg-gray-200/50 p-4 right-0 top-28 backdrop-blur-sm z-50 dark:text-slate-100 dark:bg-slate-900/50">
+    <section class="fixed bg-gray-200/50 p-4 right-0 top-28 backdrop-blur-sm z-30 dark:text-slate-100 dark:bg-slate-900/50">
         {{-- side nav goes here --}}
         <div class="" onmouseover="showNav()" onmouseout="hideNav()">
             <h1>Page Navigation</h1>   
