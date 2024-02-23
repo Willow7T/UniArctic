@@ -2,31 +2,27 @@
 
 namespace App\Livewire\Charts;
 
-use App\Models\Article;
-use App\Models\Magazine;
 use Livewire\Component;
-use ConsoleTVs\Charts\Classes\Chartjs\Chart;
+use App\Models\Magazine;
 
-
-class YearActivityCharts extends Component
-{   
-
-
+class FacultyYearActivity extends Component
+{
     public function render()
     {
+        $facultyId = auth()->user()->faculty_id;
         $currentYearData = Magazine::query()
                 ->GetYear(date('Y'))
-                ->GroupByMonth();
-                //dd($currentYearData);
+                ->GroupByFMonth($facultyId);
+            
         $lastYearData = Magazine::query()
                 ->GetYear(date('Y')-1)
-                ->GroupByMonth(); 
+                ->GroupByFMonth($facultyId);
         $twoYearagoData = Magazine::query()
                 ->GetYear(date('Y')-2)
-                ->GroupByMonth(); 
+                ->GroupByFMonth($facultyId);
         $labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        $Chart = app()->chartjs
-                ->name('ArticleChart')
+        $FYChart = app()->chartjs
+                ->name('FYChart')
                 ->type('bar')
                 ->size(['width' => 400, 'height' => 200])
                 ->labels($labels)
@@ -53,11 +49,11 @@ class YearActivityCharts extends Component
 
            
 
-        return view('livewire.charts.year-activity-charts', [
+        return view('livewire.charts.faculty-year-activity', [
             'currentYearData' => $currentYearData,
             'lastYearData' => $lastYearData,
             'twoYearagoData' => $twoYearagoData,
-            'Chart'=> $Chart,
+            'FYChart'=> $FYChart,
             'YearList' => $YearList
         ]);
     }

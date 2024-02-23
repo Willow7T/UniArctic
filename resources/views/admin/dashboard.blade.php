@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div class=" py-8 lg:grid lg:grid-cols-5 gap-y-4 dark:text-gray-100 sm:flex sm:flex-col sm:flex-warp">
-        <!--stat table-->
+        {{-- <stat table --}}
         <div class="lg:col-span-2">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <!--user table-->
+        {{-- user table--}}
         <div class="lg:col-span-3">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg xl:pb-40">
@@ -27,16 +27,16 @@
         <div class="lg:col-span-5">
             <div class="mx-auto sm:px-6 lg:px-8 ">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
-                    <h2 class="text-center text-lg font-bold p-4">Users</h2>
-                    @livewire('admin.admin-userpanel')
+                    <h2 class="text-center text-lg font-bold p-4">Faculties</h2>
+                    @livewire('admin.admin-add')
                 </div>
             </div>
         </div>
         <div class="lg:col-span-5">
             <div class="mx-auto sm:px-6 lg:px-8 ">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
-                    <h2 class="text-center text-lg font-bold p-4">Faculties</h2>
-                    @livewire('admin.admin-add')
+                    <h2 class="text-center text-lg font-bold p-4">Users</h2>
+                    @livewire('admin.admin-userpanel')
                 </div>
             </div>
         </div>
