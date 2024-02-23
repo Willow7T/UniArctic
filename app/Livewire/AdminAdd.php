@@ -50,7 +50,7 @@ class AdminAdd extends Component
 
 
 
-        return view('livewire.admin-add' , ['faculties' => $faculties , 'Fchart' => $Fchart, 'users' => $users,  'articles' => $articles]);
+        return view('livewire.admin.admin-add' , ['faculties' => $faculties , 'Fchart' => $Fchart, 'users' => $users,  'articles' => $articles]);
     }
     public function addFaculty()
     {

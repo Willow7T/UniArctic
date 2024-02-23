@@ -9,7 +9,6 @@ use App\Models\Article;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
-use App\Livewire\AdminUserpanel;
 
 class AdminUserpanel extends Component
 {
@@ -47,7 +46,7 @@ class AdminUserpanel extends Component
         $faculties = DB::table('faculties')->get();
         $roles = Role::whereNotIn('id', [1])->get();
 
-        return view('livewire.admin-userpanel',
+        return view('livewire.admin.admin-userpanel',//return view with data
             [
                 'users' => $users,
                 'faculties' => $faculties,
@@ -58,18 +57,18 @@ class AdminUserpanel extends Component
    
     public function updateUserRole($userId, $roleId)
     {
-        $user = User::find($userId);
-        $user->role_id = $roleId;
-        $user->save();
+        $user = User::find($userId);//find user with id
+        $user->role_id = $roleId;//overwrite role_id with new value
+        $user->save();//save changes
 
 
     }
 
     public function updateUserFaculty($userId, $facultyId)
     {
-        $user = User::find($userId);
-       $user->faculty_id = $facultyId === "" ? null : $facultyId;
-        $user->save();
+        $user = User::find($userId);//find user with id
+        $user->faculty_id = $facultyId === "" ? null : $facultyId;//overwrite faculty_id with new value
+        $user->save();//save changes
 
 
     }
@@ -81,11 +80,19 @@ class AdminUserpanel extends Component
         ]);
         // Find the user by email
         $user = User::where('email', $this->email_del)->first();
-        if ($user) {
-            // Delete the user
-            $user->delete();
-        } else {
-            $this->addError('email_del', 'User not found with this email.');
+        //Check user if Admin
+        if(!$user){
+        session()->flash('Delete-Failed', 'User not found with this email.');
+        }
+        else if($user->role_id == 1){
+            session()->flash('Delete-Failed', 'User is admin.');
+        }
+        else {
+           // Delete the user
+           $user->delete();
+            session()->flash('Delete-Success', 'User deleted.');
+            // Reset the email input
+           $this->email_del = '';
         }
 
 
@@ -103,15 +110,18 @@ class AdminUserpanel extends Component
         $user = User::where('email', $this->email_admin)->first();
 
         // Check if the user exists
-        
         if (!$user) {
             
-            $this->addError('email', 'User not found with this email.');
+            session()->flash('Admin-Fail', 'User not found with this email.');
+        }
+        else if($user->role_id == 1){
+            session()->flash('Admin-Fail', 'User is already admin.');
         }
         else
         {
-            $user->role_id = 1; // Assuming 1 is the role_id for admin
+            $user->role_id = 1; // Role 1 is the role_id for admin
             $user->save();
+            session()->flash('Admin-Success', 'User is now admin.');
             // Reset the email input
             $this->email_admin = '';
         }

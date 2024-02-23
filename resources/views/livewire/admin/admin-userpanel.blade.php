@@ -98,7 +98,7 @@
                     Give Users Admin Role
                 </h1>
                 <div class="mt-2">
-                    <form wire:submit="addAdminRole" wire:confirm.prompt="Are you sure?\n\nType AdMiN to confirm|AdMiN">
+                    <form wire:submit="addAdminRole" wire:confirm.prompt="Are you sure?\n\nType AdMiN and Press 'OK' to confirm to confirm|AdMiN">
                         @csrf
                         <div class="flex flex-col">
                             <div class="flex flex-row">
@@ -111,6 +111,16 @@
                             </div>
                         </div>
                     </form>
+                    @if (session('Admin-Fail'))
+                    <div class="alert alert-fail text-red-600">
+                        *{{ session('Admin-Fail') }}
+                    </div>
+                    @endif
+                    @if (session('Admin-Success'))
+                    <div class="alert alert-success">
+                        {{ session('Admin-Success') }}
+                    </div>
+                    @endif
                 </div>
             </div>
             <!-- Delete Users -->
@@ -119,7 +129,7 @@
                     Delete a user
                 </h1>
                 <div class="mt-2">
-                    <form wire:submit="deleteUser" wire:confirm.prompt="Are you sure?\n\nType DeLeTe to confirm|DeLeTe">
+                    <form wire:submit="deleteUser" wire:confirm.prompt="Are you sure?\n\nType DeLeTe and Press 'OK' to confirm|DeLeTe">
                         @csrf
                         <div class="flex flex-col">
                             <div class="flex flex-row">
@@ -139,6 +149,16 @@
                             </div>
                         </div>
                     </form>
+                    @if (session('Delete-Failed'))
+                    <div class="alert alert-fail text-red-600">
+                        *{{ session('Delete-Failed') }}
+                    </div>
+                    @endif
+                    @if (session('Delete-Success'))
+                    <div class="alert alert-success">
+                        {{ session('Delete-Success') }}
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

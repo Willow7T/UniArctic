@@ -53,7 +53,7 @@ class AdminCharts extends Component
 
            
 
-        return view('livewire.admin-charts', [
+        return view('livewire.admin.admin-charts', [
             'currentYearData' => $currentYearData,
             'lastYearData' => $lastYearData,
             'twoYearagoData' => $twoYearagoData,
