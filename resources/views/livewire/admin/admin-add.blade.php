@@ -1,9 +1,9 @@
 <div>
     <div class="p-2">
-        <div class="h-[34rem] lg:grid lg:grid-cols-4 justify-between">
+        <div class="h-fit lg:grid lg:grid-cols-4 justify-between">
             <div class="flex flex-col gap-6 col-span-1">
                 {{-- Add new Faculty --}}
-                <div class="h-[15rem] m-4 w-fill">
+                <div class="h-[15rem] m-auto w-fill">
                     <h1 class="pl-2 font-bold">
                         Add New Faculty
                     </h1>
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 {{-- Update Faculty --}}
-                <div class="h-[15rem] m-4 w-fill">
+                <div class="h-[15rem] m-auto w-fill">
                     <h1 class="pl-2 font-bold mb-2">
                         Update a Faculty
                     </h1>
@@ -44,10 +44,10 @@
                 </div>
             </div>
             <div class="col-span-1 flex-col">
-                <h1 class="pl-2 font-bold p-4 ">
+                <h1 class="pl-2 font-bold p-4 text-center">
                     Facutly List
                 </h1>
-                <table class="border-collapse border border-slate-500 w-fit">
+                <table class="border-collapse border border-slate-500 w-fit m-auto">
                     <thead>
                         <tr class="h-10">
                             <th class="border border-slate-600 backdrop-blur-sm">Name</th>
