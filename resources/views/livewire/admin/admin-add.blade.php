@@ -65,7 +65,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-span-2">
+            <div class="col-span-2 mt-6">
                 <h1 class="pl-2 font-bold text-center">
                     Faculty Activity Chart
                 </h1>

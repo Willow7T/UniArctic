@@ -153,4 +153,29 @@ input[type="checkbox"]:checked {
     background-size: cover; /* This will make sure the SVG covers the whole area of the element */
 }
 
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary) var(--primary);
+  }
+  
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: var(--primary);
+    border-radius: 5px;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--secondary);
+    border-radius: 14px;
+    border: 3px solid var(--primary);
+  }
 
+  :root {
+    --primary: rgba(0,0,0,0.1);
+    --secondary: rgba(0,127,225,0.3);
+  }
