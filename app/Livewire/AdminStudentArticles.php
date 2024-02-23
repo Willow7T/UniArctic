@@ -23,6 +23,6 @@ class AdminStudentArticles extends Component
         $user = User::find($this->user_id);
         
 
-        return view('livewire.admin-student-articles', ['articles' => $articles], ['user' => $user]);
+        return view('livewire.admin.admin-student-articles', ['articles' => $articles], ['user' => $user]);
     }
 }

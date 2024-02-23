@@ -54,27 +54,51 @@
                         <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
                             <x-button wire:click="buttonClicked({{$user->id}})" data-modal-target="default-modal"
                                 data-modal-toggle="default-modal" class="" type="button">
-                                Toggle modal
+                                Check
                             </x-button>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            <div>
-                {{ $users->links('pagination-links') }}   
+            <div class="pt-2 pr-16">
+                {{ $users->links(data: ['scrollTo' => false]) }} 
+                {{-- {{ $users->links('pagination-links') }}    --}}
+
             </div>
         </div>
 
 
-        <!-- Add Admin Role -->
+      
         <div class="flex flex-row justify-between flex-wrap">
+              <!-- Add Search Form -->
+              <div class="h-[15rem] m-4 w-fill">
+                <h1 class="pl-2 font-bold">
+                    Search with Name
+                </h1>
+                <div class="mt-2">
+                    <form wire:submit.prevent="$refresh">
+                        @csrf
+                        <div class="flex flex-col">
+                            <div class="flex flex-row">
+                                <input wire:model="search" type="text" class="border border-blue-600 rounded-l "
+                                    placeholder="Name">
+                                <x-button type="submit" class="border border-blue-600 p-1
+                             text-white rounded-r rounded-none">
+                                    Search
+                                </x-button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+              <!-- Add Admin Role -->
             <div class="h-[15rem] m-4 w-fill">
                 <h1 class="pl-2 font-bold">
                     Give Users Admin Role
                 </h1>
                 <div class="mt-2">
-                    <form wire:submit="addAdminRole" wire:confirm.prompt="Are you sure?\n\nType AdMiN to confirm|AdMiN">
+                    <form wire:submit="addAdminRole" wire:confirm.prompt="Are you sure?\n\nType AdMiN and Press 'OK' to confirm to confirm|AdMiN">
                         @csrf
                         <div class="flex flex-col">
                             <div class="flex flex-row">
@@ -87,6 +111,16 @@
                             </div>
                         </div>
                     </form>
+                    @if (session('Admin-Fail'))
+                    <div class="alert alert-fail text-red-600">
+                        *{{ session('Admin-Fail') }}
+                    </div>
+                    @endif
+                    @if (session('Admin-Success'))
+                    <div class="alert alert-success">
+                        {{ session('Admin-Success') }}
+                    </div>
+                    @endif
                 </div>
             </div>
             <!-- Delete Users -->
@@ -95,7 +129,7 @@
                     Delete a user
                 </h1>
                 <div class="mt-2">
-                    <form wire:submit="deleteUser" wire:confirm.prompt="Are you sure?\n\nType DeLeTe to confirm|DeLeTe">
+                    <form wire:submit="deleteUser" wire:confirm.prompt="Are you sure?\n\nType DeLeTe and Press 'OK' to confirm|DeLeTe">
                         @csrf
                         <div class="flex flex-col">
                             <div class="flex flex-row">
@@ -115,6 +149,16 @@
                             </div>
                         </div>
                     </form>
+                    @if (session('Delete-Failed'))
+                    <div class="alert alert-fail text-red-600">
+                        *{{ session('Delete-Failed') }}
+                    </div>
+                    @endif
+                    @if (session('Delete-Success'))
+                    <div class="alert alert-success">
+                        {{ session('Delete-Success') }}
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -137,7 +181,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                             </svg>
-                            <span class="sr-only">Close modal</span>
+                            <span class="sr-only">Close</span>
                         </button>
                     </div>
                     <!-- Modal body -->

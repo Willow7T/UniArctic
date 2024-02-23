@@ -2,7 +2,7 @@
 <div>
     {{-- <div class="fixed"> --}}
     <div class="2xl:fixed z-50 block md:flex sm:flex">
-        <form id="searchForm" wire:submit.prevent="$refresh"class="z-10" >
+        <form id="searchForm" wire:submit.prevent="$refresh" class="z-10" >
             @csrf
             <div class="flex flex-row gap-x-4 p-2">
                 <input class="border-gray-100 border-2 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-200 

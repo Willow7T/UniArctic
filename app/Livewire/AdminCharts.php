@@ -26,7 +26,7 @@ class AdminCharts extends Component
                 ->GroupByMonth(); 
         $labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         $Chart = app()->chartjs
-                ->name('barChartTest')
+                ->name('ArticleChart')
                 ->type('bar')
                 ->size(['width' => 400, 'height' => 200])
                 ->labels($labels)
@@ -53,7 +53,7 @@ class AdminCharts extends Component
 
            
 
-        return view('livewire.admin-charts', [
+        return view('livewire.admin.admin-charts', [
             'currentYearData' => $currentYearData,
             'lastYearData' => $lastYearData,
             'twoYearagoData' => $twoYearagoData,
