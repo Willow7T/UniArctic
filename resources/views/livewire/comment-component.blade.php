@@ -1,4 +1,4 @@
-<div class="bg-red-100 ">
+<div class="bg-red-100 p-10">
     <form class="bg-red-300 justify-center flex gap-x-8" wire:submit.prevent="addComment">
         <textarea class="w-96 resize-none" wire:model.defer="newComment"></textarea>
         <x-button class=" font-bold text-lg" type="submit">Post</x-button>
