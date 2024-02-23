@@ -37,6 +37,18 @@ class Article extends Model
     {
         return $this->hasMany(ArticleView::class);
     }
+    public static function getArticlesWAuthen($userId, $published)
+{
+    $articles = self::where('author_id', $userId)
+        ->where('published', $published)
+        ->get();
+
+    $count = self::where('author_id', $userId)
+        ->where('published', $published)
+        ->count();
+
+    return ['articles' => $articles, 'count' => $count];
+}
     
     
 }

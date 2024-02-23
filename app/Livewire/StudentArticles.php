@@ -19,19 +19,19 @@ class StudentArticles extends Component
 
     public function render()
     {
-        $articles = Article::where('author_id', $this->user_id)
-        ->where('published', true)
-        ->get();
-        $publishedCount = Article::where('author_id', $this->user_id)
-        ->where('published', true)
-        ->count();
+        
+        $published = Article::getArticlesWAuthen($this->user_id, true);
+        $unpublished = Article::getArticlesWAuthen($this->user_id, false);
 
-        $unpublishedCount = Article::where('author_id', $this->user_id)
-        ->where('published', false)
-        ->count();
+        $articles = $published['articles'];
+        $publishedCount = $published['count'];
+        $unpublishedCount = $unpublished['count'];
         $user = User::find($this->user_id);
         
 
-        return view('livewire.student-articles', ['articles' => $articles, 'user' => $user, 'publishedCount' => $publishedCount, 'unpublishedCount' => $unpublishedCount]);
+        return view('livewire.student-articles', [
+            'articles' => $articles, 'user' => $user,
+             'publishedCount' => $publishedCount, 'unpublishedCount' => $unpublishedCount
+            ]);
     }
 }
