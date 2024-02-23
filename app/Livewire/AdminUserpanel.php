@@ -27,7 +27,7 @@ class AdminUserpanel extends Component
     public function render()
     {
         
-        $users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'asc')->paginate(10);
+        $users = User::with('role')->whereNotIn('role_id', [1])->orderby('id', 'asc')->paginate(5);
         // ->get();
 
         //fetch all faculties

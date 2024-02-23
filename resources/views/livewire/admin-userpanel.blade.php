@@ -5,7 +5,7 @@
                 Edit users Role
             </h1>
         </div>
-        <div class="h-[34rem] overflow-scroll">
+        <div class="h-[36rem] overflow-x-scroll">
             <table class="border-collapse border border-slate-500 w-fit m-auto">
                 <thead>
                     <tr class="h-10">
