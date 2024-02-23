@@ -7,25 +7,25 @@
             @endif
              <p class="mb-2">Posted by: {{ optional($reply->user)->name }}</p>
         </div>
-        <p class="mb-2 bg-red-500">{{ $reply->body }}</p>
+        <p class="m-6 border-b dark:border-gray-300">{{ $reply->body }}</p>
 
         <div>
-             <x-button class="bg-blue-500 text-white px-2 py-1 rounded" wire:click="showReplyForm({{ $reply->id }})">Reply</x-button>
+             <x-button class="bg-blue-500 text-white px-2 py-1 rounded m-6" wire:click="showReplyForm({{ $reply->id }})">Reply</x-button>
         </div>
        
     </div>
     
     @if(isset($newReply[$reply->id]))
-        <form wire:submit.prevent="addReply({{ $reply->id }}, {{ $comment->id }})">
-            <textarea type="text" class="mt-2 border rounded p-1 w-full resize-none" wire:model="newReply.{{ $reply->id }}"></textarea>
-            <x-button class="bg-blue-500 text-white px-2 py-1 rounded mt-2" type="submit">Post Reply</x-button>
+        <form class="flex gap-x-5 m-6" wire:submit.prevent="addReply({{ $reply->id }}, {{ $comment->id }})">
+            <textarea type="text" placeholder="Reply this comment" class="rounded p-1 w-80 resize-none dark:bg-slate-800 dark:focus:border-purple-600" wire:model="newReply.{{ $reply->id }}"></textarea>
+            <x-button class="bg-blue-500 text-white rounded h-14 " type="submit">Post Reply</x-button>
         </form>
     @endif
     @foreach($reply->replies()->paginate($perPage) as $nestedReply)
         @include('reply', ['reply' => $nestedReply, 'level' => $level + 1])
     @endforeach
     @if($reply->replies()->count() > $perPage)
-        <x-button wire:click="loadMore">Load more replies</x-button>
+        <x-button class="mt-6" wire:click="loadMore">Load more replies</x-button>
     @endif
 
 

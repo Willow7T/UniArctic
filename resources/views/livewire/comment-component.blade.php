@@ -1,6 +1,15 @@
-<div class="bg-red-100 p-10">
-    <form class="bg-red-300 justify-center flex gap-x-8" wire:submit.prevent="addComment">
-        <textarea class="w-96 resize-none" wire:model.defer="newComment"></textarea>
+
+<div class="p-10 dark:bg-slate-900 dark:border-slate-900 ">
+
+    <div class="flex items-center justify-center mb-8">
+        <div class="border-t-4 border-gray-400 flex-grow"></div>
+        <div class="mx-4 text-gray-600 dark:text-slate-300">Comment</div>
+        <div class="border-t-4 border-gray-400 flex-grow"></div>
+    </div>
+    
+
+    <form class="justify-center flex gap-x-5" wire:submit.prevent="addComment">
+        <textarea placeholder="Write a comment" class="w-96 resize-none rounded-md dark:bg-slate-600" wire:model.defer="newComment"></textarea>
         <x-button class=" font-bold text-lg" type="submit">Post</x-button>
     </form>
 
@@ -15,18 +24,18 @@
                         <p class="m-2">Posted by: {{ optional($comment->user)->name }}</p>
 
                         </div>
-                    <p class="mb-2 bg-red-500">{{ $comment->body }}</p>
+                        <p class="m-6 border-b dark:border-gray-300">{{ $comment->body }}</p>
                     
                     <div>
-                        <x-button class="bg-blue-500 text-white px-2 py-1 rounded" wire:click="showReplyForm({{ $comment->id }})">Reply</x-button>
+                        <x-button class="bg-blue-500 text-white px-2 py-1 rounded m-6" wire:click="showReplyForm({{ $comment->id }})">Reply</x-button>
                     </div>
                     
                 </div>
                 
                 @if(isset($newReply[$comment->id]))
-                    <form wire:submit.prevent="addReply({{ $comment->id }})">
-                        <textarea class="mt-2 border rounded p-1 w-full resize-none" wire:model="newReply.{{ $comment->id }}"></textarea>
-                        <x-button class="bg-blue-500 text-white px-2 py-1 rounded mt-2" type="submit">Post Reply</x-button>
+                    <form class="flex gap-x-5 mb-6" wire:submit.prevent="addReply({{ $comment->id }})">
+                        <textarea placeholder="Reply to this comment" class="rounded p-1 w-80 resize-none dark:bg-slate-600 dark:focus:border-purple-600" wire:model="newReply.{{ $comment->id }}"></textarea>
+                        <x-button class="bg-blue-500 text-white rounded h-14" type="submit">Post Reply</x-button> 
                     </form>
                 @endif
                 @foreach($comment->replies()->paginate($perPage) as $reply)
