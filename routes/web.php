@@ -28,6 +28,7 @@ Route::middleware([
         return view('home');
     })->name('home');
     
+    
     //Article Create Page under the Kernel Cheching Route with Role Middleware
     Route::get('/articles/create', [
         ArticleController::class, 'create'
@@ -36,6 +37,23 @@ Route::middleware([
         ArticleController::class, 'store'
     ])->name('article.store')->middleware('stuRole');
     
+    
+    //admin Dashboard
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admindashboard')->middleware('adminRole');
+
+    //coordinator Dashboard
+    Route::get('/coordinator/dashboard', function () {
+        return view('coordinator.dashboard');
+    })->name('coordinatordashboard')->middleware('coorRole');
+    //Manager Dashboard
+    Route::get('/manager/dashboard', function () {
+        return view('manager.dashboard');
+    })->name('managerdashboard')->middleware('manRole');
+
+
+    //without Role Middleware
     Route::get('/articles/search', [
         ArticleController::class, 'search'
         ])->name('article.search');
@@ -44,12 +62,5 @@ Route::middleware([
         ArticleController::class, 'show'
     ])->name('article.show');
     
-    //admin Panel
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admindashboard')->middleware('adminRole');
-
-
-
 });
 

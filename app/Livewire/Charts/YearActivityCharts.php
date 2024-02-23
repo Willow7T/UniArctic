@@ -8,7 +8,7 @@ use Livewire\Component;
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 
 
-class YearArtiCountCharts extends Component
+class YearActivityCharts extends Component
 {   
 
 
@@ -53,7 +53,7 @@ class YearArtiCountCharts extends Component
 
            
 
-        return view('livewire.charts.year-arti-count-charts', [
+        return view('livewire.charts.year-activity-charts', [
             'currentYearData' => $currentYearData,
             'lastYearData' => $lastYearData,
             'twoYearagoData' => $twoYearagoData,

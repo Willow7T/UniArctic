@@ -69,5 +69,7 @@ class Kernel extends HttpKernel
         //Added by Willow7T
         'stuRole' => \App\Http\Middleware\CheckStudent::class,
         'adminRole' => \App\Http\Middleware\CheckAdmin::class,
+        'coorRole' => \App\Http\Middleware\CheckCoordinator::class,
+        'manRole' => \App\Http\Middleware\CheckManager::class,
     ];
 }

@@ -12,25 +12,7 @@ class ArticlesSeeder extends Seeder
 {
     public function run()
     {
-        // Directory containing .docx files
-        $docxDirectory = storage_path('app/articles');
-
-        // Loop through each .docx file
-        $docxFiles = scandir($docxDirectory);
-        foreach ($docxFiles as $file) {
-            if ($file === '.' || $file === '..') {
-                continue;
-            }
-
-            $docxContent = Storage::get('articles/' . $file);
-            $content = $this->convertDocxToText($docxContent);
-
-            // Create an article with the extracted content
-            Article::create([
-                'title' => pathinfo($file, PATHINFO_FILENAME),
-                'content' => $content,
-            ]);
-        }
+        
     }
 
     private function convertDocxToText($docxContent)
