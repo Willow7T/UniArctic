@@ -186,7 +186,7 @@
                     </div>
                     <!-- Modal body -->
                     <div class="p-4 md:p-5 space-y-4 w-full">
-                        @livewire('admin-student-articles')
+                        @livewire('admin.admin-student-articles')
                     </div>
                     <!-- Modal footer -->
                     <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">

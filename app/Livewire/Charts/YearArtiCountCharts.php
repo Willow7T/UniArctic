@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Charts;
 
 use App\Models\Article;
 use App\Models\Magazine;
@@ -8,7 +8,7 @@ use Livewire\Component;
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 
 
-class AdminCharts extends Component
+class YearArtiCountCharts extends Component
 {   
 
 
@@ -53,7 +53,7 @@ class AdminCharts extends Component
 
            
 
-        return view('livewire.admin.admin-charts', [
+        return view('livewire.charts.year-arti-count-charts', [
             'currentYearData' => $currentYearData,
             'lastYearData' => $lastYearData,
             'twoYearagoData' => $twoYearagoData,

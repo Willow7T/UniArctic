@@ -10,7 +10,7 @@
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
                     <h2 class="text-center text-lg font-bold p-4">Stats</h2>
-                    @livewire('admin-statpanel')
+                    @livewire('admin.admin-statpanel')
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg xl:pb-40">
                     <h2 class="text-center text-lg font-bold p-4">Charts</h2>
-                    @livewire('admin-charts')
+                    @livewire('charts.year-arti-count-charts')
                 </div>
   
             </div>
@@ -28,7 +28,7 @@
             <div class="mx-auto sm:px-6 lg:px-8 ">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
                     <h2 class="text-center text-lg font-bold p-4">Users</h2>
-                    @livewire('admin-userpanel')
+                    @livewire('admin.admin-userpanel')
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
             <div class="mx-auto sm:px-6 lg:px-8 ">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
                     <h2 class="text-center text-lg font-bold p-4">Faculties</h2>
-                    @livewire('admin-add')
+                    @livewire('admin.admin-add')
                 </div>
             </div>
         </div>
