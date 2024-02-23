@@ -41,11 +41,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-span-1">
-                <h1 class="pl-2 font-bold mr-10 p-4 text-right">
+            <div class="col-span-1 flex-col">
+                <h1 class="pl-2 font-bold p-4 ">
                     Facutly List
                 </h1>
-                <table class="border-collapse border border-slate-500 w-fit mr-10">
+                <table class="border-collapse border border-slate-500 w-fit">
                     <thead>
                         <tr class="h-10">
                             <th class="border border-slate-600 backdrop-blur-sm">Name</th>
@@ -65,13 +65,11 @@
             </div>
             <div class="col-span-2">
                 <h1 class="pl-2 font-bold text-center">
-                    User Count - Article Chart
+                    Faculty Activity Chart
                 </h1>
                 <div class="pt-2 pr-4">
-                    <div class="font-bold text-xs pl-8">Users Count: {{array_sum($users)}}</div>
-                    <div class="font-bold text-xs pl-8">Articles Count: {{array_sum($articles)}}</div>
-                    {!!$Fchart -> render()!!} 
-                  </div>
+                    @livewire('charts.faculty-activity-chart')
+                </div>
             </div>
         </div>
     </div>

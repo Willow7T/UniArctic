@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-100 leading-tight">
-            {{ __('Admin Dashboard') }}
+            {{ __('Manager Dashboard') }}
         </h2>
     </x-slot>
     <div class=" py-8 lg:grid lg:grid-cols-5 gap-y-4 dark:text-gray-100 sm:flex sm:flex-col sm:flex-warp">
@@ -18,7 +18,7 @@
         <div class="lg:col-span-3">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg xl:pb-40">
-                    <h2 class="text-center text-lg font-bold p-4">Year Activity</h2>
+                    <h2 class="text-center text-lg font-bold p-4">Charts</h2>
                     @livewire('charts.year-activity-charts')
                 </div>
   

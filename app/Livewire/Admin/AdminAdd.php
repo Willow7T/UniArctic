@@ -23,34 +23,12 @@ class AdminAdd extends Component
         return $faculty;
     });
 
-        //chart data
-        $labels = $faculties->pluck('name')->toArray();
-        $articles = Faculty::withCount('articles')->get()->pluck('articles_count')->toArray();
-        $users = $faculties->pluck('users_count')->toArray();
-       
-        $Fchart = app()->chartjs
-        ->name('Fchart')
-        ->type('bar')
-        ->size(['width' => 400, 'height' => 200])
-        ->labels($labels)
-        ->datasets([
-            [
-                "label" =>   "Articles",
-                'backgroundColor' => 'lightgray',
-                'data' => $articles
-            ],
-            [
-                "label" =>  "Users Count",
-                'backgroundColor' => 'lightblue',
-                'data' => $users
-            ],
-        ])
-        ->options([]);
+        
 
 
 
 
-        return view('livewire.admin.admin-add' , ['faculties' => $faculties , 'Fchart' => $Fchart, 'users' => $users,  'articles' => $articles]);
+        return view('livewire.admin.admin-add' , ['faculties' => $faculties ]);
     }
     public function addFaculty()
     {
