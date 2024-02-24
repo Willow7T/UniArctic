@@ -103,10 +103,8 @@ class ArticleController extends Controller
             $file = $request->file('content');
             $filename = $file->hashName('articles');
     
-
-
             // Store the file
-            $contentpath = $file->store('articles');
+            $contentpath = $file->store('articles', 'public');
         }
         
         $article = Article::create([
@@ -123,9 +121,9 @@ class ArticleController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        
         $article->tags()->sync($request->tags);
         return redirect()->route('home')->with('success', 'Article created successfully.');
+    
     }
 
     //search articles

@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Manager;
 
+use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\Faculty;
@@ -10,6 +12,10 @@ use App\Models\Article;
 
 class ManagerUserPanel extends Component
 {
+    use WithPagination, WithoutUrlPagination; 
+
+    public $search;
+
     public function buttonClicked($userId)
     {
         $this->dispatch('userIdUpdated', $userId);

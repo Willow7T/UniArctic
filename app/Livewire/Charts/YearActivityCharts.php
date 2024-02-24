@@ -27,24 +27,25 @@ class YearActivityCharts extends Component
         $labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         $Chart = app()->chartjs
                 ->name('ArticleChart')
-                ->type('bar')
+                ->type('line')
                 ->size(['width' => 400, 'height' => 200])
                 ->labels($labels)
                 ->datasets([
                     [
-                        "label" =>  date('Y')-2 . " Articles",
-                        'backgroundColor' => 'lightblue',
-                        'data' => $twoYearagoData
+                        "label" =>  date('Y') . " Articles",
+                        'backgroundColor' => 'lightgreen',
+                        'data' => $currentYearData
                     ],
                     [
                         "label" =>  date('Y')-1 . " Articles",
                         'backgroundColor' => '#FF6385',
                         'data' => $lastYearData
                     ],
+                    
                     [
-                        "label" =>  date('Y') . " Articles",
-                        'backgroundColor' => 'lightgreen',
-                        'data' => $currentYearData
+                        "label" =>  date('Y')-2 . " Articles",
+                        'backgroundColor' => 'lightblue',
+                        'data' => $twoYearagoData
                     ]
                 ])
                 ->options([]);

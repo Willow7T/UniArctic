@@ -24,7 +24,7 @@ class FacultyActivityChart extends Component
        
         $Fchart = app()->chartjs
         ->name('Fchart')
-        ->type('line')
+        ->type('bar')
         //->size(['width' => 400, 'height' => 200])
         ->labels($labels)
         ->datasets([

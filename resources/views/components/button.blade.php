@@ -5,6 +5,9 @@ dark:hover:bg-purple-600 hover:bg-blue-900
 focus:bg-gray-700 active:bg-gray-900 
 focus:outline-none focus:ring-2 
 focus:ring-indigo-500 focus:ring-offset-2 
+disabled:bg-gray-400 disabled:hover:bg-gray-400
+dark:disabled:bg-gray-400 dark:disabled:hover:bg-gray-400
+
 transition ease-in-out duration-150']) }}>
     {{ $slot }}
 </button>
