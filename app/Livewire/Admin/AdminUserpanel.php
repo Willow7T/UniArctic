@@ -10,8 +10,10 @@ use App\Models\Faculty;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
+use Laravel\Jetstream\Contracts\DeletesUsers;
 
-class AdminUserpanel extends Component
+
+class AdminUserpanel extends Component implements DeletesUsers
 {
     use WithPagination, WithoutUrlPagination;
   
@@ -90,7 +92,9 @@ class AdminUserpanel extends Component
         }
         else {
            // Delete the user
-           $user->delete();
+            $user->deleteProfilePhoto();
+            $user->tokens->each->delete();
+            $user->delete();
             session()->flash('Delete-Success', 'User deleted.');
             // Reset the email input
            $this->email_del = '';
