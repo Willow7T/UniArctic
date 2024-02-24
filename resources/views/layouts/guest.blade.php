@@ -18,6 +18,7 @@
         <!-- Styles -->
         {{-- <link href="{{ secure_asset('build/assets/app-BE0mZvCE.css') }}" rel="stylesheet"> --}}
         @livewireStyles
+        @bukStyles
     </head>
     <body>
       
@@ -39,7 +40,8 @@
                   </div>
               </label>
         </div>
-
+        
+        @bukScripts
         @livewireScripts
     </body>
 </html>

@@ -7,13 +7,11 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Article;
 use App\Models\Faculty;
-use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
-use Laravel\Jetstream\Contracts\DeletesUsers;
 
 
-class AdminUserpanel extends Component implements DeletesUsers
+class AdminUserpanel extends Component 
 {
     use WithPagination, WithoutUrlPagination;
   

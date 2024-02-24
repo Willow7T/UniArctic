@@ -14,7 +14,6 @@ class AdminAdd extends Component
 
     public function render()
     {
-
         $faculties = Faculty::withCount(['users'])
             ->orderBy('id', 'asc')
             ->get()
@@ -22,14 +21,9 @@ class AdminAdd extends Component
         $faculty->name = $faculty->name ?? 'No faculty';
         return $faculty;
     });
-
-        
-
-
-
-
         return view('livewire.admin.admin-add' , ['faculties' => $faculties ]);
     }
+    
     public function addFaculty()
     {
         $this->validate([

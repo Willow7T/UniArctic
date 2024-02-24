@@ -19,7 +19,7 @@
         <!-- Styles -->
         {{-- <link href="{{ secure_asset('build/assets/app-BE0mZvCE.css') }}" rel="stylesheet"> --}}
         @livewireStyles
-        @livewireStyles
+        @bukStyles
     </head>
     <body class="font-sans antialiased ">
         <x-banner />
@@ -44,6 +44,7 @@
 
         @stack('modals')
 
+        @bukStyles
         @livewireScripts
     </body>
 </html>

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Response;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Settings;
 use PhpOffice\PhpWord\Shared\ZipArchive;
+use Exception;
 
 class ArticleController extends Controller
 {   
@@ -76,53 +77,70 @@ class ArticleController extends Controller
    
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|max:255',
-            'intro' => 'required',
-            'image' => 'required|mimes:jpeg,png,jpg',
-            'content' => 'required|mimes:docx',
-            //anonymous checkbox
-            'anon' => 'nullable',
 
-            'magazine_id' => 'required|exists:magazines,id',
-            'tags' => 'required|array', // validate that tags is an array
-            'tags.*' => 'exists:tags,id', // validate that each tag ID exists in the tags table
-        ]);
+        try {
+            DB::beginTransaction();
+            $request->validate([
+                'title' => ['required', 'unique:articles', 'max:255'],
+                'intro' => ['required'],
+                'image' => ['required','mimes:jpeg,png,jpg'],
+                'content' => ['required','mimes:docx'],
+                //anonymous checkbox
+                'anon' => ['nullable'],
 
-        $imagepath = null;
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = $file->hashName('articles');
-    
-            // Store the file
-            $imagepath = $file->store('articles', 'public');
-        }
+                'magazine_id' => ['required','exists:magazines,id'],
+                'tags' => ['required','array'], // validate that tags is an array
+                'tags.*' => ['exists:tags,id'], // validate that each tag ID exists in the tags table
+            ]);
 
-        $contentpath = null;
-        if ($request->hasFile('content')) {
-            $file = $request->file('content');
-            $filename = $file->hashName('articles');
-    
-            // Store the file
-            $contentpath = $file->store('articles', 'public');
-        }
+            $imagepath = null;
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $filename = $file->hashName('articles');
+
+                // Store the file
+                $imagepath = $file->store('articles', 'public');
+                if (!$imagepath) {
+                    throw new Exception('Failed to store image');
+                }
+            }
+
+            $contentpath = null;
+            if ($request->hasFile('content')) {
+                $file = $request->file('content');
+                $filename = $file->hashName('articles');
+
+                // Store the file
+                $contentpath = $file->store('articles', 'public');
+                if (!$contentpath) {
+                    throw new Exception('Failed to store content');
+                }
+            }
         
-        $article = Article::create([
-            'title' => $request->title,
-            'intro' => $request->intro, 
-            'image' => $imagepath ?? null, // assuming $imagepath contains the path to the image file
-            'content' => $contentpath ?? null, // assuming $contentpath contains the path to the content file
-            'selected'=>false,
-            'published'=>false,
-            'anonymous' =>  $request->anon == 'on' ? true : false, 
-            'author_id' => auth()->id(),
-            'faculty_id' => auth()->user()->faculty_id, // get faculty_id from the authenticated user
-            'magazine_id' => $request->magazine_id,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        $article->tags()->sync($request->tags);
-        return redirect()->route('home')->with('success', 'Article created successfully.');
+            $article = Article::create([
+                'title' => $request->title,
+                'intro' => $request->intro, 
+                'image' => $imagepath ?? null, // assuming $imagepath contains the path to the image file
+                'content' => $contentpath ?? null, // assuming $contentpath contains the path to the content file
+                'selected'=>false,
+                'published'=>false,
+                'anonymous' =>  $request->anon == 'on' ? true : false, 
+                'author_id' => auth()->id(),
+                'faculty_id' => auth()->user()->faculty_id, // get faculty_id from the authenticated user
+                'magazine_id' => $request->magazine_id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            if (!$article) {
+                throw new Exception('Failed to create article');
+            }
+            $article->tags()->sync($request->tags);
+            DB::commit();
+            return redirect()->route('article.create')->with('success', 'Article created successfully.');
+        }   catch (Exception $e) {
+            DB::rollBack();
+            return back()->with('error', $e->getMessage());
+    }
     
     }
 

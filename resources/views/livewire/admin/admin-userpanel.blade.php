@@ -130,16 +130,8 @@
                             </div>
                         </div>
                     </form>
-                    @if (session('Admin-Fail'))
-                    <div class="alert alert-fail text-red-600">
-                        *{{ session('Admin-Fail') }}
-                    </div>
-                    @endif
-                    @if (session('Admin-Success'))
-                    <div class="alert alert-success">
-                        {{ session('Admin-Success') }}
-                    </div>
-                    @endif
+                    <x-alert type="Admin-Success" class="text-green-700" />
+                    <x-alert type="Admin-Fail" class="text-red-700" />
                 </div>
             </div>
             <!-- Delete Users -->

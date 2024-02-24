@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -18,15 +19,19 @@ use App\Http\Controllers\ArticleController;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+Route::get('/MailTest', function () {
+    return view('mail.mailtocoordinator');
+})->name('mailtest');
+
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/home', function () {
-        return view('home');
-    })->name('home');
+    Route::get('/home', [
+        HomeController::class, 'index'
+        ])->name('home');
     
     
     //Article Create Page under the Kernel Cheching Route with Role Middleware

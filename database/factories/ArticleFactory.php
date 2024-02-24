@@ -30,9 +30,9 @@ class ArticleFactory extends Factory
             'selected' => $this->faker->boolean,
             'published' => $this->faker->boolean,
             'anonymous' => $this->faker->boolean,
-            'author_id' => rand(1, 80),
+            'author_id' => rand(1, 150),
             'faculty_id' => rand(1, 10), 
-            'magazine_id' => rand(49, 72)
+            'magazine_id' => rand(1, 30),
         ];
     }
 }
