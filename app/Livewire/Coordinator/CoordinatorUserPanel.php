@@ -2,15 +2,20 @@
 
 namespace App\Livewire\Coordinator;
 
+
+use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Article;
 use App\Models\Faculty;
+
 // use Illuminate\Support\Facades\DB;
 
 class CoordinatorUserPanel extends Component
 {
+    use WithPagination, WithoutUrlPagination; 
     public $search;
 
     public function buttonClicked($userId)
