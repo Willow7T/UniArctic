@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white/20 border-b backdrop-blur-sm border-gray-200 dark:border-gray-900 dark:bg-slate-900/20 rounded">
+<nav x-data="{ open: false }" class="bg-white/20 border-b backdrop-blur-sm border-gray-200/30 dark:border-gray-900/30 dark:bg-slate-900/10 rounded">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex w-7xl justify-between h-16">
@@ -150,21 +150,33 @@
     @if(Route::currentRouteName() != 'coordinatordashboard')
     @if (Auth::user()->role_id == 3)
     <div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
-        <x-button class="bg-blue-500 hover:bg-blue-700">
-            <a href="{{ route('coordinatordashboard') }}">Coordinator Dashboard</a>
-        </x-button>
+        @if (Auth::user()->faculty_id)
+            <x-button class="bg-blue-500 hover:bg-blue-700">
+                <a href="{{ route('coordinatordashboard') }}">Coordinator Dashboard</a>
+            </x-button>
+        @else
+            <x-button class="bg-blue-500 hover:bg-blue-700" disabled>
+                <a>Coordinator Dashboard</a>
+            </x-button>
+        @endif
     </div>
     @endif
-    @endif
-    @if(Route::currentRouteName() != 'article.create')
-    @if (Auth::user()->role_id == 4)
-    <div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
+@endif
+@if(Route::currentRouteName() != 'article.create')
+@if (Auth::user()->role_id == 4)
+<div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
+    @if (Auth::user()->faculty_id)
         <x-button class="bg-blue-500 hover:bg-blue-700">
             <a href="{{ route('article.create') }}">Write an Article</a>
         </x-button>
-    </div>
+    @else
+        <x-button class="bg-blue-500 hover:bg-blue-700" disabled>
+            <a>Write an Article</a>
+        </x-button>
     @endif
-    @endif
+</div>
+@endif
+@endif
 
 
 
