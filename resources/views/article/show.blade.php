@@ -13,17 +13,16 @@
                         <div class="flex text-sm border-8 border-transparent rounded-full  focus:outline-none focus:border-gray-300 transition">
                             <!-- check if author is anonymous -->
                             @if ($article->author == null)
-                                <img class="w-10 h-10 rounded-full object-cover " src="{{ asset('storage/background/blank.png') }}" alt="Anonymous" />
+                                <img class="w-10 h-10 rounded-full border-red-800 object-cover " src="{{--{{ asset('storage/background/blank.png') }}--}}" alt="Anon" />
                             @elseif ($article->anonymous == true)
-                                <img class="w-10 h-10 rounded-full object-cover " src="{{ asset('storage/background/blank.png') }}" alt="Anonymous" />
+                                <img class="w-10 h-10 rounded-full object-cover  border-red-800" src="{{--{{ asset('storage/background/blank.png') }}--}}" alt="Anon" />
                             @else
                                 @if($article->author)
-                                    <img class="w-10 h-10 rounded-full object-cover" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->name }}" />
+                                    <img class="w-10 h-10 rounded-full object-cover border-red-800" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->name }}" />
                                 @endif
                             @endif
-                            
                         </div>
-                        <div class="flex flex-col w-full">
+                         <div class="flex flex-col w-full"> 
                             @if ($article->author == null)
                                 <p>Anonymous</p>
                             @elseif ($article->anonymous == true)
@@ -31,7 +30,7 @@
                             @else
                                 <p>{{$article->author->name}}</p>
                             @endif
-                            <p>2012 December</p>
+                            <p>{{ date('F', mktime(0, 0, 0, $article->magazine->month, 1)) }} {{$article->magazine->year}}</p>
                         </div>
                         
                    </div>

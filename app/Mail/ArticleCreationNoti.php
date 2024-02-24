@@ -2,14 +2,16 @@
 
 namespace App\Mail;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User;
+use App\Models\Article;
 
-class MailToCoordinator extends Mailable
+class ArticleCreationNoti extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,9 +20,10 @@ class MailToCoordinator extends Mailable
      */
     public function __construct(
         public User $user,
-        ){
-        //get user_id
-       
+        public Article $article,
+    )
+    {
+        //
     }
 
     /**
@@ -28,8 +31,8 @@ class MailToCoordinator extends Mailable
      */
     public function envelope(): Envelope
     {
-        return new Envelope( 
-            subject: 'New Guest in the Faculty',
+        return new Envelope(
+            subject: 'New Article Created by '.$this->user->name,
         );
     }
 
@@ -39,7 +42,7 @@ class MailToCoordinator extends Mailable
     public function content(): Content
     {
         return new Content(
-            view:'mail.mailtocoordinator', //'mail.MailToCoordinator',
+            view:'mail.articlecreationnoti', //'mail.MailToCoordinator',
         );
     }
 

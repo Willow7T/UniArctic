@@ -1,19 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Mail\ArticleCreationNoti;
 use App\Models\Article; 
 use App\Models\Magazine;
-use App\Models\Faculty;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Response;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Settings;
-use PhpOffice\PhpWord\Shared\ZipArchive;
+use App\Mail\MailToCoordinator;
+use Illuminate\Support\Facades\Mail;
 use Exception;
 
 class ArticleController extends Controller
@@ -43,7 +42,7 @@ class ArticleController extends Controller
         $article = Article::findOrFail($id);
         
         // Load .docx file
-        $phpWord = IOFactory::load(storage_path('app/' . $article->content));
+        $phpWord = IOFactory::load(storage_path('app/public/' . $article->content));
 
         // Convert to HTML
         Settings::setOutputEscapingEnabled(true);
@@ -136,6 +135,16 @@ class ArticleController extends Controller
             }
             $article->tags()->sync($request->tags);
             DB::commit();
+            $coordinatorEmails = User::where('faculty_id', auth()->user()->faculty_id)
+                ->where('role_id', 3)
+                ->pluck('email')
+                ->toArray();
+
+            // Send the mailable
+            if (!empty($coordinatorEmails)) {
+                // Send the mailable
+                Mail::to($coordinatorEmails)->send(new ArticleCreationNoti(auth()->user(), $article));
+            }
             return redirect()->route('article.create')->with('success', 'Article created successfully.');
         }   catch (Exception $e) {
             DB::rollBack();
