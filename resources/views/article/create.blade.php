@@ -55,7 +55,7 @@
                                 <div class="relative mb-6">
                                     <label for="image"
                                         class="dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2 bg-[#007bff] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#0056b3] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                        Image (.jpeg/.jpg/.png file)
+                                        Image (.jpeg/.jpg/.png)
                                     </label>
                                     <input type="file" id="image" name="image" required accept=".jpeg,.jpg,.png"
                                         onchange="previewImage(event)">
@@ -65,7 +65,7 @@
                                     <label for="content"
                                         class="
                                     dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2 bg-[#007bff] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#0056b3] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                        Content (.docx file)
+                                        Content (.docx)
                                     </label>
                                     <input type="file" id="content" name="content" required accept=".docx"
                                         onchange="previewDocxFileName(event)">
