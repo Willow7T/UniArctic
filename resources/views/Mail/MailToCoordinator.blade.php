@@ -83,7 +83,7 @@
         <div class="text-center">
             <h2 class="font-bold text-teal-400 bg-slate-800 p-2">UniArctic</h2>
             <h4>New Guest in the Faculty</h4>
-            <p>{{$user->email}}</p>
+            <p>Guest's mail: {{$user->email}}</p>
         </div>
         <div>
             <p>Dear Coordinator,</p>

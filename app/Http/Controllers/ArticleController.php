@@ -30,6 +30,7 @@ class ArticleController extends Controller
         $deadline = $daysInMonth - 14;
         $daysLeft = $daysInMonth - $currentDay;
 
+        //for deadline
         if ($daysLeft <= 14) {
             $currentMonth++;
             if ($currentMonth > 12) {
@@ -41,13 +42,40 @@ class ArticleController extends Controller
         }
         session()->flash('info', 'Today is ' . date('F') . ' ' . $currentDay . '. ' . $deadline . 'th ' . date('F') . ' is the deadline for submitting articles for the current month.');
 
-        $magazines = Magazine::where('published', false)
-            ->where('year', '=', $currentYear)
-            ->where('month', '>=', $currentMonth)
+        $twoMonthsLater = strtotime('+2 months');
+        $monthTwoMonthsLater = date('n', $twoMonthsLater);
+        $yearTwoMonthsLater = date('Y', $twoMonthsLater);
+        
+        if($yearTwoMonthsLater != $currentYear)
+        {
+            $magazines = Magazine::where('published', false)
+            ->where(function ($query) use ($currentYear, $currentMonth, $yearTwoMonthsLater, $monthTwoMonthsLater) {
+                $query->where([
+                    ['year', '=', $currentYear],
+                    ['month', '>=', $currentMonth],
+                ])->orWhere([
+                    ['year', '=', $yearTwoMonthsLater],
+                    ['month', '<=', $monthTwoMonthsLater],
+                ]);})
             ->orderBy('year', 'asc')
             ->orderBy('month', 'asc')
-            ->take(3)
             ->get();
+        }
+        else
+        {
+            $magazines = Magazine::where('published', false)
+            ->where(function ($query) use ($currentYear, $currentMonth, $yearTwoMonthsLater, $monthTwoMonthsLater) {
+                $query->where([
+                    ['year', '=', $currentYear],
+                    ['month', '>=', $currentMonth],
+                    ['month', '<=', $monthTwoMonthsLater],
+                ]);})
+            ->orderBy('year', 'asc')
+            ->orderBy('month', 'asc')
+            ->get();
+        }
+
+        
         $tags = Tag::all(); // Fetch all tags from the database
         //dd($daysInMonth, $currentDay , $daysLeft, $currentMonth, $currentYear );
         return view('article.create', ['magazines' => $magazines, 'tags' => $tags]);
@@ -58,9 +86,9 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
         $filePath = storage_path('app/public/' . $article->content);
-            if (!file_exists($filePath)) {
-                abort(404, 'File not found.');
-            }
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
         // Load .docx file
         $phpWord = IOFactory::load($filePath);
 
@@ -227,7 +255,7 @@ class ArticleController extends Controller
             abort(404, 'File not found.');
         }
         $issueName = str_replace(' ', '_', $article->magazine->issue_name);
-        $fileName = $user->name . '_' . $issueName.'_'. $article->magazine->year.'_'. DateTime::createFromFormat('!m', $article->magazine->month)->format('F').'_'.'.docx';
+        $fileName = $user->name . '_' . $issueName . '_' . $article->magazine->year . '_' . DateTime::createFromFormat('!m', $article->magazine->month)->format('F') . '_' . '.docx';
         // Download the file
         return response()->download($filePath, $fileName);
     }

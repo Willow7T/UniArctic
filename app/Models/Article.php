@@ -38,7 +38,7 @@ class Article extends Model
         return $this->hasMany(ArticleView::class);
     }
     public static function getArticlesWAuthen($userId, $published)
-{
+    {
     $articles = self::where('author_id', $userId)
         ->where('published', $published)
         ->get();
@@ -48,7 +48,31 @@ class Article extends Model
         ->count();
 
     return ['articles' => $articles, 'count' => $count];
-}
+    }
+    public static function getArticlesWMag($magazineID, $published)
+    {
+    $articles = self::where('magazine_id', $magazineID)
+        ->where('published', $published)
+        ->get();
+
+    $count = self::where('magazine_id', $magazineID)
+        ->where('published', $published)
+        ->count();
+
+    return ['articles' => $articles, 'count' => $count];
+    }
+    public static function getArticlesWFacu($facultyID, $published)
+    {
+    $articles = self::where('faculty_id', $facultyID)
+        ->where('published', $published)
+        ->get();
+
+    $count = self::where('faculty_id', $facultyID)
+        ->where('published', $published)
+        ->count();
+
+    return ['articles' => $articles, 'count' => $count];
+    }
     
     
 }
