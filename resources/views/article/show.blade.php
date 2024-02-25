@@ -30,7 +30,8 @@
                             @else
                                 <p>{{$article->author->name}}</p>
                             @endif
-                            <p>{{ date('F', mktime(0, 0, 0, $article->magazine->month, 1)) }} {{$article->magazine->year}}</p>
+                            
+                            <p>{{ DateTime::createFromFormat('!m', $article->magazine->month)->format('F') }} {{$article->magazine->year}}</p>
                         </div>
                         
                    </div>

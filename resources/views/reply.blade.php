@@ -6,6 +6,7 @@
                 <img class="w-10 h-10 rounded-full object-cover" src="{{ $reply->user->profile_photo_url }}" alt="{{ $reply->user->name }}" />
             @endif
              <p class="mb-2">Posted by: {{ optional($reply->user)->name }}</p>
+             <p>{{$reply->created_at}}</p>
         </div>
         <p class="m-6 border-b dark:border-gray-300">{{ $reply->body }}</p>
 

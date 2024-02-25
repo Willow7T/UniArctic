@@ -21,9 +21,11 @@
                         @if($comment->user)
                             <img class="w-10 h-10 rounded-full object-cover" src="{{ $comment->user->profile_photo_url }}" alt="{{ $comment->user->name }}" />
                         @endif
-                        <p class="m-2">Posted by: {{ optional($comment->user)->name }}</p>
-
+                        <div class="flex flex-col">
+                            <p class="m-2">Posted by: {{ optional($comment->user)->name }}</p>
+                            <p>{{$comment->created_at}}</p>
                         </div>
+                    </div>
                         <p class="m-6 border-b dark:border-gray-300">{{ $comment->body }}</p>
                     
                     <div>

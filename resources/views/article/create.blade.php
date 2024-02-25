@@ -35,7 +35,7 @@
                                 <label for="tags"
                                     class="block text-lg font-medium text-gray-700 mb-2 dark:text-slate-100">Choose
                                     Tags</label>
-                                <div class="grid grid-rows-2 grid-flow-col gap-4 pb-3">
+                                <div class="grid lg:grid-rows-2 lg:grid-cols-none lg:grid-flow-col grid-cols-2 gap-4 pb-3">
                                     @foreach ($tags as $tag)
                                     <div class="form-check p-2 flex flex-col justify-center object-center">
                                         <label class="form-check-label dark:text-gray-100" for="tag{{ $tag->id }}">
@@ -79,6 +79,10 @@
                                 </div>
                             </div>
 
+                            <div>
+                                <x-alert type="info" class="dark:bg-gray-600 dark:text-gray-400 text-gray-500 bg-gray-400 p-4" />
+                                <x-alert type="warning" class="bg-yellow-300 dark:bg-yellow-400 text-gray-900 dark:text-gray-50 p-4" />
+                            </div>
 
 
                             <div class="border-b border-gray-300 relative mb-6">

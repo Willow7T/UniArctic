@@ -21,8 +21,27 @@ class ArticleController extends Controller
      //Create new article
      public function create()
      {
+        $currentDay = date('j');
         $currentMonth = date('n');
         $currentYear = date('Y');
+
+        $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $currentMonth, $currentYear);
+        $deadline = $daysInMonth - 14;
+        $daysLeft = $daysInMonth - $currentDay;
+       
+        if ($daysLeft <= 14) {
+            $currentMonth++;
+            if ($currentMonth > 12) {
+                $currentMonth = 1;
+                $currentYear++;
+            }
+            session()->flash('warning', 'Deadline for this month is up.There is less than 14 days in the current month. Please submit your article for the next month.');
+        }
+        else
+        {
+
+        }
+        session()->flash('info','Today is '. date('F').' '.$currentDay.'. '.$deadline.'th '.date('F').' is the deadline for submitting articles for the current month.');
         
         $magazines = Magazine::where('published', false)
         ->where('year', '=', $currentYear)
@@ -32,7 +51,7 @@ class ArticleController extends Controller
         ->take(3)
         ->get();
         $tags = Tag::all(); // Fetch all tags from the database
-
+        //dd($daysInMonth, $currentDay , $daysLeft, $currentMonth, $currentYear );
         return view('article.create', ['magazines' => $magazines, 'tags' => $tags]);
     }
 
