@@ -9,7 +9,7 @@ class Magazine extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['issue_name', 'year', 'month', 'published'];
+    protected $fillable = ['issue_name', 'year', 'month', 'published', 'image'];
 
     public function scopeGroupByMonth($query)
     {
