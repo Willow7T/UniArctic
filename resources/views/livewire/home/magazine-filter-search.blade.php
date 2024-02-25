@@ -1,11 +1,15 @@
 <div>
-    @foreach ($magazines as $magazine )
+    <div class="flex flex-row overflow-auto">
+        @foreach ($magazines as $magazine )
     <div wire:click="buttonMagazine({{$magazine->id}})" data-modal-target="default-modal-2"
         data-modal-toggle="default-modal-2">
 {{-- Write Here for photo use this$magazine->image--}}{{$magazine->issue_name}} {{ DateTime::createFromFormat('!m', $magazine->month)->format('F') }} {{$magazine->year}}
+        <img class="w-20" src="{{asset('storage/'.$magazine->image)}}" alt="Imageback">
 
     </div>
     @endforeach
+    </div>
+    
         <div id="default-modal-2" tabindex="-1" wire:ignore.self aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-2xl max-h-full">

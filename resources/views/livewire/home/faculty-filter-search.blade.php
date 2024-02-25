@@ -1,10 +1,13 @@
 <div>
-    @foreach ($faculties as $faculty )
+    <div class="flex flex-row overflow-auto">
+        @foreach ($faculties as $faculty )
     <div wire:click="buttonFaculty({{$faculty->id}})" data-modal-target="default-modal-1"
         data-modal-toggle="default-modal-1">
         {{-- Write Here for photo use this$faculty->image--}}Test
+        <img class="w-20" src="{{asset('storage/'.$faculty->image)}}" alt="Imageback">
     </div>
     @endforeach
+    </div>
         <div id="default-modal-1" tabindex="-1" wire:ignore.self aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-2xl max-h-full">
