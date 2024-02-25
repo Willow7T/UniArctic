@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Article;
 use App\Models\Faculty;
+use DateTime;
+use ZipArchive;
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
 
@@ -130,5 +132,39 @@ class AdminUserpanel extends Component
         }
 
 
+    }
+    public function download($userID)
+    {
+        // Check if the user is authorized to download the article
+        $user = auth()->user();
+        if ($user->role_id != 1) {
+            abort(403, 'Unauthorized action.');
+        }
+        //Get all articles of user
+        $articles = Article::where('author_id', $userID)->where('published', true)->get();
+        if ($articles->isEmpty()) {
+            return session()->flash('notice' , 'No published articles found for this user.');
+        }
+        $zip = new ZipArchive;
+        $zipFileName = storage_path('app/public/' . $userID . '_articles.zip');
+        if ($zip->open($zipFileName, ZipArchive::CREATE) === TRUE) {
+            // Add each article file to the zip
+            foreach ($articles as $article) {
+                $filePath = storage_path('app/public/' . $article->content);
+                if (file_exists($filePath)) {
+                    $issueName = str_replace(' ', '_', $article->magazine->issue_name);
+                    $fileName = $user->name . '_' . $issueName.'_'. $article->magazine->year.'_'. DateTime::createFromFormat('!m', $article->magazine->month)->format('F').'_'.'.docx';
+                    $zip->addFile($filePath, $fileName);
+                }
+            }
+        
+            // Close the zip file
+            $zip->close();
+        } else {
+            abort(500, 'Could not create zip file.');
+        }
+        
+        // Download the zip file
+        return response()->download($zipFileName)->deleteFileAfterSend(true);
     }
 }

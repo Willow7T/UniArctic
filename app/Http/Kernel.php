@@ -72,5 +72,6 @@ class Kernel extends HttpKernel
         'coorRole' => \App\Http\Middleware\CheckCoordinator::class,
         'manRole' => \App\Http\Middleware\CheckManager::class,
         'articlePublished' => \App\Http\Middleware\CheckIfArticleIsPublished::class,
+        'candownload' => \App\Http\Middleware\Candownload::class,
     ];
 }

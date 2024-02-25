@@ -5,6 +5,7 @@
                 Edit users Role
             </h1>
         </div>
+        <x-alert type="notice" class="bg-red-700 text-green-100 p-4" />
         <div class="h-[36rem] overflow-x-scroll">
             <table class="border-collapse border border-slate-500 w-fit m-auto">
                 <thead>
@@ -73,6 +74,9 @@
                             <x-button wire:click="buttonClicked({{$user->id}})" data-modal-target="default-modal"
                                 data-modal-toggle="default-modal" class="" type="button">
                                 Check
+                            </x-button>
+                            <x-button wire:click="download({{$user->id}})" type="button" name="download">
+                                Download as zip
                             </x-button>
                         </td>
                     </tr>

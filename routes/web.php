@@ -41,13 +41,16 @@ Route::middleware([
     Route::post('/articles/create', [
         ArticleController::class, 'store'
     ])->name('article.store')->middleware('stuRole');
+    Route::get('/articles/{article}/download', [
+        ArticleController::class, 'download'
+        ])->name('articles.download')->middleware('candownload');
+
     
     
     //admin Dashboard
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admindashboard')->middleware('adminRole');
-
     //coordinator Dashboard
     Route::get('/coordinator/dashboard', function () {
         return view('coordinator.dashboard');
