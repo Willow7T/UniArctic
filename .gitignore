@@ -3,6 +3,7 @@
 /public/build
 /public/hot
 /public/storage
+!/public/storage/articles.Sample.jpeg
 /storage/*.key
 .env.backup
 .env.production
@@ -15,3 +16,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+.env

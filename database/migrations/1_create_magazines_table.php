@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('year');
             $table->integer('month');
             $table->boolean('published')->default(false);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

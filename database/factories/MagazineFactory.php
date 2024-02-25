@@ -21,7 +21,7 @@ class MagazineFactory extends Factory
     {
         return [
             'issue_name' => $this->faker->word,
-            'year' => 2023,
+            'year' => [2022,2023,2024][rand(0,2)],
             'month' => $this->faker->numberBetween(1, 12),
             'published' => false,
         ];

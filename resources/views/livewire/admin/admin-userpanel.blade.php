@@ -5,6 +5,7 @@
                 Edit users Role
             </h1>
         </div>
+        <x-alert type="notice" class="bg-red-700 text-green-100 p-4" />
         <div class="h-[36rem] overflow-x-scroll">
             <table class="border-collapse border border-slate-500 w-fit m-auto">
                 <thead>
@@ -74,6 +75,9 @@
                                 data-modal-toggle="default-modal" class="" type="button">
                                 Check
                             </x-button>
+                            <x-button wire:click="download({{$user->id}})" type="button" name="download">
+                                Download as zip
+                            </x-button>
                         </td>
                     </tr>
                     @endforeach
@@ -130,16 +134,8 @@
                             </div>
                         </div>
                     </form>
-                    @if (session('Admin-Fail'))
-                    <div class="alert alert-fail text-red-600">
-                        *{{ session('Admin-Fail') }}
-                    </div>
-                    @endif
-                    @if (session('Admin-Success'))
-                    <div class="alert alert-success">
-                        {{ session('Admin-Success') }}
-                    </div>
-                    @endif
+                    <x-alert type="Admin-Success" class="text-green-700" />
+                    <x-alert type="Admin-Fail" class="text-red-700" />
                 </div>
             </div>
             <!-- Delete Users -->

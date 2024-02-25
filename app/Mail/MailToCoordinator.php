@@ -2,8 +2,8 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -16,11 +16,11 @@ class MailToCoordinator extends Mailable
     /**
      * Create a new message instance.
      */
-    public $user_name;
-    public function __construct($user_name)
-    {
-        //
-        $this->user_name = $user_name;
+    public function __construct(
+        public User $user,
+        ){
+        //get user_id
+       
     }
 
     /**
@@ -28,8 +28,7 @@ class MailToCoordinator extends Mailable
      */
     public function envelope(): Envelope
     {
-        return new Envelope(
-            from: new Address('@noreplyUniArctic70-1.com', 'noreply'),
+        return new Envelope( 
             subject: 'New Guest in the Faculty',
         );
     }
@@ -40,7 +39,7 @@ class MailToCoordinator extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.MailToCoordinator',
+            view:'mail.mailtocoordinator', //'mail.MailToCoordinator',
         );
     }
 

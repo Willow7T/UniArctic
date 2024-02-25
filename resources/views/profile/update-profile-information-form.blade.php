@@ -44,13 +44,13 @@
                     </span>
                 </div>
 
-                <x-secondary-button class="mt-2 me-2 bg-blue-600 hover:bg-blue-900 text-slate-100 dark:text-slate-100 dark:bg-purple-900 dark:hover:bg-purple-600 px-4 py-2" type="button" 
+                <x-secondary-button class="mt-2 me-2 bg-blue-600 hover:bg-blue-900 text-slate-400 dark:bg-slate-900 dark:hover:bg-purple-300 px-4 py-2" type="button" 
                  x-on:click.prevent="$refs.photo.click()">
                     {{ __('Select A New Photo') }}
                 </x-secondary-button>
 
                 @if ($this->user->profile_photo_path)
-                    <x-secondary-button type="button" class="mt-2 bg-blue-600 hover:bg-blue-900 text-slate-100 dark:text-slate-100 dark:bg-purple-900 dark:hover:bg-purple-600 px-4 py-2" wire:click="deleteProfilePhoto">
+                    <x-secondary-button type="button" class="mt-2 me-2 bg-blue-600 hover:bg-blue-900 text-slate-400 dark:bg-slate-900 dark:hover:bg-purple-300 px-4 py-2" wire:click="deleteProfilePhoto">
                         {{ __('Remove Photo') }}
                     </x-secondary-button>
                 @endif
@@ -62,7 +62,7 @@
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="name" value="{{ __('Name') }}" class="dark:text-slate-300"/>
-            <x-input id="name" type="text" class="mt-1 block w-full border-gray-100 border-2 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-200 
+            <x-input id="name" name="name" type="text" class="mt-1 block w-full border-gray-300 border-2 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-200 
             focus:outline-none focus:border-blue-800 focus:ring-blue-800 dark:focus:border-purple-600 dark:focus:ring-purple-600
              hover:border-blue-600 rounded-md sm:text-sm dark:hover:border-purple-600" wire:model="state.name" required autocomplete="name" />
             <x-input-error for="name" class="mt-2" />
@@ -71,7 +71,7 @@
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="email" value="{{ __('Email') }}" class="dark:text-slate-300"/>
-            <x-input id="email" type="email" class="mt-1 block w-full border-gray-100 border-2 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-200 
+            <x-input id="email" name="email" type="email" class="mt-1 block w-full border-gray-300 border-2 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-200 
             focus:outline-none focus:border-blue-800 focus:ring-blue-800 dark:focus:border-purple-600 dark:focus:ring-purple-600
              hover:border-blue-600 rounded-md sm:text-sm dark:hover:border-purple-600" wire:model="state.email" required autocomplete="username" />
             <x-input-error for="email" class="mt-2" />

@@ -9,32 +9,40 @@
         <div class="w-7xl max-w-screen-xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-xl sm:rounded-lg dark:bg-slate-900 dark:text-gray-100">
                 <div class="article">
-                   <div class="flex flex-row w-48 h-14 gap-x-2 pt-4 ">
-                        <div class="flex text-sm border-8 border-transparent rounded-full  focus:outline-none focus:border-gray-300 transition">
-                            <!-- check if author is anonymous -->
-                            @if ($article->author == null)
-                                <img class="w-10 h-10 rounded-full object-cover " src="{{ asset('storage/background/blank.png') }}" alt="Anonymous" />
-                            @elseif ($article->anonymous == true)
-                                <img class="w-10 h-10 rounded-full object-cover " src="{{ asset('storage/background/blank.png') }}" alt="Anonymous" />
-                            @else
-                                @if($article->author)
-                                    <img class="w-10 h-10 rounded-full object-cover" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->name }}" />
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-row w-48 h-14 gap-x-2 pt-4 ">
+                            <div class="flex text-sm border-8 border-transparent rounded-full  focus:outline-none focus:border-gray-300 transition">
+                                <!-- check if author is anonymous -->
+                                @if ($article->author == null)
+                                    <img class="w-10 h-10 rounded-full border-red-800 object-cover " src="{{--{{ asset('storage/background/blank.png') }}--}}" alt="Anon" />
+                                @elseif ($article->anonymous == true)
+                                    <img class="w-10 h-10 rounded-full object-cover  border-red-800" src="{{--{{ asset('storage/background/blank.png') }}--}}" alt="Anon" />
+                                @else
+                                    @if($article->author)
+                                        <img class="w-10 h-10 rounded-full object-cover border-red-800" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->name }}" />
+                                    @endif
                                 @endif
-                            @endif
-                            
-                        </div>
-                        <div class="flex flex-col w-full">
-                            @if ($article->author == null)
-                                <p>Anonymous</p>
-                            @elseif ($article->anonymous == true)
-                                <p>Anonymous</p>
-                            @else
-                                <p>{{$article->author->name}}</p>
-                            @endif
-                            <p>2012 December</p>
-                        </div>
-                        
-                   </div>
+                            </div>
+                             <div class="flex flex-col w-full"> 
+                                @if ($article->author == null)
+                                    <p>Anonymous</p>
+                                @elseif ($article->anonymous == true)
+                                    <p>Anonymous</p>
+                                @else
+                                    <p>{{$article->author->name}}</p>
+                                @endif
+                                
+                                <p>{{ DateTime::createFromFormat('!m', $article->magazine->month)->format('F') }} {{$article->magazine->year}}</p>
+                            </div>
+                       </div>
+                       <div class="m-4">
+                        @if (auth()->user()->id == $article->author_id || auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                            <x-secondary-button class="dark:bg-slate-900 border-gray-500" ><a class="text-gray-500 dark:text-gray-500" href="{{route('articles.download', $article)}}">Download</a></x-secondary-button>
+                        @endif
+                       
+                       </div>
+                    </div>  
+                   
                     <div class="pl-16 pt-4">
                         <p>Faculty name: {{$article->faculty->name}}</p>
                     </div>

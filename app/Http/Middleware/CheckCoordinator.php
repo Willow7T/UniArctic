@@ -15,7 +15,8 @@ class CheckCoordinator
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! $request->user() || $request->user()->role_id != 3) {
+        $user = $request->user();
+        if (! $user || $user->role_id != 3 || ! $user->faculty_id) {
             abort(404);
         }
 

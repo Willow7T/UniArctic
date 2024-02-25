@@ -1,4 +1,4 @@
-<div>
+<div id="paginated-posts">
     <div class="p-2">
         <div>
             <h1 class="pl-2 font-bold text-center p-4">
@@ -51,7 +51,7 @@
                 </tbody>
             </table>
             <div class="pt-2 pr-16">
-                {{ $users->links(data: ['scrollTo' => false]) }} 
+                {{ $users->links(data: ['scrollTo' => '#paginated-posts']) }} 
                 {{-- {{ $users->links('pagination-links') }}    --}}
 
             </div>

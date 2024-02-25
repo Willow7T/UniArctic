@@ -67,7 +67,9 @@
                             1
                         </a>
                          <div class="w-24 h-24 flex items-center justify-center bg-red-500 border-solid border-2 border-red-600">
+                           <a href="{{route('mailtest')}}">
                             1
+                           </a>
                          </div>
                          <div class="w-24 h-24 flex items-center justify-center bg-gray-900 border-solid border-2 border-red-600">
                             1

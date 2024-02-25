@@ -45,9 +45,9 @@ window.onload = function() {
 
 window.addEventListener('scroll', function() {
   var nav = document.querySelector('nav');
-  nav.classList.toggle('fixed', window.scrollY > 50);
-  nav.classList.toggle('right-0', window.scrollY > 50);
-  nav.classList.toggle('z-50', window.scrollY > 50);
+  nav.classList.toggle('fixed', window.scrollY > 90);
+  nav.classList.toggle('right-0', window.scrollY > 90);
+  nav.classList.toggle('z-50', window.scrollY > 90);
 });
 
   

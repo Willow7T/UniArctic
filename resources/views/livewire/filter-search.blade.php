@@ -1,7 +1,7 @@
 
 <div>
     {{-- <div class="fixed"> --}}
-    <div class="2xl:fixed z-50 block md:flex sm:flex">
+    <div class="2xl:fixed xl:fixed z-50 block md:flex sm:flex">
         <form id="searchForm" wire:submit.prevent="$refresh" class="z-10" >
             @csrf
             <div class="flex flex-row gap-x-4 p-2">

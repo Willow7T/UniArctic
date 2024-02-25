@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -18,15 +19,19 @@ use App\Http\Controllers\ArticleController;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+Route::get('/MailTest', function () {
+    return view('mail.mailtocoordinator');
+})->name('mailtest');
+
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/home', function () {
-        return view('home');
-    })->name('home');
+    Route::get('/home', [
+        HomeController::class, 'index'
+        ])->name('home');
     
     
     //Article Create Page under the Kernel Cheching Route with Role Middleware
@@ -36,13 +41,16 @@ Route::middleware([
     Route::post('/articles/create', [
         ArticleController::class, 'store'
     ])->name('article.store')->middleware('stuRole');
+    Route::get('/articles/{article}/download', [
+        ArticleController::class, 'download'
+        ])->name('articles.download')->middleware('candownload');
+
     
     
     //admin Dashboard
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admindashboard')->middleware('adminRole');
-
     //coordinator Dashboard
     Route::get('/coordinator/dashboard', function () {
         return view('coordinator.dashboard');
