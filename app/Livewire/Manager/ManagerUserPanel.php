@@ -55,7 +55,7 @@ class ManagerUserPanel extends Component
         $user = User::find($userId);//find user with id
         $user->role_id = $roleId;//overwrite role_id with new value
         $user->save();//save changes
-
+        session()->flash('message', 'User role updated successfully '. $user->name . 'is now a ' .$user->role->name . '');
 
     }
 
@@ -64,6 +64,7 @@ class ManagerUserPanel extends Component
         $user = User::find($userId);//find user with id
         $user->faculty_id = $facultyId === "" ? null : $facultyId;//overwrite faculty_id with new value
         $user->save();//save changes
+        session()->flash('message', 'User Faculty updated successfully '. $user->name . 'is now from ' .$user->faculty->name . '');
 
 
     }

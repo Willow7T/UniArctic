@@ -61,6 +61,7 @@ class CoordinatorUserPanel extends Component
         $user->role_id = $roleId;//overwrite role_id with new value
         $user->save();//save changes
 
+        session()->flash('message', 'User role updated successfully '. $user->name . 'is now a ' .$user->role->name . '');
 
     }
 

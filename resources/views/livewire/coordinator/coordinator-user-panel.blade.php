@@ -4,6 +4,7 @@
             <h1 class="pl-2 font-bold text-center p-4">
                 Edit users Role
             </h1>
+            <x-alert type="message" class="bg-green-700 text-green-100 p-4" />
         </div>
         <div class="h-[36rem] overflow-x-scroll">
             <table class="border-collapse border border-slate-500 w-fit m-auto">
@@ -12,7 +13,6 @@
                         <th class="border border-slate-600 backdrop-blur-sm">Name</th>
                         <th class="border border-slate-600 backdrop-blur-sm">Email</th>
                         <th class="border border-slate-600 backdrop-blur-sm">Change Role</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Role</th>
                         <th class="border border-slate-600 backdrop-blur-sm">Faculty</th>
                         <th class="border border-slate-600 backdrop-blur-sm">Account Creation Date</th>
                         <th class="border border-slate-600 backdrop-blur-sm">Articles Upload</th>
@@ -33,7 +33,6 @@
                                 @endforeach
                             </select>
                         </td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->role->name }} </td>
                         <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ optional($user->faculty)->name ?? 'No
                             Faculty' }}</td>
                         <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->created_at ?? 'Data Deleted or

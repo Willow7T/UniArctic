@@ -4,6 +4,8 @@
             <h1 class="pl-2 font-bold text-center p-4">
                 Edit users Role
             </h1>
+            <x-alert type="message" class="bg-green-700 text-green-100 p-4" />
+            <x-alert type="error" class="bg-red-700 text-red-100 p-4" />
         </div>
         <div class="h-[36rem] overflow-x-scroll">
             <table class="border-collapse border border-slate-500 w-fit m-auto">
@@ -12,9 +14,9 @@
                         <th class="border border-slate-600 backdrop-blur-sm">Name</th>
                         <th class="border border-slate-600 backdrop-blur-sm">Email</th>
                         <th class="border border-slate-600 backdrop-blur-sm">Change Role</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Role</th>
+                        {{-- <th class="border border-slate-600 backdrop-blur-sm">Role</th> --}}
                         <th class="border border-slate-600 backdrop-blur-sm">Change Faculty</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Faculty</th>
+                        {{-- <th class="border border-slate-600 backdrop-blur-sm">Faculty</th> --}}
                         <th class="border border-slate-600 backdrop-blur-sm">Account Creation Date</th>
                         <th class="border border-slate-600 backdrop-blur-sm">Articles Upload</th>
                         <th class="border border-slate-600 backdrop-blur-sm">Check Articles</th>
@@ -34,7 +36,7 @@
                                 @endforeach
                             </select>
                         </td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->role->name }} </td>
+                        {{-- <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->role->name }} </td> --}}
                         <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
                             <select wire:change="updateUserFaculty({{ $user->id }}, $event.target.value)"
                                 class="backdrop-blur-sm block w-auto py-2 px-3 border-0 outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-100">
@@ -45,8 +47,8 @@
                                 @endforeach
                             </select>
                         </td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ optional($user->faculty)->name ?? 'No
-                            Faculty' }}</td>
+                        {{-- <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ optional($user->faculty)->name ?? 'No
+                            Faculty' }}</td> --}}
                         <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->created_at ?? 'Data Deleted or
                             Nothing to Show' }}</td>
                         <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->articles_count ?? 'No Article Upload'
@@ -121,3 +123,4 @@
         </div>
     </div>
 </div>
+
