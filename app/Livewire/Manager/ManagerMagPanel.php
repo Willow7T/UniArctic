@@ -22,6 +22,7 @@ class ManagerMagPanel extends Component
     public $magazine_idupdate;
     public $issue_nameupdate;
     public $imageupdate;
+    public $statusupdate;
 
     public $status;
     public $search;
@@ -141,6 +142,7 @@ class ManagerMagPanel extends Component
                 'magazine_idupdate' => 'required|exists:magazines,id',
                 'issue_nameupdate' => 'nullable|max:20',
                 'imageupdate' => 'nullable|image|mimes:jpeg,jpg,png|max:2048', // 2MB Max
+                'statusupdate' => 'nullable|in:0,1',
             ]);
 
             $magazine = Magazine::find($this->magazine_idupdate);
@@ -152,7 +154,7 @@ class ManagerMagPanel extends Component
                 }
                 $imageUpdatePath = $this->imageupdate->store('background', 'public');
                 if (!$imageUpdatePath) {
-                    session()->flash('error', 'Failed to update image');
+                    session()->flash('error2', 'Failed to update image');
                 }
             }
 
@@ -164,6 +166,20 @@ class ManagerMagPanel extends Component
             if (!$this->issue_nameupdate == "" || !$this->issue_nameupdate == null) {
                 $magazine->issue_name = $this->issue_nameupdate;
             }
+
+            if($this->statusupdate ==1)
+            {
+                $magazine->articles()->where('selected', true)->update(['published' => true]);
+                $magazine->published = $this->statusupdate; 
+
+            }
+            else
+            {
+                $magazine->articles()->where('selected', true)->update(['published' => false]);
+                $magazine->published = $this->statusupdate; 
+            }
+           
+            
             $magazine->save();
 
             session()->flash('success2', 'Magazine updated successfully.');
@@ -171,6 +187,10 @@ class ManagerMagPanel extends Component
             session()->flash('error2', $e->getMessage());
         }
 
-        return $this->issue_name;
+        $this->reset('imageupdate');
+        $this->reset('issue_nameupdate');
+        $this->reset('statusupdate');
+
+        return $this->issue_name ;
     }
 }
