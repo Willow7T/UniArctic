@@ -25,7 +25,7 @@ class ManagerMagPanel extends Component
     public $magazine_idupdate;
     public $issue_nameupdate;
     public $imageupdate;
-    public $statusupdate;
+    public $statusupdate =0;
 
     public $status;
     public $search;
@@ -115,7 +115,7 @@ class ManagerMagPanel extends Component
         $query->where('published', $status);
 
         if (!empty($this->search)) {
-            $query->whereRaw('LOWER(title) LIKE ?', [strtolower('%' . $this->search . '%')]);
+            $query->whereRaw('LOWER(issue_name) LIKE ?', [strtolower('%' . $this->search . '%')]);
         }
 
         if (!empty($this->month)) {

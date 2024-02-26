@@ -87,7 +87,7 @@
         <p>Article Title: {{$article->title}}</p>
     </div>
     <div>
-        <p>Dear Coordinator,</p>
+        <p>Dear Student {{$article->author->name}},</p>
         <p class="indent-8">There are some changes in an article submitted by you. Please check the articles before the deadline. Please Contact the coordinator if needed.</p>
         <p>Coordinator Mail: {{$user->email}}</p>
         <div class="text-center py-5">

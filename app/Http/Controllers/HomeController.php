@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (!session()->has('visited_home')) {
+        if (!auth()->user()->email_verified_at) {
             // This is the user's first visit to the home page
 
             // Get the emails of the faculty coordinators whose role_id is 3

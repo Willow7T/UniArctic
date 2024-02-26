@@ -87,7 +87,7 @@
         </div>
         <div>
             <p>Dear Coordinator,</p>
-            <p class="indent-8">There is a new guest in your faculty. Please check the users panel for more details.</p>
+            <p class="indent-8">There is a new guest in your faculty. OR The existing user change their email. Please check the users panel for more details.</p>
             {{-- <p></p> --}}
             <div class="text-center py-5">
                 <button class="bg-teal-400 rounded-sm text-center "><a class="text-gray-100"

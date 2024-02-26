@@ -42,7 +42,7 @@
                 <div class="relative mb-6">
                     <form wire:submit.prevent="$refresh"></form>
                     <label for="search">Issue Name:</label>
-                    <input type="text" id="search" name="search" wire:model="search" required>
+                    <input type="text" id="search" name="search" wire:model.blur="search" required>
                     <x-button type="submit">Search</x-button>
                     <label for="status">Status:</label>
                     <select id="status" wire:model.live="status" name="status">
@@ -137,7 +137,7 @@
                             </div>
                            <div>
                             <p>Image Preview</p>
-                            <img class="max-w-xs max-h-64 pb-5" id="imageupdatePreview"  wire.ignore src="#" alt="">
+                            <img class="max-w-xs max-h-64 pb-5" id="imageupdatePreview" wire:ignore src="#" alt="">
                             <label for="imageupdate"
                                 class="dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2 bg-[#007bff] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#0056b3] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                 Image (.jpeg/.jpg/.png file)
