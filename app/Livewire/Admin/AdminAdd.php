@@ -4,26 +4,30 @@ namespace App\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Faculty;
+use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 
 class AdminAdd extends Component
 {
+    use WithPagination;
+    use WithoutUrlPagination;
     public $name;
     public $updateName;
     public $newName;
- 
+
 
     public function render()
     {
         $faculties = Faculty::withCount(['users'])
             ->orderBy('id', 'asc')
-            ->get()
-            ->map(function ($faculty) {
-        $faculty->name = $faculty->name ?? 'No faculty';
-        return $faculty;
-    });
-        return view('livewire.admin.admin-add' , ['faculties' => $faculties ]);
+            ->paginate(10);
+        $faculties->getCollection()->transform(function ($faculty) {
+            $faculty->name = $faculty->name ?? 'No faculty';
+            return $faculty;
+        });
+        return view('livewire.admin.admin-add', ['faculties' => $faculties]);
     }
-    
+
     public function addFaculty()
     {
         $this->validate([
@@ -49,6 +53,7 @@ class AdminAdd extends Component
             $faculty->save();
 
             $this->newName = '';
+            $this->updateName = '';
 
             session()->flash('message', 'Faculty successfully updated.');
         } else {

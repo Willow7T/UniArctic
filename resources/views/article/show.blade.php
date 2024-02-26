@@ -44,7 +44,7 @@
                         </div>
                         <div class="m-4">
                             @if (auth()->user()->id == $article->author_id || auth()->user()->role_id == 1 ||
-                            auth()->user()->role_id == 2 || auth()->user()->role_id == 3)
+                            auth()->user()->role_id == 2 || (auth()->user()->role_id == 3 && $article->faculty_id == auth()->user()->faculty_id))
                             <div class="flex flex-row justify-between">
                                 <div>
 
@@ -56,8 +56,8 @@
                             </div>
                             @endif
                             @if ( $article->published == 0)
-                            @if (auth()->user()->id == $article->author_id || auth()->user()->role_id == 3 )
-                            <p>To Edit Please Download and Re-upload {{$article->published}}</p>
+                            @if (auth()->user()->id == $article->author_id || (auth()->user()->role_id == 3 && $article->author->faculty_id == auth()->user()->faculty_id) )
+                            <p>To Edit Please Download and Re-upload</p>
 
                             <form method="POST" action="{{route('articles.reupload', $article)}}"
                                 enctype="multipart/form-data">
@@ -150,7 +150,7 @@
 
             </div>
             @if (auth()->user()->id == $article->author_id || auth()->user()->role_id == 3 || auth()->user()->role_id == 2)
-            <div class=" 2xl:fixed left-0 top-36 bg-red-500">
+            <div class=" xl:fixed left-0 top-36 bg-red-500">
                 @livewire('faculty-comment', ['article' => $article])
             </div>
             @endif

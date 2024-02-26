@@ -46,6 +46,15 @@
                 </div>
             </div>
         </div>
+         {{-- User panel --}}
+         <div class="lg:col-span-5" id="section4">
+            <div class="mx-auto sm:px-6 lg:px-8 ">
+                <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
+                    <h2 class="text-center text-lg font-bold p-4">Magazines</h2>
+                    @livewire('manager.manager-mag-panel')
+                </div>
+            </div>
+        </div>
         {{-- User panel --}}
         <div class="lg:col-span-5" id="section4">
             <div class="mx-auto sm:px-6 lg:px-8 ">

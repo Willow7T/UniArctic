@@ -23,5 +23,17 @@ class Candownload
 
 
         return $next($request);
+
+        if($user->id == $article->author_id 
+        || $user->role_id == 1 
+        || $user->role_id == 2 
+        || ($user->role_id == 3 && $user->faculty_id == $article->faculty_id)
+        ){
+            return $next($request);
+        }
+        else
+        {
+            abort(403, 'Unauthorized action.');
+        }
     }
 }

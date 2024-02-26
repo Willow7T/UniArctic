@@ -16,23 +16,11 @@ class Canreupload
     public function handle(Request $request, Closure $next): Response
     {
         $article = $request->route('article');
-        $user = $request->user();
-        if (!$article->published)
-        {
-            dd($article->published);
-           if( $user->id != $article->author_id 
-            && $user->role_id != 3) {
-            abort(403, 'Unauthorized action.');
-           
-        }
-        else
-        {
-            abort(403, 'Unauthorized action.');
+        $user = $request->user(); //dd($article->published);
+        if (!$article->published && ($user->id == $article->author_id || $user->role_id == 3)) {
+            return $next($request);
         }
         
-        }
-
-
-        return $next($request);
+        abort(403, 'Unauthorized action.');
     }
 }

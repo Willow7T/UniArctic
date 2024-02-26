@@ -26,22 +26,21 @@
                 </div>
             </div>
         </div>
+        {{-- Create a Magazine --}}
+        <div class="lg:col-span-6" id="section3">
+            <div class="mx-auto sm:px-6 lg:px-8 ">
+                <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
+                    <h2 class="text-center text-lg font-bold p-4">Create a Magazine</h2>
+                    @livewire('manager.manager-mag-panel')
+                </div>
+            </div>
+        </div>
         {{-- User Panel --}}
         <div class="lg:col-span-6" id="section2">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg ">
                     <h2 class="text-center text-lg font-bold p-4">Users</h2>
                     @livewire('manager.manager-user-panel')
-                </div>
-            </div>
-        </div>
-        {{-- Create a Magazine --}}
-       
-        <div class="lg:col-span-6" id="section3">
-            <div class="mx-auto sm:px-6 lg:px-8 ">
-                <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
-                    <h2 class="text-center text-lg font-bold p-4">Create a Magazine</h2>
-                    @livewire('manager.manager-mag-panel')
                 </div>
             </div>
         </div>

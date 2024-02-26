@@ -64,6 +64,8 @@
                         @endforeach
                     </tbody>
                 </table>
+                    {{ $faculties->links(data: ['scrollTo' => false]) }}
+
             </div>
             <div class="col-span-2 mt-6">
                 <h1 class="pl-2 font-bold text-center">

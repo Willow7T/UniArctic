@@ -9,6 +9,7 @@ class FacultyComment extends Component
 {
  
     public $article;
+    public $facucomment;
     public function mount($article)
     {
         $this->article = $article;
@@ -21,4 +22,20 @@ class FacultyComment extends Component
         ,['facuarticomms'=>$facuarticomms]
     );
     }
+
+    public function MakeComment()
+    {
+        
+        $this->validate([
+            'facucomment' => 'required'
+        ]);
+
+        FacuArtiComm::create([
+            'article_id' => $this->article->id,
+            'user_id' => auth()->user()->id,
+            'body' => $this->facucomment
+        ]);
+        $this->facucomment = '';
+    }
+
 }
