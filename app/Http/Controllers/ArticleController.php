@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Settings;
-use App\Mail\MailToCoordinator;
+use App\Mail\ArticleUpNotiStu;
+use App\Mail\ArticleUpNotiCoor;
 use DateTime;
 use Illuminate\Support\Facades\Mail;
 use Exception;
@@ -191,53 +192,14 @@ class ArticleController extends Controller
             if (!empty($coordinatorEmails)) {
                 // Send the mailable
                 Mail::to($coordinatorEmails)->send(new ArticleCreationNoti(auth()->user(), $article));
-            }
-            return redirect()->route('article.create')->with('success', 'Article created successfully.');
+            }return redirect()->route('article.create')->with('success', 'Article created successfully.');
         } catch (Exception $e) {
             DB::rollBack();
             return back()->with('error', $e->getMessage());
         }
     }
 
-    //search articles
-    public function search(Request $request)
-    {
-        $search = $request->input('search');
-        $months = $months ?? $request->input('months');
-        $years = $request->input('years');
-
-        $query = Article::query();
-
-        if (!empty($search)) {
-            $query->where('title', 'like', '%' . $search . '%');
-        }
-
-        if (!empty($months) || !empty($years)) {
-            $query->join('magazines', 'articles.magazine_id', '=', 'magazines.id');
-
-            if (!empty($months)) {
-                $query->whereIn('magazines.month', $months);
-            }
-
-            if (!empty($years)) {
-                $query->whereIn('magazines.year', $years);
-            }
-        }
-
-        $articles = $query->select('articles.*')->paginate(10);
-
-        $monthList = DB::table('magazines')->distinct()->orderBy('month', 'asc')->pluck('month')->all();
-        $yearList = DB::table('magazines')->distinct()->orderBy('year', 'asc')->pluck('year')->all();
-
-        return view('article.search', [
-            'articles' => $articles,
-            'search' => $search,
-            'months' => $months,
-            'years' => $years,
-            'monthList' => $monthList,
-            'yearList' => $yearList,
-        ]);
-    }
+   
     public function download(Article $article)
     {
         // Check if the user is authorized to download the article
@@ -285,6 +247,26 @@ class ArticleController extends Controller
                     'updated_at' => now(),
                 ]);
             }
+            if(auth()->user()->role_id == 4){
+                $coordinatorEmails = User::where('faculty_id', auth()->user()->faculty_id)
+                ->where('role_id', 3)
+                ->pluck('email')
+                ->toArray();
+
+            // Send the mailable
+            if (!empty($coordinatorEmails)) {
+                // Send the mailable
+                Mail::to($coordinatorEmails)->send(new ArticleUpNotiStu(auth()->user(), $article));
+            }
+            }
+            else
+            {
+                $studentEmail = User::where('id', $article->author_id)->pluck('email')->toArray();
+                
+                Mail::to($studentEmail)->send(new ArticleUpNotiCoor(auth()->user(), $article));
+
+            }
+            
     
             return redirect()->route('articles.show', $article);
         } catch (Exception $e) {
@@ -292,4 +274,45 @@ class ArticleController extends Controller
             return back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
+
+    //  search articles
+     public function search(Request $request)
+     {
+         $search = $request->input('search');
+         $months = $months ?? $request->input('months');
+         $years = $request->input('years');
+ 
+         $query = Article::query();
+ 
+         if (!empty($search)) {
+             $query->where('title', 'like', '%' . $search . '%');
+         }
+ 
+         if (!empty($months) || !empty($years)) {
+             $query->join('magazines', 'articles.magazine_id', '=', 'magazines.id');
+ 
+             if (!empty($months)) {
+                 $query->whereIn('magazines.month', $months);
+             }
+ 
+             if (!empty($years)) {
+                 $query->whereIn('magazines.year', $years);
+             }
+         }
+ 
+         $articles = $query->select('articles.*')->paginate(10);
+ 
+         $monthList = DB::table('magazines')->distinct()->orderBy('month', 'asc')->pluck('month')->all();
+         $yearList = DB::table('magazines')->distinct()->orderBy('year', 'asc')->pluck('year')->all();
+ 
+         return view('article.search', [
+             'articles' => $articles,
+             'search' => $search,
+             'months' => $months,
+             'years' => $years,
+             'monthList' => $monthList,
+             'yearList' => $yearList,
+         ]);
+     }
 }

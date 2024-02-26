@@ -102,6 +102,10 @@ class User extends Authenticatable //implements MustVerifyEmail
     {
     return $this->hasMany(Comment::class);
     }
+    public function facuarticomms()
+    {
+        return $this->hasMany(FacuArtiComm::class);
+    }
     public function sessions()
     {
         return DB::table('sessions')

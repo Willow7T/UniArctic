@@ -43,7 +43,7 @@
             <x-section-border />
 
             <div>
-                @livewire('personal-article')
+                @livewire('personal-articles')
             </div>
         </div>
     </div>

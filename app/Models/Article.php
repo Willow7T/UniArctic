@@ -37,6 +37,10 @@ class Article extends Model
     {
         return $this->hasMany(ArticleView::class);
     }
+    public function facuarticomms()
+    {
+        return $this->hasMany(FacuArtiComm::class);
+    }
     public static function getArticlesWAuthen($userId, $published)
     {
     $articles = self::where('author_id', $userId)

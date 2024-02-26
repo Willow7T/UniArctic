@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\FacuArtiComm;
 use Livewire\Component;
 
 class FacultyComment extends Component
@@ -15,6 +16,9 @@ class FacultyComment extends Component
     }
     public function render()
     {
-        return view('livewire.faculty-comment');
+        $facuarticomms = Facuarticomm::where('article_id', $this->article->id)->get();
+        return view('livewire.faculty-comment'
+        ,['facuarticomms'=>$facuarticomms]
+    );
     }
 }

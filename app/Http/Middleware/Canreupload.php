@@ -17,12 +17,22 @@ class Canreupload
     {
         $article = $request->route('article');
         $user = $request->user();
-        if ($user->id != $article->author_id && $user->role_id != 3) {
+        if (!$article->published)
+        {
+            dd($article->published);
+           if( $user->id != $article->author_id 
+            && $user->role_id != 3) {
             abort(403, 'Unauthorized action.');
+           
+        }
+        else
+        {
+            abort(403, 'Unauthorized action.');
+        }
+        
         }
 
 
-        return $next($request);
         return $next($request);
     }
 }

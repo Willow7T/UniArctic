@@ -50,29 +50,37 @@
 
                                 </div>
                                 <x-secondary-button class="dark:bg-slate-900 border-gray-500"><a
-                                    class="text-gray-500 dark:text-gray-500"
-                                    href="{{route('articles.download', $article)}}">Download</a></x-secondary-button>
+                                        class="text-gray-500 dark:text-gray-500"
+                                        href="{{route('articles.download', $article)}}">Download</a>
+                                </x-secondary-button>
                             </div>
                             @endif
-                            @if (auth()->user()->id == $article->author_id || auth()->user()->role_id == 3 || $article->published == 0)
-                                <p>To Edit Please Download and Re-upload</p>
-                                <form  method="POST" action="{{route('articles.reupload', $article)}}"  enctype="multipart/form-data">
-                                    @csrf
-                                    <p id="contentPreview" class="
-                                    dark:text-slate-100 font-semibold text-sm text-gray-900  tracking-widest">
-                                        .docx file
-                                    </p>
-                                    <div class="flex flex-row gap-3">
-                                        <label for="content"
+                            @if ( $article->published == 0)
+                            @if (auth()->user()->id == $article->author_id || auth()->user()->role_id == 3 )
+                            <p>To Edit Please Download and Re-upload {{$article->published}}</p>
+
+                            <form method="POST" action="{{route('articles.reupload', $article)}}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <p id="contentPreview" class="
+                                dark:text-slate-100 font-semibold text-sm text-gray-900  tracking-widest">
+                                    .docx file
+                                </p>
+                                <div class="flex flex-row gap-3">
+                                    <label for="content"
                                         class="
-                                    dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2 bg-[#007bff] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#0056b3] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2 bg-[#007bff] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#0056b3] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                         Content (.docx)
                                     </label>
-                                    <input type="file" id="content" name="content" required accept=".docx"   onchange="previewDocxFileName(event)">
-                                        <x-secondary-button class="dark:bg-slate-900 border-gray-500" type="sumbit">Reupload</a></x-secondary-button>
-                                    </div>
-                                </form>
+                                    <input type="file" id="content" name="content" required accept=".docx"
+                                        onchange="previewDocxFileName(event)">
+                                    <x-secondary-button class="dark:bg-slate-900 border-gray-500" type="sumbit">
+                                        Reupload</a></x-secondary-button>
+                                </div>
+                            </form>
                             @endif
+                            @endif
+
 
                         </div>
                     </div>
@@ -141,8 +149,8 @@
                 @endif
 
             </div>
-            @if (auth()->user()->id == $article->author_id || auth()->user()->role_id == 3)
-            <div class=" xl:fixed left-0 top-36 bg-red-500">
+            @if (auth()->user()->id == $article->author_id || auth()->user()->role_id == 3 || auth()->user()->role_id == 2)
+            <div class=" 2xl:fixed left-0 top-36 bg-red-500">
                 @livewire('faculty-comment', ['article' => $article])
             </div>
             @endif

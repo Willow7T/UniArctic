@@ -18,7 +18,12 @@ class CheckIfArticleIsPublished
     {
         $article = Article::find($request->id);
 
-        if (!$article || (!$article->published && auth()->user()->role_id != 3)) {
+        if (!$article || (!$article->published 
+        && auth()->user()->role_id != 3 
+        && auth()->user()->role_id != 2
+        && auth()->user()->role_id != 1
+        && auth()->user()->id != $article->author_id
+        )){
             // Redirect or show error
             abort(404, 'Article is not published');
         }

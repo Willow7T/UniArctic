@@ -40,15 +40,11 @@ Route::middleware([
     Route::get('/articles/create', [
         ArticleController::class, 'create'
     ])->name('article.create')->middleware('stuRole');
-    Route::post('/articles/create', [
-        ArticleController::class, 'store'
-    ])->name('article.store')->middleware('stuRole');
+   
     Route::get('/articles/{article}/download', [
         ArticleController::class, 'download'
         ])->name('articles.download')->middleware('candownload');
-    Route::post('/articles/{article}/reupload', [
-            ArticleController::class, 'reupload'
-            ])->name('articles.reupload')->middleware('canreupload');
+ 
 
 
     
@@ -75,5 +71,12 @@ Route::middleware([
         ArticleController::class, 'show'
     ])->middleware('articlePublished')->name('article.show');
     
+
+    Route::post('/articles/create', [
+        ArticleController::class, 'store'
+    ])->name('article.store')->middleware('stuRole');
+    Route::post('/articles/{article}/reupload', [
+        ArticleController::class, 'reupload'
+        ])->name('articles.reupload')->middleware('canreupload');
 });
 

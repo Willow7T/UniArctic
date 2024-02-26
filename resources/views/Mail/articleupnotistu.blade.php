@@ -82,17 +82,17 @@
 <div class="bg-slate-900 mt-32 m-6 p-10 text-gray-100">
     <div class="text-center">
         <h2 class="font-bold text-teal-400 bg-slate-800 p-2">UniArctic</h2>
-        <h4>New Article Submission</h4>
-        <p>Student's mail: {{$user->email}}</p>
+        <h4>Article was Updated</h4>
+        <p>by Student: {{$user->email}}</p>
         <p>Article Title: {{$article->title}}</p>
     </div>
     <div>
         <p>Dear Coordinator,</p>
-        <p class="indent-8">There is an article submitted in your faculty. Please check the articles before the deadline. Select the article for publishing.</p>
+        <p class="indent-8">There are some changes in an article submitted in your faculty. Please check the articles before the deadline. Select the article for publishing.</p>
         {{-- <p></p> --}}
         <div class="text-center py-5">
             <button class="bg-teal-400 rounded-sm text-center "><a class="text-gray-100"
-                    href="{{ route('article.show', ['id' => $article->id, 'title' => Str::slug($article->title)]) }}">Check Aritcle Submission</a></button>
+                    href="{{ route('article.show', ['id' => $article->id, 'title' => Str::slug($article->title)]) }}">Check Aritcle</a></button>
         </div>
         <p class="text-right">Thank you.</p>
     </div>
