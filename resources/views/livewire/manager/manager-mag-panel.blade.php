@@ -73,6 +73,7 @@
                         <th>Month</th>
                         <th>Publish</th>
                         <th>Article Count</th>
+                        <th>Download Published</th>
                     </tr>
                     @foreach($magazines as $magazine)
                     <tr>
@@ -81,6 +82,11 @@
                         <td>{{ date("F", mktime(0, 0, 0, $magazine->month, 10)) }}</td>
                         <td>{{ $magazine->published ? 'Published' : 'Unpublished' }}</td>
                         <td>{{ $magazine->articles->count() }}</td>
+                        <td>
+                            <x-button wire:click="download({{$magazine}})" type="button" name="download">
+                                Download as zip
+                            </x-button>
+                        </td>
                     </tr>
                     @endforeach
 

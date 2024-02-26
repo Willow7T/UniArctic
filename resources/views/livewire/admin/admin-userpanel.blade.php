@@ -71,6 +71,9 @@
                                 data-modal-toggle="default-modal" class="" type="button">
                                 Check
                             </x-button>
+                            
+                        </td>
+                        <td>
                             <x-button wire:click="download({{$user->id}})" type="button" name="download">
                                 Download as zip
                             </x-button>

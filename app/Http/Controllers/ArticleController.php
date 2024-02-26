@@ -45,37 +45,36 @@ class ArticleController extends Controller
         $twoMonthsLater = strtotime('+2 months');
         $monthTwoMonthsLater = date('n', $twoMonthsLater);
         $yearTwoMonthsLater = date('Y', $twoMonthsLater);
-        
-        if($yearTwoMonthsLater != $currentYear)
-        {
+
+        if ($yearTwoMonthsLater != $currentYear) {
             $magazines = Magazine::where('published', false)
-            ->where(function ($query) use ($currentYear, $currentMonth, $yearTwoMonthsLater, $monthTwoMonthsLater) {
-                $query->where([
-                    ['year', '=', $currentYear],
-                    ['month', '>=', $currentMonth],
-                ])->orWhere([
-                    ['year', '=', $yearTwoMonthsLater],
-                    ['month', '<=', $monthTwoMonthsLater],
-                ]);})
-            ->orderBy('year', 'asc')
-            ->orderBy('month', 'asc')
-            ->get();
-        }
-        else
-        {
+                ->where(function ($query) use ($currentYear, $currentMonth, $yearTwoMonthsLater, $monthTwoMonthsLater) {
+                    $query->where([
+                        ['year', '=', $currentYear],
+                        ['month', '>=', $currentMonth],
+                    ])->orWhere([
+                        ['year', '=', $yearTwoMonthsLater],
+                        ['month', '<=', $monthTwoMonthsLater],
+                    ]);
+                })
+                ->orderBy('year', 'asc')
+                ->orderBy('month', 'asc')
+                ->get();
+        } else {
             $magazines = Magazine::where('published', false)
-            ->where(function ($query) use ($currentYear, $currentMonth, $yearTwoMonthsLater, $monthTwoMonthsLater) {
-                $query->where([
-                    ['year', '=', $currentYear],
-                    ['month', '>=', $currentMonth],
-                    ['month', '<=', $monthTwoMonthsLater],
-                ]);})
-            ->orderBy('year', 'asc')
-            ->orderBy('month', 'asc')
-            ->get();
+                ->where(function ($query) use ($currentYear, $currentMonth, $yearTwoMonthsLater, $monthTwoMonthsLater) {
+                    $query->where([
+                        ['year', '=', $currentYear],
+                        ['month', '>=', $currentMonth],
+                        ['month', '<=', $monthTwoMonthsLater],
+                    ]);
+                })
+                ->orderBy('year', 'asc')
+                ->orderBy('month', 'asc')
+                ->get();
         }
 
-        
+
         $tags = Tag::all(); // Fetch all tags from the database
         //dd($daysInMonth, $currentDay , $daysLeft, $currentMonth, $currentYear );
         return view('article.create', ['magazines' => $magazines, 'tags' => $tags]);
@@ -243,12 +242,12 @@ class ArticleController extends Controller
     {
         // Check if the user is authorized to download the article
         $user = auth()->user();
-        if ($user->id != $article->author_id && $user->role_id != 1 && $user->role_id != 2) {
+        if ($user->id != $article->author_id && $user->role_id != 1 && $user->role_id != 2 && $user->role_id != 3) {
             abort(403, 'Unauthorized action.');
         }
 
         // Get the path to the article file
-        $filePath = storage_path('app/' . $article->content);
+        $filePath = storage_path('app/public/' . $article->content);
 
         // Check if the file exists
         if (!file_exists($filePath)) {
@@ -258,5 +257,39 @@ class ArticleController extends Controller
         $fileName = $user->name . '_' . $issueName . '_' . $article->magazine->year . '_' . DateTime::createFromFormat('!m', $article->magazine->month)->format('F') . '_' . '.docx';
         // Download the file
         return response()->download($filePath, $fileName);
+    }
+
+
+    public function reupload(Request $request, Article $article)
+    {
+        try {
+            // Validate the request
+            $request->validate([
+                'content' => ['required', 'mimes:docx'],
+            ]);
+    
+            // Check if a file was uploaded
+            if ($request->hasFile('content')) {
+                $file = $request->file('content');
+                $filename = $file->hashName('articles');
+    
+                // Store the file
+                $contentpath = $file->store('articles', 'public');
+                if (!$contentpath) {
+                    throw new Exception('Failed to store content');
+                }
+    
+                // Update the article
+                $article->update([
+                    'content' => $contentpath,
+                    'updated_at' => now(),
+                ]);
+            }
+    
+            return redirect()->route('articles.show', $article);
+        } catch (Exception $e) {
+            // Handle the exception
+            return back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 }

@@ -46,8 +46,11 @@ Route::middleware([
     Route::get('/articles/{article}/download', [
         ArticleController::class, 'download'
         ])->name('articles.download')->middleware('candownload');
+    Route::post('/articles/{article}/reupload', [
+            ArticleController::class, 'reupload'
+            ])->name('articles.reupload')->middleware('canreupload');
 
-    
+
     
     //admin Dashboard
     Route::get('/admin/dashboard', function () {

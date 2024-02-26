@@ -6,6 +6,7 @@
             </h1>
             <x-alert type="message" class="bg-green-700 text-green-100 p-4" />
             <x-alert type="error" class="bg-red-700 text-red-100 p-4" />
+            <x-alert type="notice" class="bg-yellow-300 text-red-100 p-4" />
         </div>
         <div class="h-[36rem] overflow-x-scroll">
             <table class="border-collapse border border-slate-500 w-fit m-auto">
@@ -57,6 +58,11 @@
                             <x-button wire:click="buttonClicked({{$user->id}})" data-modal-target="default-modal"
                                 data-modal-toggle="default-modal" class="" type="button">
                                 Check
+                            </x-button>
+                        </td>
+                        <td>
+                            <x-button wire:click="download({{$user->id}})" type="button" name="download">
+                                Download as zip
                             </x-button>
                         </td>
                     </tr>

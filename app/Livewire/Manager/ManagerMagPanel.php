@@ -6,8 +6,11 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Magazine;
 use Livewire\WithoutUrlPagination;
+use App\Models\Article;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
+use ZipArchive;
+use DateTime;
 
 class ManagerMagPanel extends Component
 {
@@ -192,5 +195,40 @@ class ManagerMagPanel extends Component
         $this->reset('statusupdate');
 
         return $this->issue_name ;
+    }
+
+    public function download(Magazine $magazine)
+    {
+        // Check if the user is authorized to download the article
+        $user = auth()->user();
+        if ($user->role_id != 1 && $user->role_id != 2 ) {
+            abort(403, 'Unauthorized action.');
+        }
+        //Get all articles of user
+        $articles = Article::where('magazine_id', $magazine->id)->where('published', true)->get();
+        if ($articles->isEmpty()) {
+            return session()->flash('notice' , 'No published articles found for this user.');
+        }
+        $zip = new ZipArchive;
+        $issueName = str_replace(' ', '_', $magazine->issue_name);
+        $zipFileName = storage_path('app/public/' . $issueName . '_articles.zip');
+        if ($zip->open($zipFileName, ZipArchive::CREATE) === TRUE) {
+            // Add each article file to the zip
+            foreach ($articles as $article) {
+                $filePath = storage_path('app/public/' . $article->content);
+                if (file_exists($filePath)) {
+                    $fileName = $article->author->name . '_' . $issueName.'_'. $magazine->year.'_'. DateTime::createFromFormat('!m', $magazine->month)->format('F').'_'.'.docx';
+                    $zip->addFile($filePath, $fileName);
+                }
+            }
+        
+            // Close the zip file
+            $zip->close();
+        } else {
+            abort(500, 'Could not create zip file.');
+        }
+        
+        // Download the zip file
+        return response()->download($zipFileName)->deleteFileAfterSend(true);
     }
 }

@@ -73,5 +73,6 @@ class Kernel extends HttpKernel
         'manRole' => \App\Http\Middleware\CheckManager::class,
         'articlePublished' => \App\Http\Middleware\CheckIfArticleIsPublished::class,
         'candownload' => \App\Http\Middleware\Candownload::class,
+        'canreupload' => \App\Http\Middleware\Canreupload::class,
     ];
 }

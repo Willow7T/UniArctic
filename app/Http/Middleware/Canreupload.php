@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class Candownload
+class Canreupload
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,12 @@ class Candownload
     {
         $article = $request->route('article');
         $user = $request->user();
-        if ($user->id != $article->author_id && $user->role_id != 1 && $user->role_id != 2 && $user->role_id != 3) {
+        if ($user->id != $article->author_id && $user->role_id != 3) {
             abort(403, 'Unauthorized action.');
         }
 
 
+        return $next($request);
         return $next($request);
     }
 }

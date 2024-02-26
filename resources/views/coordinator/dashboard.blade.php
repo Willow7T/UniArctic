@@ -12,8 +12,9 @@
                 <div class="border-t-4 border-gray-400 "></div>
                 <li class="py-2 dark:hover:text-green-400 hover:text-lime-500"><a href="#section1">Charts</a></li>
                 <li class="pb-2 dark:hover:text-green-400 hover:text-lime-500"><a href="#section2">Year Activity</a></li>
-                <li class="pb-2 dark:hover:text-green-400 hover:text-lime-500"><a href="#section3">Articles Selection</a></li>
-                <li class="dark:hover:text-green-400 hover:text-lime-500"><a href="#section4">Management</a></li>
+                <li class="pb-2 dark:hover:text-green-400 hover:text-lime-500"><a href="#section3">Faculty Image</a></li>
+                <li class="dark:hover:text-green-400 hover:text-lime-500"><a href="#section4">Articles Selection</a></li>
+                <li class="dark:hover:text-green-400 hover:text-lime-500"><a href="#section5">Management</a></li>
             </ul>
         </div>      
     </section>
@@ -46,6 +47,14 @@
             </div>
         </div>
         <div class="lg:col-span-6" id="section4">
+            <div class="mx-auto sm:px-6 lg:px-8 ">
+                <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
+                    <h2 class="text-center text-lg font-bold p-4">Articles Selection</h2>
+                    @livewire('coordinator.article-selection')
+                </div>
+            </div>
+        </div>
+        <div class="lg:col-span-6" id="section5">
             <div class="mx-auto sm:px-6 lg:px-8 ">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
                     <h2 class="text-center text-lg font-bold p-4">Users Management</h2>
