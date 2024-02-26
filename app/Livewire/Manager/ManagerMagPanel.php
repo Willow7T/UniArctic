@@ -28,8 +28,15 @@ class ManagerMagPanel extends Component
     public $year;
     public $month;
 
+    public $selectedMagazine;
     protected $queryString = ['status', 'search', 'months', 'years'];
  
+    public function ImageMag()
+    {
+        $this->selectedMagazine = Magazine::find($this->magazine_idupdate);
+
+    }
+
 
 
     public function createMagazine()
@@ -77,7 +84,6 @@ class ManagerMagPanel extends Component
         $this->reset('issue_name');
         $this->reset('month_year');
     }
-
 
     public function render()
     {

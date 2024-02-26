@@ -76,7 +76,7 @@
                     </tr>
                     @foreach($magazines as $magazine)
                     <tr>
-                        <td wire:keydown="getMagname">{{ $magazine->issue_name }}</td>
+                        <td>{{ $magazine->issue_name }}</td>
                         <td>{{ $magazine->year }}</td>
                         <td>{{ date("F", mktime(0, 0, 0, $magazine->month, 10)) }}</td>
                         <td>{{ $magazine->published ? 'Published' : 'Unpublished' }}</td>
@@ -97,24 +97,42 @@
                 <div class="relative mb-6">
                     <x-alert type="success2" class="bg-green-700 text-green-100 p-4" />
                     <x-alert type="error2" class="bg-red-700 text-red-100 p-4" />
-                    <form wire:submit.prevent="updateMagazine">
+                    <form wire:submit="updateMagazine">
                         <label for="magazine_idupdate">Magazine:</label>
-                        <select id="magazine_idupdate" wire:model="magazine_idupdate" name="magazine_idupdate" >
+                        <select id="magazine_idupdate" wire:model="magazine_idupdate" name="magazine_idupdate"  wire:change="ImageMag()">
                             <option value="">Select Magazine</option>
                             @foreach($magazines as $magazine)
                             <option value="{{ $magazine->id }}">{{ $magazine->issue_name }} {{ date("F", mktime(0, 0, 0,
                                 $magazine->month, 10)) }} {{ $magazine->year }}</option>
                             @endforeach
                         </select>
-                        <label for="issue_nameupdate">Issue Name:</label>
+                        <label for="issue_nameupdate">Issue Name:{{$selectedMagazine->image ?? 'ded'}}</label>
                         <input type="text" id="issue_nameupdate" name="issue_nameupdate" wire:model="issue_nameupdate">
-                        <img class="max-w-xs max-h-64 pb-5" id="imageupdatePreview" wire:ignore src="#" alt="Image Preview">
-                        <label for="imageupdate"
-                            class="dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2 bg-[#007bff] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#0056b3] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                            Image (.jpeg/.jpg/.png file)
-                        </label>
-                        <input type="file" id="imageupdate" name="imageupdate" wire:model="imageupdate" accept=".jpeg,.jpg,.png"
-                           hidden onchange="previewImage(event, 'imageupdatePreview')">
+                        {{-- <label for="statusupdate">Status:</label>
+                        <select id="statusupdate" wire:model="statusupdate" name="statusupdate">
+                            <option value="0">Unpublish</option>
+                            <option value="1">Published</option>
+                        </select> --}}
+                        <div class="flex flex-row gap-5">
+                            <div>
+                                <img class="max-w-xs max-h-64 pb-5" id="imagebeforePreview"  src="{{asset('storage/'. ($selectedMagazine->image ?? 'background/SampleMag.jpg'))}}" alt="Image Preview">
+                                <label for="imagebefore"
+                                    class="dark:text-slate-100">
+                                   Previous Image
+                                </label>
+                            </div>
+                           <div>
+                            <img class="max-w-xs max-h-64 pb-5" id="imageupdatePreview"  wire.ignore src="{{asset('storage/'.'background/SampleMag.jpg')}}" alt="Image Preview">
+                            <label for="imageupdate"
+                                class="dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2 bg-[#007bff] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#0056b3] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                Image (.jpeg/.jpg/.png file)
+                            </label>
+                            <input type="file" id="imageupdate" name="imageupdate" wire:model="imageupdate" accept=".jpeg,.jpg,.png"
+                               hidden onchange="previewImage(event, 'imageupdatePreview')">
+                           </div>
+                        </div>
+                        
+                        
                         <x-button type="submit"> Save </x-button>
                     </form>
                 </div>
