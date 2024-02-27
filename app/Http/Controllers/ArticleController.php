@@ -276,43 +276,5 @@ class ArticleController extends Controller
     }
 
 
-    //  search articles
-     public function search(Request $request)
-     {
-         $search = $request->input('search');
-         $months = $months ?? $request->input('months');
-         $years = $request->input('years');
- 
-         $query = Article::query();
- 
-         if (!empty($search)) {
-             $query->where('title', 'like', '%' . $search . '%');
-         }
- 
-         if (!empty($months) || !empty($years)) {
-             $query->join('magazines', 'articles.magazine_id', '=', 'magazines.id');
- 
-             if (!empty($months)) {
-                 $query->whereIn('magazines.month', $months);
-             }
- 
-             if (!empty($years)) {
-                 $query->whereIn('magazines.year', $years);
-             }
-         }
- 
-         $articles = $query->select('articles.*')->paginate(10);
- 
-         $monthList = DB::table('magazines')->distinct()->orderBy('month', 'asc')->pluck('month')->all();
-         $yearList = DB::table('magazines')->distinct()->orderBy('year', 'asc')->pluck('year')->all();
- 
-         return view('article.search', [
-             'articles' => $articles,
-             'search' => $search,
-             'months' => $months,
-             'years' => $years,
-             'monthList' => $monthList,
-             'yearList' => $yearList,
-         ]);
-     }
+    
 }

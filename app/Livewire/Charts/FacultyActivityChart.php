@@ -20,6 +20,13 @@ class FacultyActivityChart extends Component
 
         $labels = $faculties->pluck('name')->toArray();
         $articles = Faculty::withCount('articles')->get()->pluck('articles_count')->toArray();
+        $particles = Faculty::withCount(['articles' => function ($query) {
+            $query->where('published', 1);
+        }])
+        ->get()
+        ->pluck('articles_count')
+        ->toArray();
+        //dd($particles);
         $users = $faculties->pluck('users_count')->toArray();
        
         $Fchart = app()->chartjs
@@ -29,9 +36,14 @@ class FacultyActivityChart extends Component
         ->labels($labels)
         ->datasets([
             [
-                "label" =>   "Articles",
-                'backgroundColor' => '#00FA9A',
+                "label" =>   "Upload Articles",
+                'backgroundColor' => 'red',
                 'data' => $articles
+            ],
+            [
+                "label" =>   "Published Articles",
+                'backgroundColor' => '#00FA9A',
+                'data' => $particles
             ],
             [
                 "label" =>  "Users Count",

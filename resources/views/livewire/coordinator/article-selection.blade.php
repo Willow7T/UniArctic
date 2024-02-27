@@ -18,15 +18,14 @@
                             <p>Article Count: {{$magazine->articles->count()}}</p>
                         </div>
                             <label for="selected_magazine_{{$magazine->id}}" id="magazine_{{$magazine->id}}"
-                                class="bg-gray-500 py-[4.5rem]">Select</label>
-                            <input type="checkbox" wire:model="magazine_ids" name="selected_magazine_{{$magazine->id}}"
+                                class="bg-gray-500 py-[4.5rem]"  wire:ignore>Select</label>
+                            <input type="checkbox" name="selected_magazine_{{$magazine->id}}" wire:model.live="magazine_ids"
                                 value="{{$magazine->id}}" id="selected_magazine_{{$magazine->id}}" class="hidden"
                                 onchange="changeBackground(this, 'magazine_{{$magazine->id}}')">
                     </div>
                     @endforeach
                 </div>
             </div>
-                <x-button name="tester" wire:click="GetArticles()">Get Articles</x-button>
         </div>
         <div class="flex flex-col ">
             <div>

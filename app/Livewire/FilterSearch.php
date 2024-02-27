@@ -82,7 +82,7 @@ class FilterSearch extends Component
     {
         $query = Article::query();
         
-        $query->where('published', true);
+        $query->where('articles.published', true);
 
         if (!empty($this->search)) {
             $query->whereRaw('LOWER(title) LIKE ?', [strtolower('%' . $this->search . '%')]);

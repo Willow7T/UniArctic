@@ -63,9 +63,9 @@ Route::middleware([
 
 
     //without Role Middleware
-    Route::get('/articles/search', [
-        ArticleController::class, 'search'
-        ])->name('article.search');
+    Route::get('/articles/search',function () {
+        return view('article.search');
+    })->name('article.search');
    
     Route::get('/article/{id}/{title}', [
         ArticleController::class, 'show'

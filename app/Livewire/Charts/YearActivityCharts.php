@@ -17,7 +17,10 @@ class YearActivityCharts extends Component
         $currentYearData = Magazine::query()
                 ->GetYear(date('Y'))
                 ->GroupByMonth();
-                //dd($currentYearData);
+        $UncurrentYearData = Magazine::query()
+                ->GetYear(date('Y'))
+                ->GroupByUnMonth();
+               // dd($currentYearData);
         $lastYearData = Magazine::query()
                 ->GetYear(date('Y')-1)
                 ->GroupByMonth(); 
@@ -35,6 +38,11 @@ class YearActivityCharts extends Component
                         "label" =>  date('Y') . " Articles",
                         'backgroundColor' => 'lightgreen',
                         'data' => $currentYearData
+                    ],
+                    [
+                        "label" =>  date('Y') . " Total upload Articles",
+                        'backgroundColor' => 'red',
+                        'data' => $UncurrentYearData
                     ],
                     [
                         "label" =>  date('Y')-1 . " Articles",
@@ -56,6 +64,7 @@ class YearActivityCharts extends Component
 
         return view('livewire.charts.year-activity-charts', [
             'currentYearData' => $currentYearData,
+            'UncurrentYearData' => $UncurrentYearData,
             'lastYearData' => $lastYearData,
             'twoYearagoData' => $twoYearagoData,
             'Chart'=> $Chart,

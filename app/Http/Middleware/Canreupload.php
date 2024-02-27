@@ -17,7 +17,9 @@ class Canreupload
     {
         $article = $request->route('article');
         $user = $request->user(); //dd($article->published);
-        if (!$article->published && ($user->id == $article->author_id || $user->role_id == 3)) {
+        if (!$article->published && (
+            $user->id == $article->author_id 
+            || ($user->role_id == 3 && $user->facutly_id == $article->faculty_id))) {
             return $next($request);
         }
         

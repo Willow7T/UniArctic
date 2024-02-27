@@ -13,6 +13,9 @@ class FacultyYearActivity extends Component
         $currentYearData = Magazine::query()
                 ->GetYear(date('Y'))
                 ->GroupByFMonth($facultyId);
+        $uncurrentYearData = Magazine::query()
+                ->GetYear(date('Y'))
+                ->GroupByUnFMonth($facultyId);
             
         $lastYearData = Magazine::query()
                 ->GetYear(date('Y')-1)
@@ -31,6 +34,11 @@ class FacultyYearActivity extends Component
                         "label" =>  date('Y') . " Articles",
                         'backgroundColor' => 'lightgreen',
                         'data' => $currentYearData
+                    ],
+                    [
+                        "label" =>  date('Y') . " Total upload Articles",
+                        'backgroundColor' => 'red',
+                        'data' => $uncurrentYearData
                     ],
                     [
                         "label" =>  date('Y')-1 . " Articles",
@@ -52,6 +60,7 @@ class FacultyYearActivity extends Component
 
         return view('livewire.charts.faculty-year-activity', [
             'currentYearData' => $currentYearData,
+            'uncurrentYearData' => $uncurrentYearData,
             'lastYearData' => $lastYearData,
             'twoYearagoData' => $twoYearagoData,
             'FYChart'=> $FYChart,

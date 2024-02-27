@@ -45,66 +45,60 @@ class ArticleSelection extends Component
                 ->orderBy('month', 'asc')
                 ->get();
         }
-
+      
         $articles = $this->getartQuery($currentmonth, $currentyear, $nextmonth, $nextyear, 0, 0);
         $unarticles = $this->getartQuery($currentmonth, $currentyear, $nextmonth, $nextyear, 0, 1);
-       
-      
+
+
         return view(
             'livewire.coordinator.article-selection',
             [
-                'magazines' => $magazines, 'articles' => $articles , 'unarticles' => $unarticles
+                'magazines' => $magazines, 'articles' => $articles, 'unarticles' => $unarticles
             ]
         );
     }
 
     public function getartQuery($currentmonth, $currentyear, $nextmonth, $nextyear, $publish, $selected)
     {
+        $query = Article::join('magazines', 'articles.magazine_id', '=', 'magazines.id')
+            ->where('magazines.published', $publish)
+            ->where('selected', $selected)
+            ->where('faculty_id', auth()->user()->faculty_id);
+
+        if (!empty($this->magazine_ids)) {
+            $query->whereIn('magazines.id', $this->magazine_ids);
+        }
+
         if ($currentyear != $nextyear) {
-            return Article::join('magazines', 'articles.magazine_id', '=', 'magazines.id')
-                ->where('magazines.published', $publish)
-                ->where('selected', $selected)
-                ->where('faculty_id', auth()->user()->faculty_id)
-                ->where('magazines.month', '>=', $currentmonth)
+            $query->where('magazines.month', '>=', $currentmonth)
                 ->where('magazines.year', '=', $currentyear)
                 ->orWhere('magazines.month', '<=', $nextmonth)
-                ->orWhere('magazines.year', '=', $nextyear)
-                ->orderBy('magazines.year', 'asc')
-                ->orderBy('magazines.month', 'asc')
-                ->select('articles.*')
-                ->get();
+                ->orWhere('magazines.year', '=', $nextyear);
         } else {
-            return Article::join('magazines', 'articles.magazine_id', '=', 'magazines.id')
-                ->where('magazines.published', $publish)
-                ->where('selected', $selected)
-                ->where('faculty_id', auth()->user()->faculty_id)
-                ->where('magazines.year', '=', $currentyear)
+            $query->where('magazines.year', '=', $currentyear)
                 ->where('magazines.month', '>=', $currentmonth)
-                ->where('magazines.month', '<=', $nextmonth)
-                ->orderBy('magazines.year', 'asc')
-                ->orderBy('magazines.month', 'asc')
-                ->select('articles.*')
-                ->get();
+                ->where('magazines.month', '<=', $nextmonth);
         }
-    }
-    public function GetArticles()
-    {
 
+        return $query->orderBy('magazines.year', 'asc')
+            ->orderBy('magazines.month', 'asc')
+            ->select('articles.*')
+            ->get();
     }
+   
     public function MakeSelection()
     {
-        
+
         Article::whereIn('id', $this->article_ids)
-        ->update(['selected' => 1]);
+            ->update(['selected' => 1]);
         session()->flash('select', 'Articles selected successfully');
         $this->article_ids = [];
     }
     public function UndoSelection()
     {
         Article::whereIn('id', $this->unarticle_ids)
-        ->update(['selected' => 0]);
+            ->update(['selected' => 0]);
         session()->flash('unselect', 'Articles unselected successfully');
         $this->unarticle_ids = [];
-
     }
 }
