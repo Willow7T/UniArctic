@@ -11,8 +11,9 @@
                 class="bg-white border overflow-hidden shadow:sm sm:rounded-lg dark:bg-slate-900 dark:border-border-slate-950 dark:border-slate-900">
                 <x-alert type="success" class="bg-green-700 text-green-100 p-4" />
                 <x-alert type="error" class="bg-red-700 text-red-100 p-4" />
-                <div class="p-6 bg-white border-b border-gray-200 dark:bg-slate-900 dark:border-slate-950 dark:text-slate-100">
-                   
+                <div
+                    class="p-6 bg-white border-b border-gray-200 dark:bg-slate-900 dark:border-slate-950 dark:text-slate-100">
+
                     <form id="create-article" method="POST" action="{{ route('article.store') }}"
                         enctype="multipart/form-data">
                         @csrf
@@ -35,7 +36,8 @@
                                 <label for="tags"
                                     class="block text-lg font-medium text-gray-700 mb-2 dark:text-slate-100">Choose
                                     Tags</label>
-                                <div class="grid lg:grid-rows-2 lg:grid-cols-none lg:grid-flow-col grid-cols-2 gap-4 pb-3">
+                                <div
+                                    class="grid lg:grid-rows-2 lg:grid-cols-none lg:grid-flow-col grid-cols-2 gap-4 pb-3">
                                     @foreach ($tags as $tag)
                                     <div class="form-check p-2 flex flex-col justify-center object-center">
                                         <label class="form-check-label dark:text-gray-100" for="tag{{ $tag->id }}">
@@ -80,8 +82,10 @@
                             </div>
 
                             <div>
-                                <x-alert type="info" class="dark:bg-gray-600 dark:text-gray-400 text-gray-500 bg-gray-400 p-4" />
-                                <x-alert type="warning" class="bg-yellow-300 dark:bg-yellow-400 text-gray-900 dark:text-gray-50 p-4" />
+                                <x-alert type="info"
+                                    class="dark:bg-gray-600 dark:text-gray-400 text-gray-500 bg-gray-400 p-4" />
+                                <x-alert type="warning"
+                                    class="bg-yellow-300 dark:bg-yellow-400 text-gray-900 dark:text-gray-50 p-4" />
                             </div>
 
 
@@ -109,8 +113,27 @@
                                     <button class="toggle-btn"></button>
                                 </div>
                             </div>
+                            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                            <div class="mt-4">
+                                <label class="rounded" for="terms">
+                                    <div class="flex items-center">
+                                        <x-checkbox class="rounded" name="terms" id="terms" required />
 
-                    
+                                        <div class="ms-2">
+                                            {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                            'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'"
+                                                class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms
+                                                of Service').'</a>',
+                                            'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'"
+                                                class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy
+                                                Policy').'</a>',
+                                            ]) !!}
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            @endif
+
                             <div>
                                 @auth
                                 @if(auth()->user()->faculty_id)

@@ -2,7 +2,7 @@
     <div class="flex flex-row gap-5 justify-between">
         <div class="bg-red-400">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                Create a Magazine
+                Create a Monthly Issues
             </h3>
             <form wire:submit.prevent="createMagazine">
                 <x-alert type="success" class="bg-green-700 text-green-100 p-4" />
@@ -26,8 +26,8 @@
                             class="dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2 bg-[#007bff] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#0056b3] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                             Image (.jpeg/.jpg/.png file)
                         </label>
-                        <input type="file" id="image" name="image" wire:model="image" accept=".jpeg,.jpg,.png"
-                        hidden onchange="previewImage(event, 'imagePreview')">
+                        <input type="file" id="image" name="image" wire:model="image" accept=".jpeg,.jpg,.png" hidden
+                            onchange="previewImage(event, 'imagePreview')">
 
                         <x-button type="submit"> Save </x-button>
                     </div>
@@ -36,7 +36,7 @@
         </div>
         <div class="bg-red-400">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                Magazine Status
+                Monthly Issues Status
             </h3>
             <div class="flex flex-col gap-x-5">
                 <div class="relative mb-6">
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div>
-                {{-- show Magazine data --Issue name, year, month, publish, article count --}}
+                {{-- show Issue data --Issue name, year, month, publish, article count --}}
                 <table>
                     <tr>
                         <th>Issue Name</th>
@@ -89,15 +89,33 @@
                         </td>
                     </tr>
                     @endforeach
-
                 </table>
-
                 {{$magazines->links(data: ['scrollTo' => false])}}
             </div>
+            @if (auth()->user()->role_id == 1)
+            <div class="flex flex-col gap-5">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Download Year Magazine
+                </h3>
+                <div class="flex flex-row gap-4">
+                    <select id="yeardown" wire:model="yeardown" name="yeardown">
+                        <option value="">Year</option>
+                        @foreach($yearMagList as $yearItem)
+                        <option value="{{ $yearItem }}">{{ $yearItem }}</option>
+                        @endforeach
+                    </select>
+                    <x-button wire:click="Yeardown" name="year-down-button">
+                        Download year magazine .zip
+                    </x-button>
+                </div>
+                <x-alert type="noticeDown" class="bg-green-700 text-green-100 p-4" />
+                <x-alert type="errorDown" class="bg-red-700 text-green-100 p-4" />
+            </div>
+            @endif
         </div>
         <div class="bg-red-400">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                Make Changes to Magazines
+                Make Changes to Monthly Issues
             </h3>
             <div class="flex flex-col gap-x-5">
                 <div class="relative mb-6">
@@ -105,46 +123,51 @@
                     <x-alert type="error2" class="bg-red-700 text-red-100 p-4" />
                     <form wire:submit.prevent="updateMagazine">
                         <div>
-                            <label for="magazine_idupdate">Magazine:</label>
-                        <select id="magazine_idupdate" wire:model="magazine_idupdate" name="magazine_idupdate"  wire:change="ImageMag()">
-                            <option value="">Select Magazine</option>
-                            @foreach($magazines as $magazine)
-                            <option value="{{ $magazine->id }}">{{ $magazine->issue_name }} {{ date("F", mktime(0, 0, 0,
-                                $magazine->month, 10)) }} {{ $magazine->year }}</option>
-                            @endforeach
-                        </select>
+                            <label for="magazine_idupdate">Monthly Issues:</label>
+                            <select id="magazine_idupdate" wire:model="magazine_idupdate" name="magazine_idupdate"
+                                wire:change="ImageMag()">
+                                <option value="">Select an Issue</option>
+                                @foreach($magazines as $magazine)
+                                <option value="{{ $magazine->id }}">{{ $magazine->issue_name }} {{ date("F", mktime(0,
+                                    0, 0,
+                                    $magazine->month, 10)) }} {{ $magazine->year }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div>
                             <label for="issue_nameupdate">Issue Name: </label>
-                        <input type="text" id="issue_nameupdate" name="issue_nameupdate" wire:model="issue_nameupdate">
+                            <input type="text" id="issue_nameupdate" name="issue_nameupdate"
+                                wire:model="issue_nameupdate">
                         </div>
-                        
+
                         <div>
                             <label for="statusupdate">Status:</label>
-                        <select id="statusupdate" wire:model="statusupdate" name="statusupdate">
-                            <option value="0">Unpublish</option>
-                            <option value="1">Published</option>
-                        </select>
+                            <select id="statusupdate" wire:model="statusupdate" name="statusupdate">
+                                <option value="0">Unpublish</option>
+                                <option value="1">Published</option>
+                            </select>
                         </div>
-                        
+
                         <div class="flex flex-row gap-5">
                             <div>
-                                <label for="imagebefore"
-                                    class="dark:text-slate-100">
-                                   Previous Image
+                                <label for="imagebefore" class="dark:text-slate-100">
+                                    Previous Image
                                 </label>
-                                <img class="max-w-xs max-h-64 pb-5" id="imagebeforePreview"  src="{{asset('storage/'. ($selectedMagazine->image ?? 'background/SampleMag.jpg'))}}" alt="Image Preview">
+                                <img class="max-w-xs max-h-64 pb-5" id="imagebeforePreview"
+                                    src="{{asset('storage/'. ($selectedMagazine->image ?? 'background/SampleMag.jpg'))}}"
+                                    alt="Image Preview">
                             </div>
-                           <div>
-                            <p>Image Preview</p>
-                            <img class="max-w-xs max-h-64 pb-5" id="imageupdatePreview" wire:ignore src="#" alt="">
-                            <label for="imageupdate"
-                                class="dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2 bg-[#007bff] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#0056b3] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                Image (.jpeg/.jpg/.png file)
-                            </label>
-                            <input type="file" id="imageupdate" name="imageupdate" wire:model="imageupdate" accept=".jpeg,.jpg,.png"
-                               hidden onchange="previewImage(event, 'imageupdatePreview')">
-                           </div>
+                            <div>
+                                <p>Image Preview</p>
+                                <img class="max-w-xs max-h-64 pb-5" id="imageupdatePreview" wire:ignore src="#" alt="">
+                                <label for="imageupdate"
+                                    class="dark:text-slate-100 dark:bg-[#5a32a3] dark:hover:bg-[#6f42c1] px-4 py-2 bg-[#007bff] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#0056b3] focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                    Image (.jpeg/.jpg/.png file)
+                                </label>
+                                <input type="file" id="imageupdate" name="imageupdate" wire:model="imageupdate"
+                                    accept=".jpeg,.jpg,.png" hidden
+                                    onchange="previewImage(event, 'imageupdatePreview')">
+                            </div>
                         </div>
                         <x-button type="submit"> Save </x-button>
                     </form>
@@ -154,7 +177,7 @@
     </div>
 </div>
 <script>
-function previewImage(event, imageId) {
+    function previewImage(event, imageId) {
     var reader = new FileReader();
     reader.onload = function(e) {
         var img = new Image();
