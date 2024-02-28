@@ -38,8 +38,8 @@
         <div class="lg:col-span-1 lg:block">
 
         </div>
-        <div class="lg:col-span-4" id="section3">
-            <div class="mx-auto sm:px-6 lg:px-8 ">
+        <div class="lg:col-span-4 w-fill" id="section3">
+            <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
                     <h2 class="text-center text-lg font-bold p-4">Newsletter</h2>
                     @livewire('home.newsletter-send')

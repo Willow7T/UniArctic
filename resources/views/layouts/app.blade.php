@@ -44,7 +44,7 @@
 
         @stack('modals')
 
-        @bukStyles
+   
         @livewireScripts
     </body>
 </html>
