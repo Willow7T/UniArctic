@@ -1,7 +1,7 @@
 <div>
-    <div class="flex flex-row overflow-auto">
-        @foreach ($faculties as $faculty )
-    <div wire:click="buttonFaculty({{$faculty->id}})" data-modal-target="default-modal-1"
+    {{-- <div class="flex flex-row">
+        @foreach ($faculties as $faculty ) --}}
+    {{-- <div wire:click="buttonFaculty({{$faculty->id}})" data-modal-target="default-modal-1"
         data-modal-toggle="default-modal-1">
         {{-- Write Here for photo use this$faculty->image--}}Test
         <img class="w-20" src="{{asset('storage/'.$faculty->image)}}" alt="Imageback">
@@ -43,3 +43,23 @@
             </div>
         </div>
 </div>
+<script>
+    const config = {
+  type: 'carousel',
+  startAt: 0,
+  perView: 4,
+  gap: 32,
+  breakpoints: {
+    1280: {
+      perView: 3,
+    },
+    1024: {
+      perView: 2,
+    },
+    768: {
+      perView: 1,
+    }
+  }
+}
+new Glide('.glide', config).mount()
+</script>
