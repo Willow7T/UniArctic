@@ -1,4 +1,5 @@
-<nav x-data="{ open: false }" class="bg-white/20 border-b backdrop-blur-sm border-gray-200/30 dark:border-gray-900/30 dark:bg-slate-900/10 rounded">
+<nav x-data="{ open: false }"
+    class="bg-white/20 border-b backdrop-blur-sm border-gray-200/30 dark:border-gray-900/30 dark:bg-slate-900/10 rounded">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex w-7xl justify-between h-16">
@@ -131,53 +132,68 @@
     {{--button for creating articles student acc only--}}
     @if(Route::currentRouteName() != 'admindashboard')
     @if (Auth::user()->role_id == 1)
-    <div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
-        <x-button class="bg-blue-500 hover:bg-blue-700">
-            <a href="{{ route('admindashboard') }}">Admin Dashboard</a>
-        </x-button>
-    </div>
+    <a href="{{ route('admindashboard') }}">
+        <div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
+            <x-button class="bg-blue-500 hover:bg-blue-700">
+                Admin Dashboard
+            </x-button>
+        </div>
+    </a>
     @endif
     @endif
     @if(Route::currentRouteName() != 'managerdashboard')
     @if (Auth::user()->role_id == 2)
-    <div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
-        <x-button class="bg-blue-500 hover:bg-blue-700">
-            <a href="{{ route('managerdashboard') }}">Manager Dashboard</a>
-        </x-button>
-    </div>
+    <a href="{{ route('managerdashboard') }}">
+        <div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
+            <x-button class="bg-blue-500 hover:bg-blue-700">
+                Manager Dashboard
+            </x-button>
+        </div>
+    </a>
     @endif
     @endif
     @if(Route::currentRouteName() != 'coordinatordashboard')
     @if (Auth::user()->role_id == 3)
-    <div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
-        @if (Auth::user()->faculty_id)
-            <x-button class="bg-blue-500 hover:bg-blue-700">
-                <a href="{{ route('coordinatordashboard') }}">Coordinator Dashboard</a>
-            </x-button>
-        @else
-            <x-button class="bg-blue-500 hover:bg-blue-700" disabled>
-                <a>Coordinator Dashboard</a>
-            </x-button>
-        @endif
-    </div>
-    @endif
-@endif
-@if(Route::currentRouteName() != 'article.create')
-@if (Auth::user()->role_id == 4)
-<div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
     @if (Auth::user()->faculty_id)
-        <x-button class="bg-blue-500 hover:bg-blue-700">
-            <a href="{{ route('article.create') }}">Write an Article</a>
-        </x-button>
+    <a href="{{ route('coordinatordashboard') }}">
+        <div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
+            <x-button class="bg-blue-500 hover:bg-blue-700">
+                Coordinator Dashboard
+            </x-button>
+        </div>
+    </a>
     @else
-        <x-button class="bg-blue-500 hover:bg-blue-700" disabled>
-            <a>Write an Article</a>
-        </x-button>
+    <a>
+        <div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
+            <x-button class="bg-blue-500 hover:bg-blue-700" disabled>
+                Coordinator Dashboard
+            </x-button>
+        </div>
+    </a>
     @endif
-</div>
-@endif
-@endif
-
+    @endif
+    @endif
+    @if(Route::currentRouteName() != 'article.create')
+    @if (Auth::user()->role_id == 4)
+    @if (Auth::user()->faculty_id)
+    <a href="{{ route('article.create') }}">
+        <div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
+            <x-button class="bg-blue-500 hover:bg-blue-700">
+                Write an Article
+            </x-button>
+        </div>
+    </a>
+    @else
+    <a>
+        <div class="absolute right-3 top-[4.75rem] space-x-8 sm:-my-px sm:ms-10 sm:flex">
+            <x-button class="bg-blue-500 hover:bg-blue-700" disabled>
+                Write an Article
+            </x-button>
+        </div>
+    </a>
+    @endif
+    @endif
+    @endif
 
 
 
