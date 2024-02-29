@@ -1,14 +1,5 @@
 <div>
-    <div class="container text-[0.7rem] text-center pb-10">
-        @foreach ($magazines as $magazine)
-          <div class="content shadow-lg hover:text-[1.25rem] shadow-sky-300 hover:shadow-sky-500 dark:shadow-purple-500 dark:hover:shadow-purple-300"
-          wire:click="buttonMagazine({{$magazine->id}})" data-modal-target="default-modal-2"
-        data-modal-toggle="default-modal-2">
-            <img src="{{ asset('storage/' . $magazine->image) }}" alt="{{ $magazine->name }}">
-            <h5> {{$magazine->issue_name}} {{ DateTime::createFromFormat('!m', $magazine->month)->format('F') }} {{$magazine->year}}</h5>
-          </div>
-        @endforeach
-      </div>
+   
         {{-- <div class="flex flex-row overflow-auto">
             @foreach ($magazines as $magazine )
                 <div wire:click="buttonMagazine({{$magazine->id}})" data-modal-target="default-modal-2"
@@ -18,6 +9,31 @@
         </div>
         @endforeach --}}
         {{-- </div> --}}
+        <div class="relative">
+            <div class="slides-container h-72 flex snap-x snap-mandatory overflow-hidden overflow-x-auto space-x-2 rounded scroll-smooth before:w-[45vw] before:shrink-0 after:w-[45vw] after:shrink-0 md:before:w-0 md:after:w-0">
+                @foreach ($magazines as $magazine)
+                    <div class="slide aspect-square h-full flex-shrink-0 snap-center rounded overflow-hidden hover:text-[25px] hover:w-72" 
+                    wire:click="buttonMagazine({{$magazine->id}})" data-modal-target="default-modal-2" data-modal-toggle="default-modal-2">
+                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $magazine->image) }}" alt="{{ $magazine->name }}">
+                        <div class="relative flex items-center justify-center">
+                          <h5 class="w-full absolute bottom-0 backdrop-blur-lg text-center">{{$magazine->issue_name}} {{ DateTime::createFromFormat('!m', $magazine->month)->format('F') }} {{$magazine->year}}</h5>
+                        </div>      
+                    </div>
+                @endforeach
+            </div>
+            <div class="absolute top-0 -left-4 h-full items-center hidden md:flex">
+              <button role="button" class="prev px-2 py-2 rounded-full bg-neutral-100 text-neutral-900 group" aria-label="prev"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 group-active:-translate-x-2 transition-all duration-200 ease-linear">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+            </div>
+            <div class="absolute top-0 -right-4 h-full items-center hidden md:flex">
+                <button role="button" class="next px-2 py-2 rounded-full bg-neutral-100 text-neutral-900 group" aria-label="next"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 group-active:translate-x-2 transition-all duration-200 ease-linear">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </button>
+            </div>
+        </div>
     
         <div id="default-modal-2" tabindex="-1" wire:ignore.self aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">

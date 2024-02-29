@@ -25,7 +25,7 @@
         
         </style>
     </head>
-    <body class="antialiased newer">
+    <body class="antialiased newer dark:bg-slate-900">
        
         {{-- <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 selection:bg-red-500 selection:text-white" style="background-image: url('{{ asset('storage/background/uniback.jpg') }}')"> --}}
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-gray-200 dark:bg-gray-900 selection:bg-red-500 selection:text-white">
@@ -87,6 +87,9 @@
                 </div>
             </section>
         </div>
+        {{-- <div  class="bg-white dark:bg-slate-900 shadow-xl rounded-lg p-10 mt-8">
+            @include('footer')
+        </div> --}}
     </body>
 </html>
 
