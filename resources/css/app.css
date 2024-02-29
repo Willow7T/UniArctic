@@ -1,11 +1,6 @@
-.backgroud-image {
-    /* CSS properties */
-}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
 [x-cloak] {
     display: none;
 }
