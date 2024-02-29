@@ -2,13 +2,16 @@
 
 namespace App\Livewire;
 
+use App\Mail\ToNewsletter;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Magazine;
 use Livewire\WithoutUrlPagination;
 use App\Models\Article;
 use Livewire\WithPagination;
+use App\Models\Newsletter;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use ZipArchive;
 use DateTime;
 
@@ -25,7 +28,7 @@ class IssueMagPanel extends Component
     public $magazine_idupdate;
     public $issue_nameupdate;
     public $imageupdate;
-    public $statusupdate =0;
+    public $statusupdate = 0;
 
     public $status;
     public $search;
@@ -36,10 +39,20 @@ class IssueMagPanel extends Component
 
     public $selectedMagazine;
     protected $queryString = ['status', 'search', 'months', 'years'];
- 
+
     public function ImageMag()
     {
-        $this->selectedMagazine = Magazine::find($this->magazine_idupdate);
+
+        if (!empty($this->magazine_idupdate)) {
+            $this->selectedMagazine = Magazine::find($this->magazine_idupdate);
+            if ($this->selectedMagazine->published == 1) {
+                $this->statusupdate = 1;
+            }
+            else {
+                $this->statusupdate = 0;
+            }
+           
+        }
 
     }
 
@@ -73,7 +86,7 @@ class IssueMagPanel extends Component
                 'image' => $imagepath,
                 'created_at' => now(),
                 'updated_at' => now(),
-                
+
             ]);
 
             if ($magazine) {
@@ -163,7 +176,7 @@ class IssueMagPanel extends Component
                 }
             }
 
-            
+
             if ($this->imageupdate) {
                 $magazine->image = $imageUpdatePath;
             }
@@ -172,19 +185,23 @@ class IssueMagPanel extends Component
                 $magazine->issue_name = $this->issue_nameupdate;
             }
 
-            if($this->statusupdate ==1)
-            {
+            if ($this->statusupdate == 1) {
                 $magazine->articles()->where('selected', true)->update(['published' => true]);
-                $magazine->published = $this->statusupdate; 
+                $magazine->published = $this->statusupdate;
 
-            }
-            else
-            {
+                // Get all users in the newsletter table
+                $newsletterUsers = Newsletter::all();
+
+                // Loop through each user and send the email
+                foreach ($newsletterUsers as $user) {
+                    Mail::to($user->email)->send(new ToNewsletter($magazine));
+                }
+            } else {
                 $magazine->articles()->where('selected', true)->update(['published' => false]);
-                $magazine->published = $this->statusupdate; 
+                $magazine->published = $this->statusupdate;
             }
-           
-            
+
+
             $magazine->save();
 
             session()->flash('success2', 'An Issue was updated successfully.');
@@ -196,20 +213,20 @@ class IssueMagPanel extends Component
         $this->reset('issue_nameupdate');
         $this->reset('statusupdate');
 
-        return $this->issue_name ;
+        return $this->issue_name;
     }
 
     public function download(Magazine $magazine)
     {
         // Check if the user is authorized to download the article
         $user = auth()->user();
-        if ($user->role_id != 1 && $user->role_id != 2 ) {
+        if ($user->role_id != 1 && $user->role_id != 2) {
             abort(403, 'Unauthorized action.');
         }
         //Get all articles of user
         $articles = Article::where('magazine_id', $magazine->id)->where('published', true)->get();
         if ($articles->isEmpty()) {
-            return session()->flash('noticeDown' , 'No published articles found for this issue.');
+            return session()->flash('noticeDown', 'No published articles found for this issue.');
         }
         $zip = new ZipArchive;
         $issueName = str_replace(' ', '_', $magazine->issue_name);
@@ -219,24 +236,24 @@ class IssueMagPanel extends Component
             foreach ($articles as $article) {
                 $filePath = storage_path('app/public/' . $article->content);
                 if (file_exists($filePath)) {
-                    $fileName = $magazine->month. '_' .DateTime::createFromFormat('!m', $magazine->month)->format('F').'_'. $magazine->year. '_' . $issueName.'_'. $article->author->name.'_'.'.docx';
+                    $fileName = $magazine->month . '_' . DateTime::createFromFormat('!m', $magazine->month)->format('F') . '_' . $magazine->year . '_' . $issueName . '_' . $article->author->name . '_' . '.docx';
                     $zip->addFile($filePath, $fileName);
                 }
             }
-        
+
             // Close the zip file
             $zip->close();
         } else {
             abort(500, 'Could not create zip file.');
         }
-        
+
         // Download the zip file
         return response()->download($zipFileName)->deleteFileAfterSend(true);
     }
 
     public function Yeardown()
     {
-        
+
 
         $user = auth()->user();
         if ($user->role_id != 1) {
@@ -251,7 +268,7 @@ class IssueMagPanel extends Component
             $query->where('year', $this->yeardown);
         })->where('published', true)->get();
         if ($articles->isEmpty()) {
-            return session()->flash('noticeDown' , 'No published articles found for this Magazine.');
+            return session()->flash('noticeDown', 'No published articles found for this Magazine.');
         }
         $zip = new ZipArchive;
         $zipFileName = storage_path('app/public/' . $this->yeardown . '_articles.zip');
@@ -260,19 +277,18 @@ class IssueMagPanel extends Component
             foreach ($articles as $article) {
                 $filePath = storage_path('app/public/' . $article->content);
                 if (file_exists($filePath)) {
-                    $fileName = $article->magazine->month. '_'. DateTime::createFromFormat('!m', $article->magazine->month)->format('F'). '_' . $article->magazine->year .'_'. $article->magazine->issue_name. '_' . $article->author->name .'_'.'.docx';
+                    $fileName = $article->magazine->month . '_' . DateTime::createFromFormat('!m', $article->magazine->month)->format('F') . '_' . $article->magazine->year . '_' . $article->magazine->issue_name . '_' . $article->author->name . '_' . '.docx';
                     $zip->addFile($filePath, $fileName);
                 }
             }
-        
+
             // Close the zip file
             $zip->close();
         } else {
             abort(500, 'Could not create zip file.');
         }
-        
+
         // Download the zip file
         return response()->download($zipFileName)->deleteFileAfterSend(true);
-
     }
 }

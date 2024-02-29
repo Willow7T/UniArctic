@@ -142,7 +142,7 @@
 
                         <div>
                             <label for="statusupdate">Status:</label>
-                            <select id="statusupdate" wire:model="statusupdate" name="statusupdate">
+                            <select id="statusupdate" wire:model="statusupdate" name="statusupdate"> 
                                 <option value="0">Unpublish</option>
                                 <option value="1">Published</option>
                             </select>
