@@ -7,16 +7,19 @@
             <p class="p-2">Connect with us and learn from other members of our community.</p>
             <b class="p-2">Subscribe Now!</b>
         </div>
-        <div class="py-8 lg:col-span-3 mx-4">
-            <input type="email" name="email" id="email" wire:model="email" required>
-            <x-button wire:click="subscribe">Subscribe</x-button>
-            <x-secondary-button wire:click="unsubscribe" class="dark:bg-slate-900 dark:text-red-400 text-red-500 
-            border-red-500 dark:border-red-400 hover:bg-red-300 hover:text-red-100 dark:hover:bg-red-500 dark:hover:text-red-300">Unsubscribe</x-secondary-button>
-            <div wire:loading wire:target="subscribe">
-                Processing...
+        <div class="py-16 lg:col-span-3 flex flex-row gap-2">
+            <div>
+                <input class="rounded" type="email" name="email" id="email" wire:model="email" required>
+                <p wire:click="unsubscribe" class="text-red-400 text-right hover:cursor-pointer hover:text-red-500">Unsubcribe</p>
+            </div>
+            <div>
+                <x-button wire:click="subscribe">Subscribe</x-button>
+
             </div>
         </div>
+        
     </div>
-    
-   
+</div>
+
+
 </div>
