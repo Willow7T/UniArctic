@@ -32,6 +32,7 @@ class StudentArticles extends Component
 
 
         return view('livewire.coordinator.student-articles', [
+            'user' => $user, 
         'publishedarticles' => $publishedarticles ,'unpublishedarticles' => $unpublishedarticles 
         , 'publishedCount' => $publishedCount, 'unpublishedCount' => $unpublishedCount]);
     }

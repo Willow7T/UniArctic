@@ -34,7 +34,7 @@
                 </div>
             </form>
         </div>
-        <div class="bg-red-400">
+        <div>
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                 Monthly Issues Status
             </h3>
@@ -64,25 +64,25 @@
                     </select>
                 </div>
             </div>
-            <div>
+            <div class="">
                 {{-- show Issue data --Issue name, year, month, publish, article count --}}
-                <table>
+                <table class="border-collapse border border-slate-500 w-fit m-auto">
                     <tr>
-                        <th>Issue Name</th>
-                        <th>Year</th>
-                        <th>Month</th>
-                        <th>Publish</th>
-                        <th>Article Count</th>
-                        <th>Download Published</th>
+                        <th class="border border-slate-600 ">Issue Name</th>
+                        <th class="border border-slate-600 ">Year</th>
+                        <th class="border border-slate-600 ">Month</th>
+                        <th class="border border-slate-600 ">Publish</th>
+                        <th class="border border-slate-600 ">Article Count</th>
+                        <th class="border border-slate-600 ">Download Published</th>
                     </tr>
-                    @foreach($magazines as $magazine)
-                    <tr>
-                        <td>{{ $magazine->issue_name }}</td>
-                        <td>{{ $magazine->year }}</td>
-                        <td>{{ date("F", mktime(0, 0, 0, $magazine->month, 10)) }}</td>
-                        <td>{{ $magazine->published ? 'Published' : 'Unpublished' }}</td>
-                        <td>{{ $magazine->articles->count() }}</td>
-                        <td>
+                    @foreach($magazines as $index=>$magazine)
+                    <tr class="{{ $index % 2 == 0 ? ' bg-gray-200 dark:bg-slate-800' : 'bg-white dark:bg-slate-900' }}">
+                        <td class="border border-slate-600 text-center">{{ $magazine->issue_name }}</td>
+                        <td class="border border-slate-600 text-center">{{ $magazine->year }}</td>
+                        <td class="border border-slate-600 text-center">{{ date("F", mktime(0, 0, 0, $magazine->month, 10)) }}</td>
+                        <td class="border border-slate-600 text-center">{{ $magazine->published ? 'Published' : 'Unpublished' }}</td>
+                        <td class="border border-slate-600 text-center">{{ $magazine->articles->count() }}</td>
+                        <td class="border border-slate-600 text-center">
                             <x-button wire:click="download({{$magazine}})" type="button" name="download">
                                 Download as zip
                             </x-button>

@@ -23,15 +23,16 @@ class StudentArticles extends Component
         $published = Article::getArticlesWAuthen($this->user_id, true);
         $unpublished = Article::getArticlesWAuthen($this->user_id, false);
 
-        $articles = $published['articles'];
+        $publishedarticles = $published['articles'];
+        $unpublishedarticles = $published['articles'];
         $publishedCount = $published['count'];
         $unpublishedCount = $unpublished['count'];
         $user = User::find($this->user_id);
         
 
         return view('livewire.student-articles', [
-            'articles' => $articles, 'user' => $user,
-             'publishedCount' => $publishedCount, 'unpublishedCount' => $unpublishedCount
-            ]);
+            'user' => $user, 
+            'publishedarticles' => $publishedarticles ,'unpublishedarticles' => $unpublishedarticles 
+            , 'publishedCount' => $publishedCount, 'unpublishedCount' => $unpublishedCount]);
     }
 }

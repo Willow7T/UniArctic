@@ -12,24 +12,25 @@
             <table class="border-collapse border border-slate-500 w-fit m-auto">
                 <thead>
                     <tr class="h-10">
-                        <th class="border border-slate-600 backdrop-blur-sm">Name</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Email</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Change Role</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Change Faculty</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Account Creation Date</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Sessions</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Articles Upload</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Check Articles</th>
+                        <th class="border border-slate-600 ">Name</th>
+                        <th class="border border-slate-600 ">Email</th>
+                        <th class="border border-slate-600 ">Change Role</th>
+                        <th class="border border-slate-600 ">Change Faculty</th>
+                        <th class="border border-slate-600 ">Account Creation Date</th>
+                        <th class="border border-slate-600 ">Sessions</th>
+                        <th class="border border-slate-600 ">Articles Upload</th>
+                        <th class="border border-slate-600 ">Check Articles</th>
+                        <th class="border border-slate-600 ">Download Published Articles as Zip</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($users as $user)
-                    <tr>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->name }}</td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{$user->email}}</td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
+                    @foreach($users as $index=> $user)
+                    <tr class="{{ $index % 2 == 0 ? ' bg-gray-200 dark:bg-slate-800' : 'bg-white dark:bg-slate-900' }}">
+                        <td class="border border-slate-600 text-center p-4 ">{{ $user->name }}</td>
+                        <td class="border border-slate-600 text-center p-4 ">{{$user->email}}</td>
+                        <td class="border border-slate-600 text-center p-4 ">
                             <select wire:change="updateUserRole({{ $user->id }}, $event.target.value)"
-                                class="backdrop-blur-sm block w-auto py-2 px-3 border-0 outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-100">
+                                class=" block w-auto py-2 px-3 border-0 outline-none focus:ring-0 dark:text-slate-100 {{ $index % 2 == 0 ? ' bg-gray-200 dark:bg-slate-800' : 'bg-white dark:bg-slate-900' }}">
                                 @foreach($roles as $role)
                                 <option value="{{ $role->id }}" {{ $user->role_id == $role->id ? 'selected' : '' }}>{{
                                     $role->name }}</option>
@@ -37,9 +38,9 @@
                             </select>
                         </td>
                         </td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
+                        <td class="border border-slate-600 text-center p-4 ">
                             <select wire:change="updateUserFaculty({{ $user->id }}, $event.target.value)"
-                                class="backdrop-blur-sm block w-auto py-2 px-3 border-0 outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-100">
+                                class=" block w-auto py-2 px-3 border-0 outline-none focus:ring-0 dark:text-slate-100 {{ $index % 2 == 0 ? ' bg-gray-200 dark:bg-slate-800' : 'bg-white dark:bg-slate-900' }}">
                                 <option value="">No Faculty</option>
                                 @foreach($faculties as $faculty)
                                 <option value="{{ $faculty->id }}" {{ $user->faculty_id == $faculty->id ? 'selected' :
@@ -47,12 +48,12 @@
                                 @endforeach
                             </select>
                         </td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->created_at ??
+                        <td class="border border-slate-600 text-center p-4 ">{{ $user->created_at ??
                             'Data Deleted or
                             Nothing to Show' }}</td>
                         {{-- $session->agent->browser() --}}
                         @if($user->sessions()->isNotEmpty())
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
+                        <td class="border border-slate-600 text-center p-4 ">
                         @foreach ($user->sessions() as $session)
                         @php
                         $browser = Browser::parse($session->user_agent);
@@ -61,19 +62,19 @@
                         {{ $browserName ?? 'No Browser Information Available' }}, 
                         @endforeach
                         @else</td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">No sessions available</td>
+                        <td class="border border-slate-600 text-center p-4 ">No sessions available</td>
                         @endif
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->articles_count ??
+                        <td class="border border-slate-600 text-center p-4 ">{{ $user->articles_count ??
                             'No Article Upload'
                             }}</td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
+                        <td class="border border-slate-600 text-center p-4 ">
                             <x-button wire:click="buttonClicked({{$user->id}})" data-modal-target="default-modal"
-                                data-modal-toggle="default-modal" class="" type="button">
+                                data-modal-toggle="default-modal"  type="button">
                                 Check
                             </x-button>
                             
                         </td>
-                        <td>
+                        <td class="border border-slate-600 text-center p-4">
                             <x-button wire:click="download({{$user->id}})" type="button" name="download">
                                 Download as zip
                             </x-button>
