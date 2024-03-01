@@ -1,42 +1,12 @@
 <div>
-    {{-- <div class="flex flex-row">
-        @foreach ($faculties as $faculty ) --}}
-    {{-- <div wire:click="buttonFaculty({{$faculty->id}})" data-modal-target="default-modal-1"
-        data-modal-toggle="default-modal-1">
-        Write Here for photo use this$faculty->image
-        <img class="w-20" src="{{asset('storage/'.$faculty->image)}}" alt="{{$faculty->name}}">
-        <h3>
-            {{$faculty->name}}
-        </h3>
-    </div> --}} 
-
-    {{-- <div class="container text-[0.7rem] text-center pb-10">
-        @foreach ($faculties as $faculty) 
-          <div class="content shadow-lg hover:text-[1.25rem] shadow-sky-300 hover:shadow-sky-500 dark:shadow-purple-500 dark:hover:shadow-purple-300" wire:click="buttonFaculty({{ $faculty->id }})" data-modal-target="default-modal-1" data-modal-toggle="default-modal-1">
-            <img src="{{ asset('storage/' . $faculty->image) }}" alt="{{ $faculty->name }}">
-            <h5>{{ $faculty->name }}</h5>
-            <img src="{{ asset('storage/' . $faculty->image) }}" alt="{{ $faculty->name }}" class="">
-        </div>
-        @endforeach
-      </div> --}}
       <div class="relative px-8">
-          {{-- <div class="slides-container h-72 flex snap-x snap-mandatory overflow-hidden overflow-x-auto space-x-2 rounded scroll-smooth before:w-[45vw] before:shrink-0 after:w-[45vw] after:shrink-0 md:before:w-0 md:after:w-0">
-              @foreach ($faculties as $faculty)
-                  <div class="slide aspect-square h-full flex-shrink-0 snap-center rounded overflow-hidden hover:text-[25px] hover:w-72" wire:click="buttonFaculty({{ $faculty->id }})" data-modal-target="default-modal-1" data-modal-toggle="default-modal-1">
-                      <img class="w-full h-full object-cover" src="{{ asset('storage/' . $faculty->image) }}" alt="{{ $faculty->name }}">
-                      <div class="relative flex items-center justify-center">
-                        <h5 class="w-full absolute bottom-0 backdrop-blur-lg text-center">{{ $faculty->name }}</h5>
-                      </div>      
-                  </div>
-              @endforeach
-          </div> --}}
             <div class="slides-container h-80 flex snap-x snap-mandatory overflow-hidden overflow-x-auto space-x-10 rounded scroll-smooth before:w-[45vw] before:shrink-0 after:w-[45vw] after:shrink-0 md:before:w-0 md:after:w-0">
               @foreach ($faculties as $faculty)
               <div class="slide aspect-square flex-shrink-0 snap-center rounded overflow-hidden bg-white dark:bg-gray-800 dark:text-white
                   shadow-lg shadow-sky-300 hover:shadow-sky-500 dark:shadow-purple-500 dark:hover:shadow-purple-300
                   flex flex-col items-center justify-center w-48 m-2" wire:click="buttonFaculty({{ $faculty->id }})" data-modal-target="default-modal-1" data-modal-toggle="default-modal-1">
                   <img class="w-full h-64 object-cover" src="{{ asset('storage/' . $faculty->image) }}" alt="{{ $faculty->name }}">
-                  <h5 class="w-full h-16 text-center">{{ $faculty->name }}</h5>
+                  <h5 class="w-full h-16 text-center mt-2">{{ $faculty->name }}</h5>
               </div>
               @endforeach
           </div>
@@ -53,7 +23,6 @@
             </button>
           </div>
       </div>
-      
 
     <div id="default-modal-1" tabindex="-1" wire:ignore.self aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">

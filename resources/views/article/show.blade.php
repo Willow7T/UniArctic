@@ -150,13 +150,29 @@
 
             </div>
             @if (auth()->user()->id == $article->author_id || auth()->user()->role_id == 3 || auth()->user()->role_id == 2)
-            <div class=" xl:fixed left-0 top-36 bg-red-500">
-                @livewire('faculty-comment', ['article' => $article])
-            </div>
+            <section class="fixed bg-gray-200/50 p-4 left-0 top-64 backdrop-blur-sm z-30 dark:text-slate-100 dark:bg-slate-900/50">           
+                <div class="" onmouseover="showNav()" onmouseout="hideNav()">
+                    <h1>Coordinator's Comment</h1>   
+                    <ul class="p-3" id="nav" style="display: none;">
+                        @livewire('faculty-comment', ['article' => $article])
+                    </ul>
+                </div>      
+            </section>
             @endif
         </div>
     </div>
-
+    <div  class="bg-white dark:bg-slate-900 shadow-xl rounded-lg p-10">
+        @include('footer')
+    </div>
 
 
 </x-app-layout>
+<script>
+    function showNav() {
+        document.getElementById("nav").style.display = "block";
+    }
+
+    function hideNav() {
+        document.getElementById("nav").style.display = "none";
+    }
+</script>
