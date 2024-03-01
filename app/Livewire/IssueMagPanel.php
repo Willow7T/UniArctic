@@ -45,6 +45,7 @@ class IssueMagPanel extends Component
 
         if (!empty($this->magazine_idupdate)) {
             $this->selectedMagazine = Magazine::find($this->magazine_idupdate);
+            $this->issue_nameupdate =$this->selectedMagazine->issue_name ;
             if ($this->selectedMagazine->published == 1) {
                 $this->statusupdate = 1;
             }

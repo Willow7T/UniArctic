@@ -50,15 +50,15 @@
                 <table class="border-collapse border border-slate-500 w-fit m-auto">
                     <thead>
                         <tr class="h-10">
-                            <th class="border border-slate-600 backdrop-blur-sm">Name</th>
-                            <th class="border border-slate-600 backdrop-blur-sm w-32"> User Count </th>
+                            <th class="border border-slate-600 ">Name</th>
+                            <th class="border border-slate-600  w-32"> User Count </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($faculties as $faculty)
-                        <tr class="h-10">
-                            <td class="border border-slate-600 backdrop-blur-sm">{{ $faculty->name }}</td>
-                            <td class="border border-slate-600 backdrop-blur-sm text-center">{{ $faculty->users->count()
+                        @foreach($faculties as $index=>$faculty)
+                        <tr class="h-10 {{ $index % 2 == 0 ? ' bg-gray-200 dark:bg-slate-800' : 'bg-white dark:bg-slate-900' }} ">
+                            <td class="border border-slate-600 ">{{ $faculty->name }}</td>
+                            <td class="border border-slate-600  text-center">{{ $faculty->users->count()
                                 }}</td>
                         </tr>
                         @endforeach
