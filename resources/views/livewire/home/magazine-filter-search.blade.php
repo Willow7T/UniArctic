@@ -1,9 +1,9 @@
 <div>
 
         <div class="relative px-8">
-            <div class="slides-container h-80 flex snap-x snap-mandatory overflow-hidden overflow-x-auto space-x-10 rounded scroll-smooth before:w-[45vw] before:shrink-0 after:w-[45vw] after:shrink-0 md:before:w-0 md:after:w-0">
+            <div class="slides-container2 h-80 flex snap-x snap-mandatory overflow-hidden overflow-x-auto space-x-10 rounded scroll-smooth before:w-[45vw] before:shrink-0 after:w-[45vw] after:shrink-0 md:before:w-0 md:after:w-0">
               @foreach ($magazines as $magazine)
-              <div class="slide aspect-square flex-shrink-0 snap-center rounded overflow-hidden bg-white dark:bg-gray-800 dark:text-white
+              <div class="slide2 aspect-square flex-shrink-0 snap-center rounded overflow-hidden bg-white dark:bg-gray-800 dark:text-white
                   shadow-lg shadow-sky-300 hover:shadow-sky-500 dark:shadow-purple-500 dark:hover:shadow-purple-300
                   flex flex-col items-center justify-center w-48 m-2" 
                   wire:click="buttonMagazine({{$magazine->id}})" data-modal-target="default-modal-2" data-modal-toggle="default-modal-2">
@@ -13,13 +13,13 @@
               @endforeach
           </div>
           <div class="absolute top-0 -left-4 h-full items-center hidden md:flex">
-            <button role="button" class="prev px-2 py-2 rounded-full bg-neutral-100 text-neutral-900 group" aria-label="prev"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 group-active:-translate-x-2 transition-all duration-200 ease-linear">
+            <button role="button" class="prev2 px-2 py-2 rounded-full bg-neutral-100 text-neutral-900 group" aria-label="prev2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 group-active:-translate-x-2 transition-all duration-200 ease-linear">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
           </button>
           </div>
           <div class="absolute top-0 -right-4 h-full items-center hidden md:flex">
-              <button role="button" class="next px-2 py-2 rounded-full bg-neutral-100 text-neutral-900 group" aria-label="next"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 group-active:translate-x-2 transition-all duration-200 ease-linear">
+              <button role="button" class="next2 px-2 py-2 rounded-full bg-neutral-100 text-neutral-900 group" aria-label="next2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 group-active:translate-x-2 transition-all duration-200 ease-linear">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
               </svg>
             </button>
@@ -58,3 +58,18 @@
             </div>
         </div>
 </div>
+<script>
+    const slidesContainer2 = document.querySelector(".slides-container2");
+    const slideWidth2 = slidesContainer2.querySelector(".slide2").clientWidth;
+    const prev2Button = document.querySelector(".prev2");
+    const next2Button = document.querySelector(".next2");
+    
+    next2Button.addEventListener("click", () => {
+        slidesContainer2.scrollLeft += slideWidth2;
+    });
+    
+    prev2Button.addEventListener("click", () => {
+        slidesContainer2.scrollLeft -= slideWidth2;
+    });
+    
+    </script>
