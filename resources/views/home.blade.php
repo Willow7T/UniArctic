@@ -30,7 +30,7 @@
         <div class="lg:col-span-6" id="section2">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
-                    <h2 class="text-center text-lg font-bold p-4">Published Magazines</h2>
+                    <h2 class="text-center text-lg font-bold p-4">Published Monthly Issues</h2>
                     @livewire('home.magazine-filter-search')
                 </div>
             </div>

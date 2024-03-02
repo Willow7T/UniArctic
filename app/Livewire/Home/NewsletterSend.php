@@ -9,7 +9,12 @@ class NewsletterSend extends Component
 {
     public $email;
     public function subscribe()
-    {
+    {   
+        if (empty($this->email)) {
+            session()->flash('error', 'Email field is empty.');
+            return;
+        }
+        
         $this->validate([
             'email' => 'required|email',
         ]);
@@ -31,6 +36,11 @@ class NewsletterSend extends Component
     //unsubscribe
     public function unsubscribe()
     {
+        if (empty($this->email)) {
+            session()->flash('error', 'Email field is empty.');
+            return;
+        }
+        
         // Validate the email
         $this->validate([
             'email' => 'required|email',
