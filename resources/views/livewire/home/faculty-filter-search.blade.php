@@ -70,5 +70,4 @@ nextButton.addEventListener("click", () => {
 prevButton.addEventListener("click", () => {
 	slidesContainer.scrollLeft -= slideWidth;
 });
-
 </script>

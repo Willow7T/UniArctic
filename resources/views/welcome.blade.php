@@ -9,6 +9,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
         
 
         <!-- Scripts -->
@@ -57,39 +58,45 @@
                     </div>
                 @endif
             </section>
-            <section class="mt-16 flex justify-center px-4 md:mt-12 xl:mt-0">
-                <div class="relative w-full mt-8 max-w-screen-xl xl:p-8 xl:py-16">
-                    <div class="z-50">
-                        <img src="{{ asset('storage/background/uniback.jpg') }}" alt="Home Image">
-                    </div>
-                    <div class="absolute z-10 right-2 bottom-2 flex justify-center w-full gap-x-12">
-                        <a href="{{ route('article.search') }}" class="w-24 h-24 flex items-center justify-center bg-red-500 border-solid border-2 border-red-600">
-                            1
-                        </a>
-                         <div class="w-24 h-24 flex items-center justify-center bg-red-500 border-solid border-2 border-red-600">
-                           <a href="{{route('mailtest')}}">
-                            1
-                           </a>
-                         </div>
-                         <div class="w-24 h-24 flex items-center justify-center bg-gray-900 border-solid border-2 border-red-600">
-                            1
-                         </div>
-                         <div class="w-24 h-24 flex items-center justify-center bg-blue-500 border-solid border-2 border-red-600">
-                            1
-                         </div>
-                         <div class="w-24 h-24 flex items-center justify-center bg-blue-500 border-solid border-2 border-red-600">
-                            1
-                         </div>
-                         <div class="w-24 h-24 flex items-center justify-center bg-blue-500 border-solid border-2 border-red-600">
-                            1
-                         </div>
+            <div class="mt-16 flex justify-center px-4 md:mt-12 xl:mt-0">
+                <div class="relative w-full mt-8">
+                    <img class="object-cover z-0 w-full h-full" src="{{ asset('storage/background/uniback.jpg') }}" alt="Home Image">
+                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center space-y-4 z-10">
+                        <div class="grid grid-cols-3 gap-24 backdrop-blur-md mb-16">
+                            <div class="bg-white bg-opacity-50 p-4 flex flex-col items-center justify-center w-32 h-32 scale-[.8] lg:scale-1">
+                                <div class="mb-2">
+                                <i class="fa-solid fa-users fa-3x"></i>
+                                </div>
+                                <p>50000</p>
+                                <p>Students</p>
+                            </div>
+                            <div class="bg-white bg-opacity-50 p-4 flex flex-col items-center justify-center w-32 h-32 scale-[.8] lg:scale-1">
+                                <div class="mb-2">
+                                <i class="fa-solid fa-newspaper fa-3x"></i>
+                                </div>
+                                <p>43289</p>
+                                <p>Articles</p>
+                            </div>
+                            <div class="bg-white bg-opacity-50 p-4 flex flex-col items-center justify-center w-32 h-32 scale-[.8] lg:scale-1">
+                                <div class="mb-2">
+                                <i class="fa-solid fa-school fa-3x"></i>
+                                </div>
+                                <p>10</p>
+                                <p>Faculties</p>
+                            </div>
+                        </div>
+                        <div class="w-72 backdrop-blur-md bg-white bg-opacity-50 p-4 text-center z-10 scale-[.8] lg:scale-1">
+                            <p>Welcome, students, to our informative and engaging article website where knowledge awaits to inspire and enrich your learning journey!</p>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
+              
+              
         </div>
-        {{-- <div  class="bg-white dark:bg-slate-900 shadow-xl rounded-lg p-10 mt-8">
+        <div  class="bg-white dark:bg-slate-900 shadow-xl rounded-lg p-10 mt-8">
             @include('footer')
-        </div> --}}
+        </div>
     </body>
 </html>
 
