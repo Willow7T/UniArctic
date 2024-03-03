@@ -2,7 +2,7 @@
     <div class="flex flex-row justify-between">
         <div class="flex flex-col gap-5">
             <div>
-                <h3 class="pb-4 font-bold text-md">Unreleased Magazines</h3>
+                <h3 class="pb-4 font-bold text-md">Unreleased Monthly Issue</h3>
                 <x-alert type="mag" class="bg-green-400 text-green-100 p-4" />
                 <div class="flex flex-col ml-3 h-96 gap-y-3 overflow-scroll">
                     @foreach ($magazines as $magazine )
