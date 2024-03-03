@@ -16,6 +16,15 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         {{-- <script src="{{ secure_asset('build/assets/app-DgbtYFve.js') }}"></script> --}}
 
+        <script>
+            window.addEventListener('scroll', function() {
+  var nav = document.querySelector('nav');
+  nav.classList.toggle('fixed', window.scrollY > 90);
+  nav.classList.toggle('right-0', window.scrollY > 90);
+  nav.classList.toggle('z-50', window.scrollY > 90);
+});
+
+        </script>
         <!-- Styles -->
         {{-- <link href="{{ secure_asset('build/assets/app-BE0mZvCE.css') }}" rel="stylesheet"> --}}
         @livewireStyles
@@ -41,10 +50,9 @@
             </main>
            
         </div>
-
+        @include('footer')
         @stack('modals')
 
-   
         @livewireScripts
     </body>
 </html>

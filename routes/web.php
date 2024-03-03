@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\HomeController;
-use App\Livewire\FilterSearch;
+use App\Http\Controllers\WelcomeController;
 
 
 /*
@@ -17,12 +17,10 @@ use App\Livewire\FilterSearch;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-Route::get('/MailTest', function () {
-    return view('mail.mailtocoordinator');
-})->name('mailtest');
+Route::get('/', [
+    WelcomeController::class, 'index'
+    ])->name('welcome');
+
 
 
 Route::middleware([

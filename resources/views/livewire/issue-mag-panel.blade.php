@@ -1,5 +1,5 @@
 <div>
-    <div class="flex flex-col xl:flex-row gap-5 justify-between">
+    <div class="flex flex-col xl:flex-row gap-5 justify-between overflow-y-scroll">
         <div class="flex justify-center mx-auto">
             <div class="bg-slate-300 dark:bg-slate-800 ml-2 mb-2 p-2 xl:w-fit sm:w-[400px]">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white text-center">
@@ -73,9 +73,9 @@
                     </select>
                 </div>
             </div>
-            <div class="">
+            <div class="overflow-y-scroll">
                 {{-- show Issue data --Issue name, year, month, publish, article count --}}
-                <table class="border-collapse border border-slate-500 w-full sm:w-3/4 lg:w-1/2 mx-auto overflow-x-auto">
+                <table class="border-collapse border border-slate-500 w-full sm:w-3/4 lg:w-1/2 mx-auto overflow-x-auto ">
                     <tr>
                         <th class="border border-slate-600 p-2 text-center">Issue Name</th>
                         <th class="border border-slate-600 p-2 text-center">Year</th>

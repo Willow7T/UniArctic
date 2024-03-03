@@ -19,16 +19,10 @@
         <!-- Styles -->
         {{-- <link href="{{ secure_asset('build/assets/app-BE0mZvCE.css') }}" rel="stylesheet"> --}}
         @livewireStyles
-        <style>
-            .bg-dots-darker{background-image:url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E")}
-            .dark\:bg-dots-lighter{background-image:url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E")}
-        
-        
-        </style>
-    </head>
-    <body class="antialiased newer dark:bg-slate-900">
        
-        {{-- <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 selection:bg-red-500 selection:text-white" style="background-image: url('{{ asset('storage/background/uniback.jpg') }}')"> --}}
+    </head>
+    <body class="antialiased  dark:bg-slate-900">
+       
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-gray-200 dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             <section>
                 <label for="darkswitch" class="flex items-center cursor-pointer sm:fixed sm:top-10 sm:right-0 p-4">
@@ -58,34 +52,41 @@
                     </div>
                 @endif
             </section>
-            <div class="mt-16 flex justify-center px-4 md:mt-12 xl:mt-0">
-                <div class="relative w-full mt-8">
-                    <img class="object-cover z-0 w-full h-full" src="{{ asset('storage/background/uniback.jpg') }}" alt="Home Image">
+            <div class="mt-16  justify-center px-4 md:mt-12 xl:mt-0 h-svh lg:h-full lg:w-full">
+                <div class="relative w-full h-full mt-8 lg:mt-32">
+                    <img class="object-cover w-full h-full" src="{{ asset('storage/background/uniback.jpg') }}" alt="Home Image">
                     <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center space-y-4 z-10">
-                        <div class="grid grid-cols-3 gap-24 backdrop-blur-md mb-16">
+                        <div class="lg:static grid lg:grid-cols-4  lg:gap-24 grid-cols-2 backdrop-blur-md mb-16">
                             <div class="bg-white bg-opacity-50 p-4 flex flex-col items-center justify-center w-32 h-32 scale-[.8] lg:scale-1">
                                 <div class="mb-2">
                                 <i class="fa-solid fa-users fa-3x"></i>
                                 </div>
-                                <p>50000</p>
+                                <p>{{$user}}</p>
+                                <p>Users</p>
+                            </div>
+                            <div class="bg-white bg-opacity-50 p-4 flex flex-col items-center justify-center w-32 h-32 scale-[.8] lg:scale-1">
+                                <div class="mb-2">
+                                <i class="fa-solid fa-users fa-3x"></i>
+                                </div>
+                                <p>{{$student}}</p>
                                 <p>Students</p>
                             </div>
                             <div class="bg-white bg-opacity-50 p-4 flex flex-col items-center justify-center w-32 h-32 scale-[.8] lg:scale-1">
                                 <div class="mb-2">
                                 <i class="fa-solid fa-newspaper fa-3x"></i>
                                 </div>
-                                <p>43289</p>
+                                <p>{{$article}}</p>
                                 <p>Articles</p>
                             </div>
                             <div class="bg-white bg-opacity-50 p-4 flex flex-col items-center justify-center w-32 h-32 scale-[.8] lg:scale-1">
                                 <div class="mb-2">
                                 <i class="fa-solid fa-school fa-3x"></i>
                                 </div>
-                                <p>10</p>
+                                <p>{{$faculty}}</p>
                                 <p>Faculties</p>
                             </div>
                         </div>
-                        <div class="w-72 backdrop-blur-md bg-white bg-opacity-50 p-4 text-center z-10 scale-[.8] lg:scale-1">
+                        <div class="lg:static w-72 backdrop-blur-md bg-white bg-opacity-50 p-4 text-center z-10 scale-[.8] lg:scale-1">
                             <p>Welcome, students, to our informative and engaging article website where knowledge awaits to inspire and enrich your learning journey!</p>
                         </div>
                     </div>
