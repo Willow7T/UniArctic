@@ -45,16 +45,13 @@ class IssueMagPanel extends Component
 
         if (!empty($this->magazine_idupdate)) {
             $this->selectedMagazine = Magazine::find($this->magazine_idupdate);
-            $this->issue_nameupdate =$this->selectedMagazine->issue_name ;
+            $this->issue_nameupdate = $this->selectedMagazine->issue_name;
             if ($this->selectedMagazine->published == 1) {
                 $this->statusupdate = 1;
-            }
-            else {
+            } else {
                 $this->statusupdate = 0;
             }
-           
         }
-
     }
 
 
@@ -122,9 +119,6 @@ class IssueMagPanel extends Component
             $monthList[] = ['month' => $month, 'year' => $year];
         }
 
-
-
-
         $query = Magazine::query();
 
         $status = boolval($this->status);
@@ -144,6 +138,14 @@ class IssueMagPanel extends Component
         $monthMagList = Magazine::distinct()->orderBy('month', 'asc')->pluck('month')->all();
         $yearMagList = Magazine::distinct()->orderBy('year', 'asc')->pluck('year')->all();
 
+        $articlesCountPerYear = Article::where('articles.published', true)
+            ->join('magazines', 'articles.magazine_id', '=', 'magazines.id')
+            ->selectRaw('magazines.year as year, COUNT(*) as count')
+            ->groupBy('year')
+            ->orderBy('year', 'asc')
+            ->pluck('count');
+
+           // dd($articlesCountPerYear);
 
         $magazines = $query->select('*')->paginate(5);
 
@@ -232,12 +234,14 @@ class IssueMagPanel extends Component
         $zip = new ZipArchive;
         $issueName = str_replace(' ', '_', $magazine->issue_name);
         $zipFileName = storage_path('app/public/' . $issueName . '_articles.zip');
+        set_time_limit(0);    // Set Unlimited Time
+        
         if ($zip->open($zipFileName, ZipArchive::CREATE) === TRUE) {
             // Add each article file to the zip
             foreach ($articles as $article) {
                 $filePath = storage_path('app/public/' . $article->content);
                 if (file_exists($filePath)) {
-                    $fileName = $magazine->month . '_' . DateTime::createFromFormat('!m', $magazine->month)->format('F') . '_' . $magazine->year . '_' . $issueName . '_' . $article->author->name . '_' . '.docx';
+                    $fileName = $magazine->month . '_' . DateTime::createFromFormat('!m', $magazine->month)->format('F') . '_' . $magazine->year . '_' . $article->id . '_' . $issueName . '_' . $article->author->name . '_' . '.docx';
                     $zip->addFile($filePath, $fileName);
                 }
             }
@@ -248,14 +252,18 @@ class IssueMagPanel extends Component
             abort(500, 'Could not create zip file.');
         }
 
-        // Download the zip file
-        return response()->download($zipFileName)->deleteFileAfterSend(true);
+        // Generate a temporary URL for the file
+        $url = route('download.file', ['file' => basename($zipFileName)]);
+
+        // Store the file path in the session so it can be accessed by the download route
+        session(['download_file' => $zipFileName]);
+
+        // Redirect the user to the temporary URL
+        return redirect()->away($url);
     }
 
     public function Yeardown()
     {
-
-
         $user = auth()->user();
         if ($user->role_id != 1) {
             abort(403, 'Unauthorized action.');
@@ -273,12 +281,14 @@ class IssueMagPanel extends Component
         }
         $zip = new ZipArchive;
         $zipFileName = storage_path('app/public/' . $this->yeardown . '_articles.zip');
+
+        set_time_limit(0);    // Set Unlimited Time
         if ($zip->open($zipFileName, ZipArchive::CREATE) === TRUE) {
             // Add each article file to the zip
             foreach ($articles as $article) {
                 $filePath = storage_path('app/public/' . $article->content);
                 if (file_exists($filePath)) {
-                    $fileName = $article->magazine->month . '_' . DateTime::createFromFormat('!m', $article->magazine->month)->format('F') . '_' . $article->magazine->year . '_' . $article->magazine->issue_name . '_' . $article->author->name . '_' . '.docx';
+                    $fileName =  $article->magazine->month . '_' . DateTime::createFromFormat('!m', $article->magazine->month)->format('F') . '_' . $article->id . '_' . $article->magazine->year . '_' . $article->magazine->issue_name . '_' . $article->author->name . '_' . '.docx';
                     $zip->addFile($filePath, $fileName);
                 }
             }
@@ -289,7 +299,13 @@ class IssueMagPanel extends Component
             abort(500, 'Could not create zip file.');
         }
 
-        // Download the zip file
-        return response()->download($zipFileName)->deleteFileAfterSend(true);
+        // Generate a temporary URL for the file
+        $url = route('download.file', ['file' => basename($zipFileName)]);
+
+        // Store the file path in the session so it can be accessed by the download route
+        session(['download_file' => $zipFileName]);
+
+        // Redirect the user to the temporary URL
+        return redirect()->away($url);
     }
 }
