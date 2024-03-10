@@ -18,12 +18,14 @@ class MagazineFactory extends Factory
     protected $model = Magazine::class;
 
     public function definition(): array
-    {
+    {   $year = [2022,2023,2024][rand(0,2)];
+        $month = $year === 2024 && date('Y') == 2024 ? $this->faker->numberBetween(1, date('n')) : $this->faker->numberBetween(1, 12);
+        
         return [
             'issue_name' => $this->faker->word,
-            'year' => [2023,2024][rand(0,1)],
-            'month' => $this->faker->numberBetween(1, 12),
-            'published' => false,
+            'year' => $year,
+            'month' => $month,
+            'published' => $this->faker->boolean,
         ];
     }
 }
