@@ -12,11 +12,11 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        {{-- <script src="{{ secure_asset('build/assets/app-DgbtYFve.js') }}"></script> --}}
+        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+        <script src="{{asset('build/assets/app-tCqK36nS.js') }}"></script> 
 
         <!-- Styles -->
-        {{-- <link href="{{ secure_asset('build/assets/app-BE0mZvCE.css') }}" rel="stylesheet"> --}}
+        <link href="{{asset('build/assets/app-B7hUPDDa.css') }}" rel="stylesheet">
         @livewireStyles
         @bukStyles
     </head>

@@ -15,7 +15,8 @@
                         <div class="flex flex-col w-64 ml-4 my-4">
                             <h4>Issue name: {{$magazine->issue_name }}</h4>
                             <p>Publication: {{ DateTime::createFromFormat('!m', $magazine->month)->format('F') }} {{$magazine->year }}</p>
-                            <p>Article Count: {{$magazine->articles->count()}}</p>
+                            <p>Articles Count: {{$magazine->articles->count()}}</p>
+                            {{-- <p>Faculty Articles Count: {{$magazine->articles->count()}}</p> --}}
 
                                 <label for="selected_magazine_{{$magazine->id}}" id="magazine_{{$magazine->id}}"
                                     class="bg-gray-500 text-center flex items-center justify-center h-16" wire:ignore>Select</label>
