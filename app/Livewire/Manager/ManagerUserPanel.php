@@ -84,13 +84,15 @@ class ManagerUserPanel extends Component
         }
         $zip = new ZipArchive;
         $zipFileName = storage_path('app/public/' . $userID . '_articles.zip');
+
+        set_time_limit(0); //Unlimited Time
         if ($zip->open($zipFileName, ZipArchive::CREATE) === TRUE) {
             // Add each article file to the zip
             foreach ($articles as $article) {
                 $filePath = storage_path('app/public/' . $article->content);
                 if (file_exists($filePath)) {
                     $issueName = str_replace(' ', '_', $article->magazine->issue_name);
-                    $fileName = $user->name . '_' . $issueName.'_'. $article->magazine->year.'_'. DateTime::createFromFormat('!m', $article->magazine->month)->format('F').'_'.'.docx';
+                    $fileName = $user->name . '_' . $article->id . '_' . $issueName.'_'. $article->magazine->year.'_'. DateTime::createFromFormat('!m', $article->magazine->month)->format('F').'_'.'.docx';
                     $zip->addFile($filePath, $fileName);
                 }
             }
@@ -100,8 +102,13 @@ class ManagerUserPanel extends Component
         } else {
             abort(500, 'Could not create zip file.');
         }
-        
-        // Download the zip file
-        return response()->download($zipFileName)->deleteFileAfterSend(true);
+        // Generate a temporary URL for the file
+    $url = url('download/' . basename($zipFileName));
+
+    // Store the file path in the session so it can be accessed by the download route
+    session(['download_file' => $zipFileName]);
+
+    // Redirect the user to the temporary URL
+    return redirect()->away($url);
     }
 }
