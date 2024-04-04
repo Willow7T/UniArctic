@@ -32,7 +32,7 @@
         @livewireStyles
         @bukStyles
     </head>
-    <body class="font-sans antialiased ">
+    <body class="font-sans antialiased dark:bg-slate-800">
         <x-banner />
         <div class="min-h-screen bg-gray-100 dark:bg-slate-800">
             @livewire('navigation-menu')
@@ -47,7 +47,7 @@
             @endif
             
             <!-- Page Content -->
-            <main >
+            <main>
                 {{ $slot }}
             </main>
            

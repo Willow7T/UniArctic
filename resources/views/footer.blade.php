@@ -1,8 +1,8 @@
 <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
 </head>
-<div >
-        <div class="flex items-center justify-center my-8 pt-4 ">
+<div class="dark:bg-slate-900">
+        <div class="flex items-center justify-center my-8 pt-4 dark:bg-slate-900">
             <div class="border-t-4 border-gray-400 flex-grow"></div>
             <div class="mx-8 flex justify-normal">
                 <a class="mx-2 dark:text-white" href="#">
@@ -26,7 +26,7 @@
             </div>
             <div class="border-t-4 border-gray-400 flex-grow"></div>
         </div>
-        <div class="dark:text-white text-center">
+        <div class="dark:text-white text-center dark:bg-slate-900">
             <div>UniArctic</div>
             <div>Copyright © 2024 uniarctic, Edu.</div>
         </div>
