@@ -13,9 +13,9 @@
 
         
         <!-- Scripts -->
-        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         {{-- <script src="{{ secure_asset('build/assets/app-DgbtYFve.js') }}"></script> --}}
-        <script src="{{asset('build/assets/app-tCqK36nS.js') }}"></script>
+        {{-- <script src="{{asset('build/assets/app-tCqK36nS.js') }}"></script> --}}
 
         <script>
             window.addEventListener('scroll', function() {
@@ -28,7 +28,7 @@
         </script>
         <!-- Styles -->
         {{-- <link href="{{ secure_asset('build/assets/app-BE0mZvCE.css') }}" rel="stylesheet"> --}}
-        <link href="{{asset('build/assets/app-B7hUPDDa.css') }}" rel="stylesheet">
+        {{-- <link href="{{asset('build/assets/app-B7hUPDDa.css') }}" rel="stylesheet"> --}}
         @livewireStyles
         @bukStyles
     </head>
