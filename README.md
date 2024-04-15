@@ -31,20 +31,16 @@ password `root`
  `DB_PORT=5432`
 For First time users, please run    
 
-    ```bash
+ 
         php artisan migrate
-    ```
 
-    ```bash
        npm run dev
        php artisan serve
-    ```
+
 If you are not First time users, please run 
 
-    ```bash
        npm run dev
        php artisan serve
-    ```
     
 ## Contributing
 
