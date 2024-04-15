@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration
 {
@@ -30,7 +32,20 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
-    
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'email' => 'admin@uniarctic.com',
+            'password' => Hash::make('password'),
+            'role_id' => 1, // Assuming 1 is the role_id for admin
+            'email_verified_at' => now(),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Manager',
+            'email' => 'manager@uniarctic.com',
+            'password' => Hash::make('password'),
+            'role_id' => 2, // Assuming 1 is the role_id for admin
+            'email_verified_at' => now(),
+        ]);
     }
 
     /**

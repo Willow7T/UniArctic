@@ -20,7 +20,32 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 - [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## How To Use
 
+This is an university project by Group 1. Team members are Thaw Zin Lin Myat([Willow7T](https://github.com/Willow7T)), Kaung Myat Htun([Kuro-ai](https://github.com/Kuro-ai)), Nyan Lin Htet, Moe Thet Ko, Zwe Yu Ya Kyaw Zin Oo, Thin Htet San, Han Nadi Aung
+
+Before Running the application in localhost, please make sure you have PostgreSQL installed and Create a database name `uniarctic` with parameters below 
+username `postgres`
+password `root` 
+`DB_HOST=127.0.0.1`
+ `DB_PORT=5432`
+For First time users, please run    
+
+    ```bash
+        php artisan migrate
+    ```
+
+    ```bash
+       npm run dev
+       php artisan serve
+    ```
+If you are not First time users, please run 
+
+    ```bash
+       npm run dev
+       php artisan serve
+    ```
+    
 ## Contributing
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
