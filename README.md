@@ -22,13 +22,15 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 ## How To Use
 
-This is an university project by Group 1. Team members are Thaw Zin Lin Myat([Willow7T](https://github.com/Willow7T)), Kaung Myat Htun([Kuro-ai](https://github.com/Kuro-ai)), Nyan Lin Htet, Moe Thet Ko, Zwe Yu Ya Kyaw Zin Oo, Thin Htet San, Han Nadi Aung
+This is an university project by Group 1. Team members are Thaw Zin Lin Myat([Willow7T](https://github.com/Willow7T)), Kaung Myat Htun([Kuro-ai](https://github.com/Kuro-ai)), Nyan Lin Htet, Moe Thet Ko, Zwe Yu Ya Kyaw Zin Oo, Thin Htet San, Han Nadi Aung.
 
-Before Running the application in localhost, please make sure you have PostgreSQL installed and Create a database name `uniarctic` with parameters below 
+Before Running the application in localhost, please make sure you have PostgreSQL installed and Create a database name `uniarctic` with parameters below
+
 username `postgres`
 password `root` 
 `DB_HOST=127.0.0.1`
  `DB_PORT=5432`
+ 
 For First time users, please run    
 
  
