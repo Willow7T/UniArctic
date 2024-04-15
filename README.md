@@ -32,7 +32,7 @@ password `root`
 For First time users, please run    
 
  
-        php artisan migrate
+       php artisan migrate
 
        npm run dev
        php artisan serve
