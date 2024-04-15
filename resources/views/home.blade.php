@@ -51,9 +51,7 @@
 
         </div>
     </div>
-    <div  class="bg-white dark:bg-slate-900 shadow-xl rounded-lg p-10">
-       
-    </div>
+    
 </x-app-layout>
 
 <script>
