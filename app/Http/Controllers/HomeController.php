@@ -12,9 +12,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->current_team_id) {
+        if (auth()->user()->create_at == auth()->user()->updated_at) {
             // This is the user's first visit to the home page
-            auth()->user()->current_team_id = 1;
+            // Set the current team id to 1
+            $user = auth()->user();
+            $user->current_team_id = 1;
+            $user->save();
+            
             // Get the emails of the faculty coordinators whose role_id is 3
             $coordinatorEmails = User::where('faculty_id', auth()->user()->faculty_id)
                 ->where('role_id', 3)
