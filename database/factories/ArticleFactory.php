@@ -19,20 +19,22 @@ class ArticleFactory extends Factory
      */
     protected $model = Article::class;
 
-    public function definition(): array
-    {$magazine = Magazine::factory()->create();
+    public function definition(): array {
+    // {   $magazine = Magazine::factory()->create();
+    //     $author = User::factory()->create();
+    $author = User::find(rand(3,12));
 
         return [
             'title' => $this->faker->sentence,
             'intro' => $this->faker->paragraph,
             'image' => 'articles/sample.jpeg', // This will generate a random image URL
             'content' => 'articles/Sample.docx', // This is a placeholder, replace with actual docx content
-            'selected' => $magazine->published,
-            'published' => $magazine->published,
+            'selected' => $this->faker->boolean,
+            'published' => $this->faker->boolean,
             'anonymous' => $this->faker->boolean,
-            'author_id' => User::factory()->create()->id,
-            'faculty_id' => rand(1, 10), 
-            'magazine_id' => $magazine->id,            
+            'author_id' => $author->id,
+            'faculty_id' => $author->faculty_id,
+            'magazine_id' => rand(1,10),            
         ];
     }
 }
