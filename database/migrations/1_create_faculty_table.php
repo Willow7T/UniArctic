@@ -27,6 +27,7 @@ return new class extends Migration
         foreach ($faculties as $faculty) {
             DB::table('faculties')->insert([
                 'name' => $faculty,
+                'image' => 'background/default_faculty.jpg', // This will generate a random image URL
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

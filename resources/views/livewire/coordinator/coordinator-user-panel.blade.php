@@ -1,30 +1,30 @@
 <div id="paginated-posts">
     <div class="p-2">
         <div>
-            <h1 class="pl-2 font-bold text-center p-4">
+            <h1 class="pl-2 font-bold text-center p-4 dark:text-white">
                 Edit users Role
             </h1>
-            <x-alert type="message" class="bg-green-700 text-green-100 p-4" />
+            <x-alert type="message" class="bg-green-700 text-green-100 p-4"/>
         </div>
         <div class="h-[36rem] overflow-x-scroll">
-            <table class="border-collapse border border-slate-500 w-fit m-auto">
+            <table class="border-collapse border border-slate-500 w-fit m-auto dark:text-white">
                 <thead>
                     <tr class="h-10">
-                        <th class="border border-slate-600 backdrop-blur-sm">Name</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Email</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Change Role</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Faculty</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Account Creation Date</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Articles Upload</th>
-                        <th class="border border-slate-600 backdrop-blur-sm">Check Articles</th>
+                        <th class="border border-slate-600 backdrop-blur-sm dark:text-white">Name</th>
+                        <th class="border border-slate-600 backdrop-blur-sm dark:text-white">Email</th>
+                        <th class="border border-slate-600 backdrop-blur-sm dark:text-white">Change Role</th>
+                        <th class="border border-slate-600 backdrop-blur-sm dark:text-white">Faculty</th>
+                        <th class="border border-slate-600 backdrop-blur-sm dark:text-white">Account Creation Date</th>
+                        <th class="border border-slate-600 backdrop-blur-sm dark:text-white">Articles Upload</th>
+                        <th class="border border-slate-600 backdrop-blur-sm dark:text-white">Check Articles</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($users as $user)
                     <tr>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->name }}</td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{$user->email}}</td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm dark:text-white">{{ $user->name }}</td>
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm dark:text-white">{{$user->email}}</td>
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm dark:text-white">
                             <select wire:change="updateUserRole({{ $user->id }}, $event.target.value)"
                                 class="backdrop-blur-sm block w-auto py-2 px-3 border-0 outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-100">
                                 @foreach($roles as $role)
@@ -33,11 +33,11 @@
                                 @endforeach
                             </select>
                         </td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ optional($user->faculty)->name ?? 'No
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm dark:text-white">{{ optional($user->faculty)->name ?? 'No
                             Faculty' }}</td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->created_at ?? 'Data Deleted or
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm dark:text-white">{{ $user->created_at ?? 'Data Deleted or
                             Nothing to Show' }}</td>
-                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">{{ $user->articles_count ?? 'No Article Upload'
+                        <td class="border border-slate-600 text-center p-4 backdrop-blur-sm dark:text-white">{{ $user->articles_count ?? 'No Article Upload'
                             }}</td>
                         <td class="border border-slate-600 text-center p-4 backdrop-blur-sm">
                             <x-button wire:click="buttonClicked({{$user->id}})" data-modal-target="default-modal"

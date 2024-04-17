@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->email_verified_at) {
+        if (!auth()->user()->profile_photo_path) {
             // This is the user's first visit to the home page
 
             // Get the emails of the faculty coordinators whose role_id is 3

@@ -41,7 +41,7 @@
         <div class="lg:col-span-3" id="section3">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
-                    <h2 class="text-center text-lg font-bold p-4">Faculty Image</h2>
+                    <h2 class="text-center text-lg font-bold p-4 dark:text-white">Faculty Image</h2>
                     @livewire('coordinator.faculty-image')
                 </div>
             </div>
@@ -49,7 +49,7 @@
         <div class="lg:col-span-6" id="section4">
             <div class="mx-auto sm:px-6 lg:px-8 ">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
-                    <h2 class="text-center text-lg font-bold p-4">Articles Selection</h2>
+                    <h2 class="text-center text-lg font-bold p-4 dark:text-white">Articles Selection</h2>
                     @livewire('coordinator.article-selection')
                 </div>
             </div>
@@ -57,7 +57,7 @@
         <div class="lg:col-span-6" id="section5">
             <div class="mx-auto sm:px-6 lg:px-8 ">
                 <div class="bg-white dark:bg-slate-900 shadow-xl rounded-lg">
-                    <h2 class="text-center text-lg font-bold p-4">Users Management</h2>
+                    <h2 class="text-center text-lg font-bold p-4 dark:text-white">Users Management</h2>
                     @livewire('coordinator.coordinator-user-panel')
                 </div>
             </div>

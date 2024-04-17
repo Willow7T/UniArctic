@@ -1,18 +1,18 @@
 <div>
-    <div class="flex flex-row justify-between">
+    <div class="flex flex-row justify-between dark:text-white">
         <div class="flex flex-col gap-5">
             <div>
                 <h3 class="pb-4 font-bold text-md">Unreleased Monthly Issue</h3>
                 <x-alert type="mag" class="bg-green-400 text-green-100 p-4" />
-                <div class="flex flex-col ml-3 h-96 gap-y-3 overflow-scroll">
+                <div class="flex flex-col ml-3 h-96 gap-y-3 overflow-scroll dark:text-white">
                     @foreach ($magazines as $magazine )
-                    <div class="flex flex-row bg-slate-300 dark:bg-slate-800 justify-between">
+                    <div class="flex flex-row bg-slate-300 dark:bg-slate-800 justify-between dark:text-white">
                         <div>
                             <img class="w-28"
                                 src="{{asset('storage/'. $magazine->image ?? 'storage/background/SampleMag.jpg')}}"
                                 alt="Magazine Logo">
                         </div>
-                        <div class="flex flex-col w-64 ml-4 my-4">
+                        <div class="flex flex-col w-64 ml-4 my-4 dark:text-white">
                             <h4>Issue name: {{$magazine->issue_name }}</h4>
                             <p>Publication: {{ DateTime::createFromFormat('!m', $magazine->month)->format('F') }} {{$magazine->year }}</p>
                             <p>Articles Count: {{$magazine->articles->count()}}</p>
