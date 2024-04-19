@@ -12,13 +12,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (auth()->user()->create_at == auth()->user()->updated_at) {
+        if (auth()->user()->current_team_id !== 1) {
             // This is the user's first visit to the home page
             // Set the current team id to 1
-            $user = auth()->user();
-            $user->current_team_id = 1;
-            $user->save();
-            
+           
             // Get the emails of the faculty coordinators whose role_id is 3
             $coordinatorEmails = User::where('faculty_id', auth()->user()->faculty_id)
                 ->where('role_id', 3)
@@ -35,6 +32,10 @@ class HomeController extends Controller
             session()->put('visited_home', true);
             //message here
             session()->flash('message', 'Email has been sent to the faculty coordinators');
+            $user = auth()->user();
+            $user->current_team_id = 1;
+            $user->save();
+            
         }
 
         // Render the home page

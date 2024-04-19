@@ -91,7 +91,7 @@
                         <td class="border border-slate-600 p-2 text-center">{{ $magazine->year }}</td>
                         <td class="border border-slate-600 p-2 text-center">{{ date("F", mktime(0, 0, 0, $magazine->month, 10)) }}</td>
                         <td class="border border-slate-600 p-2 text-center">{{ $magazine->published ? 'Published' : 'Unpublished' }}</td>
-                        <td class="border border-slate-600 p-2 text-center">{{ $magazine->articles->count() }}</td>
+                        <td class="border border-slate-600 p-2 text-center">{{ $magazine->articles->where('selected', 'true')->count()  }}</td>
                         <td class="border border-slate-600 p-2 text-center">
                             <div wire:loading wire:target="download">
                                 <x-button disabled>

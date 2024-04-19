@@ -33,7 +33,7 @@ class ArticleUpNotiCoor extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Article was Edit & Reupload by a Student: '.$this->user->name,
+            subject: 'Article was Edit & Reupload by a Coordinator: '.$this->user->name,
         );
     }
 

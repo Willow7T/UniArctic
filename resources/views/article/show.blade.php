@@ -161,9 +161,6 @@
             @endif
         </div>
     </div>
-    <div  class="bg-white dark:bg-slate-900 shadow-xl rounded-lg p-10">
-        @include('footer')
-    </div>
 
 
 </x-app-layout>
